@@ -46,7 +46,7 @@ public class SingletonMono<T> : MonoBehaviour where T: SingletonMono<T>
                     //立即执行Awake
                     instance = new GameObject("Singleton of " + typeof(T)).AddComponent<T>();//创建并添加这个本脚本
                 else
-                    instance.Init_Awake();
+                    instance.Init();
             }
             return instance;
         }
@@ -57,14 +57,14 @@ public class SingletonMono<T> : MonoBehaviour where T: SingletonMono<T>
         if (instance == null)
         {
             instance = this as T;
-            instance.Init_Awake();
+            instance.Init();
         }
     }
 
     /// <summary>
     /// 初始化
     /// </summary>
-    protected virtual void Init_Awake()
+    protected virtual void Init()
     {
 
     }

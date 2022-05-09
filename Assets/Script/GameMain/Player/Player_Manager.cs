@@ -16,10 +16,15 @@ public class Player_Manager : SingletonMono<Player_Manager>
     private Animator player_Gun_PlayerGun_Animator;
     #endregion
 
+    #region Player_HP
+    private Transform player_Hp_Bar;
+    private Bar_Health player_Hp_BarHealth;
+    private Transform player_Hp_PlayerHPBar;
+    #endregion
 
-    protected override void Init_Awake()
+    protected override void Init()
     {
-        base.Init_Awake();
+        base.Init();
 
         player_Animator = transform.Find_Child<Animator>(Config_Player.player_Prefab_Body);
         player_Rigidbody2D = transform.GetComponent<Rigidbody2D>();
@@ -27,6 +32,10 @@ public class Player_Manager : SingletonMono<Player_Manager>
 
         player_Gun_PlayerGun_Transform = transform.Find_Child<Transform>(Config_Player.player_Prefab_Gun_PlayerGun);
         player_Gun_PlayerGun_Animator = transform.Find_Child<Animator>(Config_Player.player_Prefab_Gun_PlayerGun);
+
+        player_Hp_Bar = transform.Find_Child<Transform>(Config_HPBar.HPbar_Prefab_Bar);
+        player_Hp_BarHealth = transform.Find_Child<Bar_Health>(Config_Player.player_HP_WorldBar);
+        player_Hp_PlayerHPBar = transform.Find_Child<Transform>(Config_Player.player_HP_PlayerHPBar);
     }
 
     public Animator Player_Animator
@@ -53,5 +62,17 @@ public class Player_Manager : SingletonMono<Player_Manager>
     public Animator Player_Gun_PlayerGun_Animator
     {
         get { return player_Gun_PlayerGun_Animator; }
+    }
+    public Transform Player_Hp_Bar
+    {
+        get { return player_Hp_Bar; }
+    }
+    public Bar_Health Player_Hp_BarHealth
+    {
+        get { return player_Hp_BarHealth; }
+    }
+    public Transform Player_Hp_PlayerHPBar
+    {
+        get { return player_Hp_PlayerHPBar; }
     }
 }

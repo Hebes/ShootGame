@@ -9,9 +9,9 @@ public class Camera_Follow : SingletonMono<Camera_Follow>
 
     private float cameraMoveSpeed = 3f;//相机移动速度
 
-    protected override void Init_Awake()
+    protected override void Init()
     {
-        base.Init_Awake();
+        base.Init();
         myCamera = GetComponent<Camera>();
     }
 

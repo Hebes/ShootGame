@@ -18,9 +18,9 @@ public class GameManager : SingletonMono<GameManager>
 
     //private Player_weapen player_Weapen;
 
-    protected override void Init_Awake()
+    protected override void Init()
     {
-        base.Init_Awake();
+        base.Init();
         cameraFollow = Camera_Follow.Instance;
         followTransform = Player_Manager.Instance.Player_Transform;
     }

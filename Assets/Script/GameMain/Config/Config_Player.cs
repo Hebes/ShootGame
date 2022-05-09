@@ -18,4 +18,8 @@ public class Config_Player
     public const string player_Event_Shoot = "Player_Shoot";
     #endregion
 
+    #region 玩家气血条物体
+    public const string player_HP_WorldBar = "World_Bar";
+    public const string player_HP_PlayerHPBar = "Player_HPBar";
+    #endregion
 }

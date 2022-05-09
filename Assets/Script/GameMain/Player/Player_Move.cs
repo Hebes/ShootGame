@@ -15,16 +15,16 @@ public class Player_Move : MonoBehaviour,IMove
 
     private void Update()
     {
-        //float moveX = 0f;
-        //float moveY = 0f;
+        float moveX = 0f;
+        float moveY = 0f;
 
-        //if (input.getkey(keycode.w)) moveY = +1f;
-        //if (input.getkey(keycode.s)) moveY = -1f;
-        //if (input.getkey(keycode.a)) moveX = -1f;
-        //if (input.getkey(keycode.d)) moveX = +1f;
+        if (Input.GetKey(Config_Key.Key_UP)) moveY = +1f;
+        if (Input.GetKey(Config_Key.Key_Down)) moveY = -1f;
+        if (Input.GetKey(Config_Key.Key_Left)) moveX = -1f;
+        if (Input.GetKey(Config_Key.Key_Right)) moveX = +1f;
 
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
+        //float moveX = Input.GetAxis("Horizontal");
+        //float moveY = Input.GetAxis("Vertical");
 
         Vector3 moveVector = new Vector3(moveX, moveY).normalized;
 

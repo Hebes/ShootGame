@@ -10,4 +10,5 @@ public static class Config_Event
     #region EventName 事件名称
     public const string EventName_Loading = "Loading";
     #endregion
+
 }
