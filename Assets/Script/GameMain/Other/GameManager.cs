@@ -22,7 +22,7 @@ public class GameManager : SingletonMono<GameManager>
     {
         base.Init_Awake();
         cameraFollow = Camera_Follow.Instance;
-        followTransform = Player_Manager.Instance.Player_Position;
+        followTransform = Player_Manager.Instance.Player_Transform;
     }
 
     private void Start()
