@@ -31,9 +31,15 @@ public class Player_Move : MonoBehaviour,IMove
         bool isIdle = moveX == 0 && moveY == 0;
 
         if (isIdle)
+        {
             Player_Manager.Instance.Player_Animator.SetBool(Config_Player.player_Animator_Bool, false);
+            Player_Manager.Instance.Player_MiniMapIcon_Animator.SetBool(Config_Player.player_Animator_Bool, false);
+        }
         else
+        {
             Player_Manager.Instance.Player_Animator.SetBool(Config_Player.player_Animator_Bool, true);
+            Player_Manager.Instance.Player_MiniMapIcon_Animator.SetBool(Config_Player.player_Animator_Bool, true);
+        }
 
         GetComponent<IMove>().SetMove(moveVector);
     }
