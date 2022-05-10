@@ -29,7 +29,7 @@ public class Player_Weapen : MonoBehaviour
         //canShoot = ShootTimer;
     }
 
-    int shootNum = 0;
+    //int shootNum = 0;
     /// <summary>
     /// 射击的方法
     /// </summary>
@@ -48,7 +48,7 @@ public class Player_Weapen : MonoBehaviour
 
         if (Input.GetMouseButtonDown(Config_Key.Key_Mouse_Left))
         {
-            print("攻击了：" + shootNum++);
+            //print("攻击了：" + shootNum++);
             //播放枪械攻击动击动画
             Player_Manager.Instance.Player_Gun_PlayerGun_Animator.SetTrigger(Config_Animator.gun_Trigger_Animator_Shoot);//枪械左边攻
 
