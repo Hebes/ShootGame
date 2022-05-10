@@ -43,7 +43,7 @@ public class Bar_HealthSystem : BaseManager<Bar_HealthSystem>
         health -= damageAmount;
         if (health < 0) health = 0;
 
-        EventCenter.Instance.EventTrigger(Config_HPBar.EventName_HPEvent);//执行监听方法
+        EventCenter.Instance.EventTrigger(Config_Common.EventName_HPEvent);//执行监听方法
     }
 
     /// <summary>
@@ -56,6 +56,6 @@ public class Bar_HealthSystem : BaseManager<Bar_HealthSystem>
 
         if (health > healthMax) health = healthMax;
 
-        EventCenter.Instance.EventTrigger(Config_HPBar.EventName_HPEvent);//执行监听方法
+        EventCenter.Instance.EventTrigger(Config_Common.EventName_HPEvent);//执行监听方法
     }
 }

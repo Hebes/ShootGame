@@ -8,15 +8,12 @@ public class GameManager : SingletonMono<GameManager>
 {
     private Camera_Follow cameraFollow;
 
-    [SerializeField]
     [Tooltip("摄像机的位置兼玩家位置")]
     private Transform followTransform;
 
     [SerializeField]
     [Tooltip("用鼠标定位摄像机")]
     private bool cameraPositionWithMouse;
-
-    //private Player_weapen player_Weapen;
 
     protected override void Init()
     {
@@ -47,4 +44,12 @@ public class GameManager : SingletonMono<GameManager>
             return followTransform.position;
         }
     }
+
+
+    public Color pingMoveColor;
+    public Color pingEnemyColor;
+
+    //以下为测试代码
+    public Sprite pingMoveSprite;//移动图标
+    public Sprite pingEnemySprite;//敌人图标
 }

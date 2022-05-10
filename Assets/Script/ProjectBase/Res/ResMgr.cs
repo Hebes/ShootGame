@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,11 +18,10 @@ public class ResMgr : BaseManager<ResMgr>
         T res = Resources.Load<T>(name);
         //如果对象是一个GameObject类型的 我把他实例化后 再返回出去 外部 直接使用即可
         if (res is GameObject)
-            return GameObject.Instantiate(res);
+            return Object.Instantiate(res);
         else//TextAsset AudioClip
             return res;
     }
-
 
     //异步加载资源
     public void LoadAsync<T>(string name, UnityAction<T> callback) where T : Object
@@ -40,7 +39,7 @@ public class ResMgr : BaseManager<ResMgr>
         if (callback != null)
         {
             if (r.asset is GameObject)
-                callback(GameObject.Instantiate(r.asset) as T);
+                callback(Object.Instantiate(r.asset) as T);
             else
                 callback(r.asset as T);
         }

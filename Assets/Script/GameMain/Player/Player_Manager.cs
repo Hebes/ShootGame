@@ -33,7 +33,7 @@ public class Player_Manager : SingletonMono<Player_Manager>
         player_Gun_PlayerGun_Transform = transform.Find_Child<Transform>(Config_Player.player_Prefab_Gun_PlayerGun);
         player_Gun_PlayerGun_Animator = transform.Find_Child<Animator>(Config_Player.player_Prefab_Gun_PlayerGun);
 
-        player_Hp_Bar = transform.Find_Child<Transform>(Config_HPBar.HPbar_Prefab_Bar);
+        player_Hp_Bar = transform.Find_Child<Transform>(Config_Common.HPbar_Prefab_Bar);
         player_Hp_BarHealth = transform.Find_Child<Bar_Health>(Config_Player.player_HP_WorldBar);
         player_Hp_PlayerHPBar = transform.Find_Child<Transform>(Config_Player.player_HP_PlayerHPBar);
     }

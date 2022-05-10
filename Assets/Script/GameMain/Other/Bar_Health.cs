@@ -10,7 +10,7 @@ public class Bar_Health : MonoBehaviour
     public void Setup(Bar_HealthSystem bar_HealthSystem)
     {
         this.bar_HealthSystem = bar_HealthSystem;
-        EventCenter.Instance.AddEventListener(Config_HPBar.EventName_HPEvent, Bar_HealthSystem_OnHealthChange);
+        EventCenter.Instance.AddEventListener(Config_Common.EventName_HPEvent, Bar_HealthSystem_OnHealthChange);
     }
 
     /// <summary>
