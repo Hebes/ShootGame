@@ -118,6 +118,8 @@
     <Compile Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\Utils\FunctionPeriodic.cs" />
     <Compile Include="Assets\Script\GameMain\Config\old\Config_PrefabComponent.cs" />
     <Compile Include="Assets\Script\GameMain\TargetSystem\PingWheel.cs" />
+    <Compile Include="Assets\Script\GameMain\Cursor\CursorManager.cs" />
+    <Compile Include="Assets\Script\GameMain\Cursor\CursorObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\README.txt" />

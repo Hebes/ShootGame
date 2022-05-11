@@ -6,7 +6,10 @@ using CodeMonkey.Utils;
 using TMPro;
 using Tool;
 using System;
-
+/// <summary>
+/// 目标标记系统
+/// 参考：https://www.youtube.com/watch?v=vcQe_0rtvzc&list=PLzDRvYVwl53v8c8YAZI3cQ7HmFAWRJYgs&index=6
+/// </summary>
 public class TargetSystem : BaseManager<TargetSystem>
 {
     private const float MOVE_ENEMY_DOUBLE_CLICK_TIME = .5f;
@@ -164,12 +167,9 @@ public class TargetSystem : BaseManager<TargetSystem>
         pingButtonHoldDownTimer += Time.deltaTime;
         //Debug.Log(pingButtonHoldDownTimer);
         if (pingButtonHoldDownTimer> PING_BUTTON_HOLDDOWN_WHEEL_SHOW_TIME)
-        {
-            
+        {            
             if (!PingWheel.Instance.IsVisibleStatic)
-            {
                 PingWheel.Instance.Show(UtilsClass.GetMouseWorldPosition());
-            }
         }
     }
     public void PingButtonReleased()
@@ -212,10 +212,6 @@ public class TargetSystem : BaseManager<TargetSystem>
             destroyTime = Time.time + 10f;//10秒后消失
             this.itemType = itemType;
         }
-        //public Type GetPingType()
-        //{
-        //    return type;
-        //}
 
         public Type GetPingType
         {
@@ -249,20 +245,6 @@ public class TargetSystem : BaseManager<TargetSystem>
             return (ItemIdentifier.ItemType)itemType;
         }
     }
-
-    //private void Update()
-    //{
-    //    if (Input.GetMouseButtonDown(Config_Key.Key_Mouse_Right))
-    //    {
-    //        ResMgr.Instance.LoadAsync<GameObject>(Config_ResourcesLoadPaths.targetSystem_Prefab_TargetSystemIcon_Prefab_TargetSystemPrefab,
-    //            (obj) => {
-    //                obj.transform.position = UtilsClass.GetMouseWorldPosition();
-    //                obj.transform.SetParent(transform);
-    //                UI_TargetWindow.Instance.AddPing(obj.transform.position);
-    //            });
-
-    //    }
-    //}
 }
 
 
