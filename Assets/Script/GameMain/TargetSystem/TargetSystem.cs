@@ -10,11 +10,19 @@ using System;
 public class TargetSystem : BaseManager<TargetSystem>
 {
     private const float MOVE_ENEMY_DOUBLE_CLICK_TIME = .5f;
+    /// <summary>
+    /// 显示PingWheel 界面的时间
+    /// </summary>
+    private const float PING_BUTTON_HOLDDOWN_WHEEL_SHOW_TIME = .5f;
+
+
     private static float lastPingTime;
 
     private Ping lastPing;
 
     private List<Ping> pingList;
+
+    private float pingButtonHoldDownTimer;
 
     public override void Init()
     {
@@ -74,6 +82,7 @@ public class TargetSystem : BaseManager<TargetSystem>
 
         Transform pingTransform = (Transform)UnityEngine.Object.Instantiate(goRR.asset, ping.GetPosition, Quaternion.identity, parent);
 
+
         switch (ping.GetPingType)
         {
             default:
@@ -86,6 +95,30 @@ public class TargetSystem : BaseManager<TargetSystem>
             case Ping.Type.Item:
                 pingTransform.Find_Child<SpriteRenderer>("TargetBody").sprite = ItemIdentifier.Instance.GetItemSprite(ping.GetItemType());
                 pingTransform.Find_Child<TextMeshPro>("Targe_Text").color = ItemIdentifier.Instance.GetItemColor(ping.GetItemType());
+                break;
+            case Ping.Type.Looting:
+                pingTransform.Find_Child<SpriteRenderer>("TargetBody").sprite = GameManager.Instance.pingLootingSprite;
+                pingTransform.Find_Child<TextMeshPro>("Targe_Text").color = GameManager.Instance.pingEnemyColor;
+                break;
+            case Ping.Type.Attacking:
+                pingTransform.Find_Child<SpriteRenderer>("TargetBody").sprite = GameManager.Instance.pingAttackingSprite;
+                pingTransform.Find_Child<TextMeshPro>("Targe_Text").color = GameManager.Instance.pingEnemyColor;
+                break;
+            case Ping.Type.GoingHere:
+                pingTransform.Find_Child<SpriteRenderer>("TargetBody").sprite = GameManager.Instance.pingGoingHereSprite;
+                pingTransform.Find_Child<TextMeshPro>("Targe_Text").color = GameManager.Instance.pingEnemyColor;
+                break;
+            case Ping.Type.Defend:
+                pingTransform.Find_Child<SpriteRenderer>("TargetBody").sprite = GameManager.Instance.pingDefendSprite;
+                pingTransform.Find_Child<TextMeshPro>("Targe_Text").color = GameManager.Instance.pingEnemyColor;
+                break;
+            case Ping.Type.Watching:
+                pingTransform.Find_Child<SpriteRenderer>("TargetBody").sprite = GameManager.Instance.pingWatchingSprite;
+                pingTransform.Find_Child<TextMeshPro>("Targe_Text").color = GameManager.Instance.pingEnemyColor;
+                break;
+            case Ping.Type.Enemyseen:
+                pingTransform.Find_Child<SpriteRenderer>("TargetBody").sprite = GameManager.Instance.pingEnemyseenSprite;
+                pingTransform.Find_Child<TextMeshPro>("Targe_Text").color = GameManager.Instance.pingEnemyColor;
                 break;
         }
 
@@ -100,6 +133,12 @@ public class TargetSystem : BaseManager<TargetSystem>
         lastPing = ping;
         lastPingTime = Time.time;
     }
+
+    public void DestroyLastPing()
+    {
+        DestroyPing(lastPing);
+    }
+
 
     public void DestroyPing(Ping ping)
     {
@@ -120,6 +159,23 @@ public class TargetSystem : BaseManager<TargetSystem>
             }
         }
     }
+    public void PingButtonHeldDownUpdate()
+    {
+        pingButtonHoldDownTimer += Time.deltaTime;
+        //Debug.Log(pingButtonHoldDownTimer);
+        if (pingButtonHoldDownTimer> PING_BUTTON_HOLDDOWN_WHEEL_SHOW_TIME)
+        {
+            
+            if (!PingWheel.Instance.IsVisibleStatic)
+            {
+                PingWheel.Instance.Show(UtilsClass.GetMouseWorldPosition());
+            }
+        }
+    }
+    public void PingButtonReleased()
+    {
+        pingButtonHoldDownTimer = 0;
+    }
 
 
     /*
@@ -132,6 +188,13 @@ public class TargetSystem : BaseManager<TargetSystem>
             Move,
             Enemy,
             Item,
+            Looting,
+            Attacking,
+            GoingHere,
+            Defend,
+            Watching,
+            Enemyseen,
+
         }
         public event EventHandler OnDestroyed;
 

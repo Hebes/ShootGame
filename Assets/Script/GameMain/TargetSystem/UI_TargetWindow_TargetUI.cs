@@ -40,6 +40,44 @@ public class UI_TargetWindow_TargetUI : MonoBehaviour
                 image.sprite = ItemIdentifier.Instance.GetItemSprite(ping.GetItemType());
                 textMeshPro.color = ItemIdentifier.Instance.GetItemColor(ping.GetItemType());
                 break;
+            case TargetSystem.Ping.Type.Looting:
+                image.sprite = GameManager.Instance.pingLootingSprite;
+                textMeshPro.color = GameManager.Instance.pingEnemyColor;
+                break;
+            case TargetSystem.Ping.Type.Attacking:
+                image.sprite = GameManager.Instance.pingAttackingSprite;
+                textMeshPro.color = GameManager.Instance.pingEnemyColor;
+                break;
+            case TargetSystem.Ping.Type.GoingHere:
+                image.sprite = GameManager.Instance.pingGoingHereSprite;
+                textMeshPro.color = GameManager.Instance.pingEnemyColor;
+                break;
+            case TargetSystem.Ping.Type.Defend:
+                image.sprite = GameManager.Instance.pingDefendSprite;
+                textMeshPro.color = GameManager.Instance.pingEnemyColor;
+                break;
+            case TargetSystem.Ping.Type.Watching:
+                image.sprite = GameManager.Instance.pingWatchingSprite;
+                textMeshPro.color = GameManager.Instance.pingEnemyColor;
+                break;
+            case TargetSystem.Ping.Type.Enemyseen:
+                image.sprite = GameManager.Instance.pingEnemyseenSprite;
+                textMeshPro.color = GameManager.Instance.pingEnemyColor;
+                break;
+           
+        }
+
+        switch (ping.GetPingType)
+        {
+            default:
+            case TargetSystem.Ping.Type.Move:
+                break;
+            case TargetSystem.Ping.Type.Enemy:
+                
+                break;
+            case TargetSystem.Ping.Type.Item:
+                
+                break;
         }
 
         ping.OnDestroyed += delegate (object sender, System.EventArgs e)

@@ -44,15 +44,26 @@ public class GameManager : SingletonMono<GameManager>
             return followTransform.position;
         }
     }
+
+
     //以下为测试代码
     public Color pingMoveColor;
     public Color pingEnemyColor;    
     public Sprite pingMoveSprite;//移动图标
     public Sprite pingEnemySprite;//敌人图标
+    
 
     public Color pingHelmetColor;
     public Color pingArmorColor;
     public Sprite pingMedkitSprite;//医疗箱的图标
     public Sprite pingHelmetSprite;//头盔的图标
     public Sprite pingArmorSprite;//盔甲的图标
+
+
+    public Sprite pingLootingSprite;//敌人图标
+    public Sprite pingAttackingSprite;//敌人图标
+    public Sprite pingGoingHereSprite;//敌人图标
+    public Sprite pingDefendSprite;//敌人图标
+    public Sprite pingWatchingSprite;//敌人图标
+    public Sprite pingEnemyseenSprite;//敌人图标
 }

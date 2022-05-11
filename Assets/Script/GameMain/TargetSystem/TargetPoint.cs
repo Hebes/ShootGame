@@ -12,6 +12,15 @@ public class TargetPoint : MonoBehaviour
         {
             TargetSystem.Instance.AddPing(UtilsClass.GetMouseWorldPosition(), transform);
         }
+
+        if (Input.GetMouseButton(1))
+        {
+            TargetSystem.Instance.PingButtonHeldDownUpdate();
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            TargetSystem.Instance.PingButtonReleased();
+        }
         TargetSystem.Instance.Update();
     }
 }
