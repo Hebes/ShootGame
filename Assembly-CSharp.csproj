@@ -73,6 +73,7 @@
     <Compile Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\Utils\FunctionTimer.cs" />
     <Compile Include="Assets\Script\GameMain\TargetSystem\Prefab_DistanceHandler.cs" />
     <Compile Include="Assets\Script\ProjectBase\Pool\FindTargetPoolMgr.cs" />
+    <Compile Include="Assets\Script\GameMain\TargetSystem\TargetPoint.cs" />
     <Compile Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\Utils\UI_Sprite.cs" />
     <Compile Include="Assets\Script\ProjectBase\Event\EventCenter.cs" />
     <Compile Include="Assets\Script\GameMain\Other\Bar_Health.cs" />
@@ -115,7 +116,7 @@
     <Compile Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\CMDebug.cs" />
     <Compile Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\Utils\FunctionPeriodic.cs" />
     <Compile Include="Assets\Script\GameMain\Config\old\Config_PrefabComponent.cs" />
-    <Compile Include="Assets\Script\GameMain\TargetSystem\TargetPoint.cs" />
+    <Compile Include="Assets\Script\GameMain\TargetSystem\ItemIdentifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\README.txt" />

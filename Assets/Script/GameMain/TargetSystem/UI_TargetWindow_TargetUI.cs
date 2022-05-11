@@ -19,9 +19,33 @@ public class UI_TargetWindow_TargetUI : MonoBehaviour
         image = GetComponent<Image>();
     }
 
-    public TargetSystem.Ping Ping
+    /// <summary>
+    /// 设置ping的图标和颜色
+    /// </summary>
+    /// <param name="ping"></param>
+    public void Ping(TargetSystem.Ping ping)
     {
-        set { ping = value; }
+        this.ping = ping;
+
+        switch (ping.GetPingType)
+        {
+            default:
+            case TargetSystem.Ping.Type.Move:
+                break;
+            case TargetSystem.Ping.Type.Enemy:
+                image.sprite = GameManager.Instance.pingEnemySprite;
+                textMeshPro.color = GameManager.Instance.pingEnemyColor;
+                break;
+            case TargetSystem.Ping.Type.Item:
+                image.sprite = ItemIdentifier.Instance.GetItemSprite(ping.GetItemType());
+                textMeshPro.color = ItemIdentifier.Instance.GetItemColor(ping.GetItemType());
+                break;
+        }
+
+        ping.OnDestroyed += delegate (object sender, System.EventArgs e)
+        {
+            Destroy(gameObject);
+        };
     }
     private void Update()
     {
