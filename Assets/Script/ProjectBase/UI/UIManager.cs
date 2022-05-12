@@ -38,18 +38,18 @@ public class UIManager : BaseManager<UIManager>
         base.Init();
         panelDic = new Dictionary<string, BasePanel>();
         //创建Canvas 让其过场景的时候 不被移除
-        GameObject obj = ResMgr.Instance.Load<GameObject>(Config_ResourcesLoadPaths.PREFAB_UI_BASE_CANVAS);
+        GameObject obj = ResMgr.Instance.Load<GameObject>(Config_ResLoadPaths.PREFAB_UI_BASE_CANVAS);
         canvas = obj.transform as RectTransform;
         Object.DontDestroyOnLoad(obj);
 
         //找到各层
-        OneLayer = canvas.Find(Config_ResourcesLoadPaths.CANVAS_ONELAYER);
-        TwoLayer = canvas.Find(Config_ResourcesLoadPaths.CANVAS_TWOLAYER);
-        ThreeLayer = canvas.Find(Config_ResourcesLoadPaths.CANVAS_THREELAYER);
-        SystemLayer = canvas.Find(Config_ResourcesLoadPaths.CANVAS_SYSTEMLAYER);
+        OneLayer = canvas.Find(Config_ResLoadPaths.CANVAS_ONELAYER);
+        TwoLayer = canvas.Find(Config_ResLoadPaths.CANVAS_TWOLAYER);
+        ThreeLayer = canvas.Find(Config_ResLoadPaths.CANVAS_THREELAYER);
+        SystemLayer = canvas.Find(Config_ResLoadPaths.CANVAS_SYSTEMLAYER);
 
         //创建EventSystem 让其过场景的时候 不被移除
-        obj = ResMgr.Instance.Load<GameObject>(Config_ResourcesLoadPaths.PREFAB_UI_BASE_EVENTSYSTEM);
+        obj = ResMgr.Instance.Load<GameObject>(Config_ResLoadPaths.PREFAB_UI_BASE_EVENTSYSTEM);
         Object.DontDestroyOnLoad(obj);
     }
 
@@ -96,7 +96,7 @@ public class UIManager : BaseManager<UIManager>
             return;
         }
 
-        ResMgr.Instance.LoadAsync<GameObject>(Config_ResourcesLoadPaths.PREFAB_UI_UIPANEL + panelName, (obj) =>
+        ResMgr.Instance.LoadAsync<GameObject>(Config_ResLoadPaths.PREFAB_UI_UIPANEL + panelName, (obj) =>
         {
             //把他作为 Canvas的子对象
             //并且 要设置它的相对位置

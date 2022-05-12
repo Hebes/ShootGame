@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CursorObject : MonoBehaviour
 {
-    [SerializeField] private CursorType cursorType;
+    [SerializeField] private ECursorType cursorType;
 
     private void OnMouseEnter()
     {
@@ -13,7 +13,7 @@ public class CursorObject : MonoBehaviour
     }
     private void OnMouseExit()
     {
-        CursorManager.Instance.SetActiveCursorType(CursorType.Arrow);
+        CursorManager.Instance.SetActiveCursorType(ECursorType.Arrow);
     }
 
 }

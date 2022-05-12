@@ -81,7 +81,7 @@ public class TargetSystem : BaseManager<TargetSystem>
         pingList.Add(ping);
 
         //TUDO 需要重构这段代码
-        ResourceRequest goRR = Resources.LoadAsync<Transform>(Config_ResourcesLoadPaths.targetSystem_Prefab_TargetSystemIcon_Prefab_TargetSystemPrefab);
+        ResourceRequest goRR = Resources.LoadAsync<Transform>(Config_ResLoadPaths.targetSystem_Prefab_TargetSystemIcon_Prefab_TargetSystemPrefab);
 
         Transform pingTransform = (Transform)UnityEngine.Object.Instantiate(goRR.asset, ping.GetPosition, Quaternion.identity, parent);
 

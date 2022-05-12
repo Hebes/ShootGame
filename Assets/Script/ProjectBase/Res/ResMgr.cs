@@ -23,6 +23,11 @@ public class ResMgr : BaseManager<ResMgr>
             return res;
     }
 
+    public T[] LoadAll<T>(string name) where T : Object
+    {
+        return Resources.LoadAll<T>(name);
+    }
+
     //异步加载资源
     public void LoadAsync<T>(string name, UnityAction<T> callback) where T : Object
     {

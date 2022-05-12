@@ -62,6 +62,7 @@
     <Compile Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\Utils\World_Mesh.cs" />
     <Compile Include="Assets\Script\ProjectBase\Base\SingletonAutoMono.cs" />
     <Compile Include="Assets\Script\GameMain\Config\old\Config_Keyboard.cs" />
+    <Compile Include="Assets\Script\GameMain\Cursor\CursorManager.cs" />
     <Compile Include="Assets\Script\ProjectBase\UI\BasePanel.cs" />
     <Compile Include="Assets\Script\GameMain\Other\GameManager.cs" />
     <Compile Include="Assets\Script\ProjectBase\Tool\Component_Helper.cs" />
@@ -94,10 +95,12 @@
     <Compile Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\Utils\UtilsClass.cs" />
     <Compile Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\MonoBehaviours\PositionRendererSorter.cs" />
     <Compile Include="Assets\Script\ProjectBase\Base\BaseManager.cs" />
+    <Compile Include="Assets\Script\GameMain\Cursor\CursorObject.cs" />
     <Compile Include="Assets\Script\GameMain\Config\old\Config_Event.cs" />
-    <Compile Include="Assets\Script\GameMain\Config\Config_ResourcesLoadPaths.cs" />
+    <Compile Include="Assets\Script\GameMain\Config\Config_ResLoadPaths.cs" />
     <Compile Include="Assets\Script\GameMain\Config\old\Config_Tags.cs" />
     <Compile Include="Assets\Script\GameMain\TargetSystem\TargetSystem.cs" />
+    <Compile Include="Assets\Script\GameMain\TargetSystem\PingWheel.cs" />
     <Compile Include="Assets\Script\GameMain\Config\old\Config_UIPanel_ComponentName.cs" />
     <Compile Include="Assets\Script\GameMain\Player\Player_Manager.cs" />
     <Compile Include="Assets\Script\ProjectBase\UI\UIManager.cs" />
@@ -117,9 +120,7 @@
     <Compile Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\CMDebug.cs" />
     <Compile Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\Utils\FunctionPeriodic.cs" />
     <Compile Include="Assets\Script\GameMain\Config\old\Config_PrefabComponent.cs" />
-    <Compile Include="Assets\Script\GameMain\TargetSystem\PingWheel.cs" />
-    <Compile Include="Assets\Script\GameMain\Cursor\CursorManager.cs" />
-    <Compile Include="Assets\Script\GameMain\Cursor\CursorObject.cs" />
+    <Compile Include="Assets\Script\GameMain\Cursor\ECursorType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\README.txt" />

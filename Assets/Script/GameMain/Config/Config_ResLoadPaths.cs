@@ -1,6 +1,6 @@
 
 
-public static class Config_ResourcesLoadPaths
+public static class Config_ResLoadPaths
 {
     //const效率高，readonly更灵活
     //区别：
@@ -48,5 +48,16 @@ public static class Config_ResourcesLoadPaths
     //三级加载路径
     public const string targetSystem_Prefab_TargetSystemIcon_Prefab_TargetSystemPrefab = targetSystem_Prefab_TargetSystemIcon_Prefab + "/TargetSystemPrefab";
     public const string targetSystem_UI_TargetUI = targetSystem_Prefab_TargetSystemIcon_Prefab + "/TargetUI";
+    #endregion
+
+    #region 鼠标光标加载资源
+    //一级路径
+    public const string cursor_Icons = CommonPath + "/CursorIcons";
+    //二级加载路径
+    public const string cursor_Icons_Arrow = cursor_Icons + "/Arrow";//默认
+    public const string cursor_Icons_Attack = cursor_Icons + "/Attack";//默认
+    public const string cursor_Icons_Grab = cursor_Icons + "/Grab";//默认
+    public const string cursor_Icons_Move = cursor_Icons + "/Move";//默认
+    public const string cursor_Icons_Unit = cursor_Icons + "/Unit";//默认
     #endregion
 }
