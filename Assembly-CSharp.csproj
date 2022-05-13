@@ -76,15 +76,18 @@
     <Compile Include="Assets\Script\ProjectBase\Pool\FindTargetPoolMgr.cs" />
     <Compile Include="Assets\Script\GameMain\TargetSystem\TargetPoint.cs" />
     <Compile Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\Utils\UI_Sprite.cs" />
+    <Compile Include="Assets\Script\GameMain\Player\Player_Shoot.cs" />
     <Compile Include="Assets\Script\ProjectBase\Event\EventCenter.cs" />
     <Compile Include="Assets\Script\GameMain\Other\Bar_Health.cs" />
-    <Compile Include="Assets\Script\ProjectBase\Pool\ObjectPoolMgr.cs" />
+    <Compile Include="Assets\Script\ProjectBase\Pool\PoolMgr.cs" />
+    <Compile Include="Assets\Script\GameMain\Cursor\ECursorType.cs" />
     <Compile Include="Assets\Script\ProjectBase\Base\SingletonMono.cs" />
     <Compile Include="Assets\Script\GameMain\TargetSystem\UI_TargetWindow_TargetUI.cs" />
     <Compile Include="Assets\Script\ProjectBase\Scenes\ScenesMgr.cs" />
     <Compile Include="Assets\Script\GameMain\Config\old\Config_Animator.cs" />
     <Compile Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\Utils\UI_TextComplex.cs" />
     <Compile Include="Assets\Script\ProjectBase\Mono\MonoController.cs" />
+    <Compile Include="Assets\Script\GameMain\Other\Bullet_Common.cs" />
     <Compile Include="Assets\Script\GameMain\Player\Player_Helth.cs" />
     <Compile Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\Utils\Button_Sprite.cs" />
     <Compile Include="Assets\Script\GameMain\Player\Player_Move.cs" />
@@ -120,7 +123,11 @@
     <Compile Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\CMDebug.cs" />
     <Compile Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\Utils\FunctionPeriodic.cs" />
     <Compile Include="Assets\Script\GameMain\Config\old\Config_PrefabComponent.cs" />
-    <Compile Include="Assets\Script\GameMain\Cursor\ECursorType.cs" />
+    <Compile Include="Assets\Script\GameMain\Other\GunTarget.cs" />
+    <Compile Include="Assets\Script\GameMain\Other\pfSmoke.cs" />
+    <Compile Include="Assets\Script\GameMain\Other\Bullet_Physics.cs" />
+    <Compile Include="Assets\Script\GameMain\Other\Bullet_Raycast.cs" />
+    <Compile Include="Assets\Script\GameMain\Other\IBullet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Script\ProjectBase\Plugins\CodeMonkey\README.txt" />

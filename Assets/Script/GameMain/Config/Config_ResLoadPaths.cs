@@ -37,7 +37,9 @@ public static class Config_ResLoadPaths
 
 
     #region 通用加载路径
+    //一级路径
     private const string CommonPath = "Common";
+    
     #endregion
 
     #region TargetSystem 系统相关加载资源
@@ -51,13 +53,20 @@ public static class Config_ResLoadPaths
     #endregion
 
     #region 鼠标光标加载资源
-    //一级路径
+    //二级路径
     public const string cursor_Icons = CommonPath + "/CursorIcons";
-    //二级加载路径
+    //三级加载路径
     public const string cursor_Icons_Arrow = cursor_Icons + "/Arrow";//默认
     public const string cursor_Icons_Attack = cursor_Icons + "/Attack";//默认
     public const string cursor_Icons_Grab = cursor_Icons + "/Grab";//默认
     public const string cursor_Icons_Move = cursor_Icons + "/Move";//默认
     public const string cursor_Icons_Unit = cursor_Icons + "/Unit";//默认
+    #endregion
+
+    #region 枪 靶子 子弹物体 pf->Prefab缩写
+    public const string bullent_pf_Gun = CommonPath + "/Gun";
+    public const string bullent_pf_Gun_Bullet = bullent_pf_Gun + "/Bullet/Prefab/pfBullet";
+    public const string bullent_pf_Gun_BulletPhysics = bullent_pf_Gun + "/Bullet/Prefab/pfBulletPhysics";
+    public const string Gun_pf_Effect = bullent_pf_Gun + "/Effect/pfSmoke";
     #endregion
 }

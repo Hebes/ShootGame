@@ -15,15 +15,16 @@ public class Config_Common
     #endregion
     #endregion
 
-    #region TargetSystem
+    #region TargetSystem 目标系统的物体
         #region 文字物体
         public const string TargetSystem_Prefab_TargeText = "Targe_Text";
-    #endregion
-    #region UI_TargetWindow
-
-    public const string UI_TargetWindow_Prefab_TargeText = "TargetText";
-    
+        #endregion
+        #region UI_TargetWindow
+        public const string UI_TargetWindow_Prefab_TargeText = "TargetText";
     #endregion
     #endregion
 
+    #region 枪靶子
+    public const string Gun_pf_Body = "Body";
+    #endregion
 }

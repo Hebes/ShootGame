@@ -16,4 +16,10 @@ public class Config_Key
 
     public static KeyCode Key_Right = KeyCode.D;
 
+    public static KeyCode key_T = KeyCode.T;
+
+    public static KeyCode key_Y = KeyCode.Y;
+
+    public static KeyCode key_U = KeyCode.U;
+
 }

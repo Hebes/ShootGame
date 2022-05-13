@@ -27,12 +27,12 @@ public class CursorManager : SingletonMono<CursorManager>
             cursorType = ECursorType.Arrow,//默认鼠标图标
             textureArray = ResMgr.Instance.LoadAll<Texture2D>(Config_ResLoadPaths.cursor_Icons_Arrow),
             frameRate =.1f,
-            offset = new Vector2(10,10)},//图片的最左上角到箭头的差距坐标
+            offset = new Vector2(4,4)},//图片的最左上角到箭头的差距坐标 原先是10
         new CursorAnimation{
             cursorType = ECursorType.Grab,//抓取
             textureArray = ResMgr.Instance.LoadAll<Texture2D>(Config_ResLoadPaths.cursor_Icons_Grab),
             frameRate =.05f,
-            offset = new Vector2(16,16)},//图片的最左上角到箭头的差距坐标
+            offset = new Vector2(4,4)},//图片的最左上角到箭头的差距坐标 原先是16
         new CursorAnimation{
             cursorType = ECursorType.Select,//选择
             textureArray = ResMgr.Instance.LoadAll<Texture2D>(Config_ResLoadPaths.cursor_Icons_Unit),

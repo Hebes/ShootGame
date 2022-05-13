@@ -8,10 +8,14 @@ using UnityEngine;
 /// </summary>
 public class OnShootEvnentArgs
 {
-    public Vector3 gunEndPointPosition;
-    public Vector3 shootPosition;
+    public Transform tfGunEndPoint;
+    public Transform tfShootPoint;
+    //public Transform tfGun;
     public Vector3 shellPosition;
 }
+/// <summary>
+/// 武器朝向
+/// </summary>
 public class Player_Weapen : MonoBehaviour
 {
     /// <summary>
@@ -52,7 +56,12 @@ public class Player_Weapen : MonoBehaviour
             //播放枪械攻击动击动画
             Player_Manager.Instance.Player_Gun_PlayerGun_Animator.SetTrigger(Config_Animator.gun_Trigger_Animator_Shoot);//枪械左边攻
 
-            EventCenter.Instance.EventTrigger<OnShootEvnentArgs>(Config_Player.player_Event_Shoot, onShootEvnentArgs);
+            EventCenter.Instance.EventTrigger<OnShootEvnentArgs>(Config_Player.player_Event_Shoot, new OnShootEvnentArgs
+            {
+                tfGunEndPoint = Player_Manager.Instance.Player_Gun_PlayerGun_EndPoint,
+                tfShootPoint = Player_Manager.Instance.Player_Gun_PlayerGun_ShootPoint,
+                //tfGun= Player_Manager.Instance.Player_Gun_PlayerGun_Transform,
+            });
         }
     }
 

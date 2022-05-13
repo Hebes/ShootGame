@@ -13,6 +13,8 @@ public class Player_Manager : SingletonMono<Player_Manager>
 
     #region Player_Gun
     private Transform player_Gun_PlayerGun_Transform;
+    private Transform player_Gun_PlayerGun_EndPoint;
+    private Transform player_Gun_PlayerGun_ShootPoint;
     private Animator player_Gun_PlayerGun_Animator;
     #endregion
 
@@ -25,14 +27,18 @@ public class Player_Manager : SingletonMono<Player_Manager>
     protected override void Init()
     {
         base.Init();
-
-        player_Animator = transform.Find_Child<Animator>(Config_Player.player_Prefab_Body);
+        //角色
+        player_Animator = transform.Find_Child<Animator>(Config_Player.player_pf_Body);
         player_Rigidbody2D = transform.GetComponent<Rigidbody2D>();
-        player_MiniMapIcon_Animator = transform.Find_Child<Animator>(Config_Player.player_Prefab_MiniMap);
+        player_MiniMapIcon_Animator = transform.Find_Child<Animator>(Config_Player.player_pf_MiniMap);
 
-        player_Gun_PlayerGun_Transform = transform.Find_Child<Transform>(Config_Player.player_Prefab_Gun_PlayerGun);
-        player_Gun_PlayerGun_Animator = transform.Find_Child<Animator>(Config_Player.player_Prefab_Gun_PlayerGun);
+        //角色的枪
+        player_Gun_PlayerGun_Transform = transform.Find_Child<Transform>(Config_Player.player_pf_Gun_PlayerGun);
+        player_Gun_PlayerGun_Animator = transform.Find_Child<Animator>(Config_Player.player_pf_Gun_PlayerGun);
+        player_Gun_PlayerGun_EndPoint = transform.Find_Child<Transform>(Config_Player.player_pf_Gun_PlayerGun_EndPoint);
+        player_Gun_PlayerGun_ShootPoint = transform.Find_Child<Transform>(Config_Player.player_pf_Gun_PlayerGun_ShootPoint);
 
+        //角色的血条
         player_Hp_Bar = transform.Find_Child<Transform>(Config_Common.HPbar_Prefab_Bar);
         player_Hp_BarHealth = transform.Find_Child<Bar_Health>(Config_Player.player_HP_WorldBar);
         player_Hp_PlayerHPBar = transform.Find_Child<Transform>(Config_Player.player_HP_PlayerHPBar);
@@ -75,4 +81,13 @@ public class Player_Manager : SingletonMono<Player_Manager>
     {
         get { return player_Hp_PlayerHPBar; }
     }
+    public Transform Player_Gun_PlayerGun_EndPoint
+    {
+        get { return player_Gun_PlayerGun_EndPoint; }
+    }
+    public Transform Player_Gun_PlayerGun_ShootPoint
+    {
+        get { return player_Gun_PlayerGun_ShootPoint; }
+    }
+
 }

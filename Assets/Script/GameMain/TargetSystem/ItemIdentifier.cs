@@ -16,6 +16,11 @@ public class ItemIdentifier : SingletonMono<ItemIdentifier>
 
     public ItemType itemType;
 
+    /// <summary>
+    /// 设置图标的图片
+    /// </summary>
+    /// <param name="itemType"></param>
+    /// <returns></returns>
     public Sprite GetItemSprite(ItemType itemType)
     {
         switch (itemType)
@@ -30,6 +35,11 @@ public class ItemIdentifier : SingletonMono<ItemIdentifier>
         }
     }
 
+    /// <summary>
+    /// 设置图标的颜色
+    /// </summary>
+    /// <param name="itemType"></param>
+    /// <returns></returns>
     public Color GetItemColor(ItemType itemType)
     {
         switch (itemType)

@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Config_Player 
 {
+    //pf->Prefab
+
     #region 玩家物体
-    public const string player_Prefab_Body = "Player_Body";
-    public const string player_Prefab_MiniMap = "MiniMap";
-    public const string player_Prefab_Gun_PlayerGun = "Player_Gun";
+    public const string player_pf_Body = "Player_Body";
+    public const string player_pf_MiniMap = "MiniMap";
+    public const string player_pf_Gun_PlayerGun = "Player_Gun";
+    public const string player_pf_Gun_PlayerGun_EndPoint = "Gun_EndPoint";
+    public const string player_pf_Gun_PlayerGun_ShootPoint = "Gun_ShootPoint";
     #endregion
 
     #region 玩家动画
