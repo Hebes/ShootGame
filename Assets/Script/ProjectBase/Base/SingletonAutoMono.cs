@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +17,6 @@ public class SingletonAutoMono<T> : MonoBehaviour where T : Component
             if (instance == null)
             {
                 GameObject obj = new GameObject();
-                //设置对象的名字为脚本名
                 obj.name = typeof(T).ToString();
                 //让这个单例模式对象 过场景 不移除
                 //因为 单例模式对象 往往 是存在整个程序生命周期中的
@@ -25,6 +24,7 @@ public class SingletonAutoMono<T> : MonoBehaviour where T : Component
                 instance = obj.AddComponent<T>();
             }
             return instance;
+                //设置对象的名字为脚本名
         }
     }
 }

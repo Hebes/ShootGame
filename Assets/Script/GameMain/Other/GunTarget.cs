@@ -55,14 +55,12 @@ public class GunTarget : MonoBehaviour
     {
         thisAnimation.Play();
 
-        //加载特效
-        PoolMgr.Instance.GetObj(Config_ResLoadPaths.Gun_pf_Effect, (tfObj) => {
-            tfObj.transform.position = transform.position + new Vector3(0, 0f) + UtilsClass.GetRandomDir() * Random.Range(0f, 2.2f);
-            tfObj.transform.rotation = Quaternion.identity;
-        });
+        ////加载特效
+        //PoolMgr.Instance.GetObj(Config_ResLoadPaths.Gun_pf_Effect, (tfObj) => {
+        //    tfObj.transform.position = transform.position + new Vector3(0, 0f) + UtilsClass.GetRandomDir() * Random.Range(0f, 2.2f);
+        //    tfObj.transform.rotation = Quaternion.identity;
+        //});
 
-        //Instantiate(GameAssets.i.pfSmoke, transform.position + new Vector3(0, 7.35f) + UtilsClass.GetRandomDir() * Random.Range(0f, 2.2f), Quaternion.identity);
+        Component_Helper.LoadEffect(Config_ResLoadPaths.Gun_pf_Effect, transform.position);
     }
-
-    
 }

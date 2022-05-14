@@ -1,5 +1,7 @@
+using CodeMonkey.Utils;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -50,6 +52,36 @@ namespace Tool
             //递归:方法内部又调用自身的过程。
             //1.在子物体中查找
             return Find_Child_Transform(currentTF, childName).GetComponent<T>();
+        }
+        #endregion
+
+        #region 生成伤害显示物体
+        /// <summary>
+        /// 显示伤害
+        /// </summary>
+        /// <param name="position">显示伤害的位置</param>
+        /// <param name="damageAmount">伤害的数值</param>
+        public static void Show_pf_Damage(Vector3 position, int damageAmount,bool isCriticalHit)
+        {
+            PoolMgr.Instance.GetObj(Config_ResLoadPaths.damage_pf, (obj) =>
+            {
+                obj.transform.position = position;
+                obj.GetComponent<DamagePopup>().Setup(damageAmount, isCriticalHit);
+            });
+        }
+        #endregion
+
+        #region 加载特效
+        /// <summary>
+        /// 加载特效
+        /// </summary>
+        public static void LoadEffect(string path,Vector3 position)
+        {
+            //加载特效
+            PoolMgr.Instance.GetObj(path, (tfObj) => {
+                tfObj.transform.position = position + new Vector3(0, 0f) + UtilsClass.GetRandomDir() * Random.Range(0f, 2.2f);
+                tfObj.transform.rotation = Quaternion.identity;
+            });
         }
         #endregion
     }

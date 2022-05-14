@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
 /// 枪口射击射线事件
+/// 在 Unity 2D 中瞄准鼠标（射击武器，Unity 初学者教程）
+/// 参考：https://www.youtube.com/watch?v=fuGQFdhSPg4&t=527s
 /// </summary>
 public class OnShootEvnentArgs
 {
     public Transform tfGunEndPoint;
     public Transform tfShootPoint;
-    //public Transform tfGun;
     public Vector3 shellPosition;
 }
 /// <summary>
@@ -24,16 +25,14 @@ public class Player_Weapen : MonoBehaviour
     private OnShootEvnentArgs onShootEvnentArgs;
 
     private float shootTimer;
-    private bool canShoot;
+    private bool canShoot = true;
+
 
     void Update()
     {
         HandleAiming();
         HandleShooting();
-        //canShoot = ShootTimer;
     }
-
-    //int shootNum = 0;
     /// <summary>
     /// 射击的方法
     /// </summary>
@@ -41,28 +40,28 @@ public class Player_Weapen : MonoBehaviour
     {
         //TUDO 在安卓手机中可能不能运行
         //以下方法适用PC
-        //if (canShoot && Input.GetMouseButton(Config_Key.Key_Mouse_Left))
-        //{
-        //    print("攻击了：" + shootNum++);
-        //    //播放枪械攻击动击动画
-        //    Player_Manager.Instance.Player_Gun_PlayerGun_Animator.SetTrigger(Config_Animator.gun_Trigger_Animator_Shoot);//枪械左边攻
-
-        //    EventCenter.Instance.EventTrigger<OnShootEvnentArgs>(Config_Player.player_Event_Shoot, onShootEvnentArgs);
-        //}
-
-        if (Input.GetMouseButtonDown(Config_Key.Key_Mouse_Left))
+        if (canShoot && Input.GetMouseButton(Config_Key.Key_Mouse_Left))
         {
-            //print("攻击了：" + shootNum++);
-            //播放枪械攻击动击动画
-            Player_Manager.Instance.Player_Gun_PlayerGun_Animator.SetTrigger(Config_Animator.gun_Trigger_Animator_Shoot);//枪械左边攻
+            // Shoot
+            canShoot = false;
 
-            EventCenter.Instance.EventTrigger<OnShootEvnentArgs>(Config_Player.player_Event_Shoot, new OnShootEvnentArgs
+            //播放枪械攻击动击动画
+            Player_Manager.Instance.Player_Gun_PlayerGun_Animator.SetTrigger(Config_Animator.gun_Trigger_Animator_Shoot);
+
+            EventCenter.Instance.EventTrigger(Config_Player.player_Event_Shoot, new OnShootEvnentArgs
             {
                 tfGunEndPoint = Player_Manager.Instance.Player_Gun_PlayerGun_EndPoint,
                 tfShootPoint = Player_Manager.Instance.Player_Gun_PlayerGun_ShootPoint,
-                //tfGun= Player_Manager.Instance.Player_Gun_PlayerGun_Transform,
             });
+
+            StartCoroutine(enumerator());//开火间隔
         }
+    }
+    //武器的开火间隔
+    IEnumerator enumerator()
+    {
+        yield return new WaitForSeconds(0.1f);
+        canShoot = true;
     }
 
     /// <summary>

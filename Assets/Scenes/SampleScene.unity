@@ -252,6 +252,49 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &198982387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 198982389}
+  - component: {fileID: 198982388}
+  m_Layer: 0
+  m_Name: Damage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &198982388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198982387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e635b128f2b9fd4a8cb24ec88a4901f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &198982389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198982387}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.297861, y: 3.310583, z: -0.95949894}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &228105926 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 948176499841006889, guid: 1fe5017f797772243a1c8bcb83fca82b, type: 3}
@@ -1320,6 +1363,7 @@ GameObject:
   - component: {fileID: 625354609}
   - component: {fileID: 625354611}
   - component: {fileID: 625354610}
+  - component: {fileID: 625354612}
   m_Layer: 0
   m_Name: GunTarget
   m_TagString: Untagged
@@ -1370,6 +1414,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be70199caf14b374aa76b63ba6275a81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &625354612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625354608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ead1df2a74c2894eb0b062d9018c35f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorType: 3
 --- !u!1 &664336671
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,7 +2361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c7eb859ce63a742a94cb745c25a9db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPositionWithMouse: 1
+  cameraPositionWithMouse: 0
   pingMoveColor: {r: 0.0152851045, g: 0.9433962, b: 0, a: 1}
   pingEnemyColor: {r: 1, g: 0.24242005, b: 0, a: 1}
   pingMoveSprite: {fileID: 21300000, guid: 1bad51f37730e2d43989cbf750f643c8, type: 3}

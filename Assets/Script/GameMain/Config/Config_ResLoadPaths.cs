@@ -44,11 +44,11 @@ public static class Config_ResLoadPaths
 
     #region TargetSystem 系统相关加载资源
     //一级路径
-    public const string targetSystem_Prefab_TargetSystemIcon = CommonPath+"/TargetSystemIcon";
+    public const string targetSystem_Prefab_TargetSystemIcon = CommonPath+ "/TargetPointIcon";
     //二级加载路径
     public const string targetSystem_Prefab_TargetSystemIcon_Prefab = targetSystem_Prefab_TargetSystemIcon + "/Prefab";
     //三级加载路径
-    public const string targetSystem_Prefab_TargetSystemIcon_Prefab_TargetSystemPrefab = targetSystem_Prefab_TargetSystemIcon_Prefab + "/TargetSystemPrefab";
+    public const string targetSystem_Prefab_TargetSystemIcon_Prefab_TargetSystemPrefab = targetSystem_Prefab_TargetSystemIcon_Prefab + "/TargetPrefab";
     public const string targetSystem_UI_TargetUI = targetSystem_Prefab_TargetSystemIcon_Prefab + "/TargetUI";
     #endregion
 
@@ -68,5 +68,9 @@ public static class Config_ResLoadPaths
     public const string bullent_pf_Gun_Bullet = bullent_pf_Gun + "/Bullet/Prefab/pfBullet";
     public const string bullent_pf_Gun_BulletPhysics = bullent_pf_Gun + "/Bullet/Prefab/pfBulletPhysics";
     public const string Gun_pf_Effect = bullent_pf_Gun + "/Effect/pfSmoke";
+    #endregion
+
+    #region 伤害物体
+    public const string damage_pf = CommonPath + "/Other/pfDamagePopup/Prefab/pfDamagePopup";
     #endregion
 }

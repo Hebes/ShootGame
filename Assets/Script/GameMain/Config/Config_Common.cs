@@ -27,4 +27,8 @@ public class Config_Common
     #region 枪靶子
     public const string Gun_pf_Body = "Body";
     #endregion
+
+    #region 伤害物体
+    public const string DamagePopup_pf = "Body";
+    #endregion
 }
