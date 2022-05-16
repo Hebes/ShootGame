@@ -8,5 +8,5 @@ obj/
 
 # 忽略文件
 .vsconfig
-.csproj
-.sln
+*.csproj
+*.sln
