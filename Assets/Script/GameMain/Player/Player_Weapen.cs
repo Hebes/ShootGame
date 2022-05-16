@@ -30,10 +30,7 @@ public class Player_Weapen : MonoBehaviour
     private bool canShoot = true;
     private Player_Components player_Components;
 
-    private void Awake()
-    {
-        player_Components = GetComponent<Player_Components>();
-    }
+    private void Awake() => player_Components = GetComponent<Player_Components>();
 
     void Update()
     {

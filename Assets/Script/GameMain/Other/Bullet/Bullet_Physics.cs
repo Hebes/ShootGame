@@ -2,6 +2,7 @@ using CodeMonkey.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Tool;
 using UnityEngine;
 
 /// <summary>
@@ -15,20 +16,33 @@ public class Bullet_Physics : MonoBehaviour, IBulletSetup
     public void Setup(Vector3 shootDir)
     {
         Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
-        rigidbody2D.AddForce(shootDir * moveSpeed, ForceMode2D.Impulse);//添加推力 和 Bullet_Common 的区别
+        rigidbody2D.AddForce(shootDir * moveSpeed, ForceMode2D.Impulse);//添加推力 和 Bullet_Common 移动的区别
 
         transform.eulerAngles = new Vector3(0, 0, UtilsClass.GetAngleFromVectorFloat(shootDir));//子弹生成的朝向
 
         StartCoroutine(Push(() => { Push(); }, 2));
     }
 
+    private void Update() => StartCoroutine(Push(() => { Push(); }, 2));
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GunTarget gunTarget = collision.GetComponent<GunTarget>();
-        if (gunTarget != null)
+
+        ICommonCollide target = collision.GetComponent<ICommonCollide>();
+        if (target != null)
         {
-            gunTarget.Damage(300);
+            // Hit enemy 敌人伤害
+            int damageAmount = UnityEngine.Random.Range(100, 200);//随机伤害
+            bool isCritical = UnityEngine.Random.Range(0, 100) < 30;//是否重击
+            if (isCritical) damageAmount *= 2;//重击伤害*2
+
+            target.Damage(damageAmount);
             StartCoroutine(Push(() => { Push(); }, 0));
+
+            //显示伤害文字效果
+            Component_Helper.Show_pf_Damage(collision.transform.position, damageAmount, isCritical);
+            //加载特效
+            Component_Helper.LoadEffect(Config_ResLoadPaths.Gun_pf_Effect, collision.transform.position);
         }
     }
     #endregion
@@ -41,8 +55,5 @@ public class Bullet_Physics : MonoBehaviour, IBulletSetup
         action?.Invoke();
     }
 
-    private void Push()
-    {
-        PoolMgr.Instance.PushObj(this.gameObject.name, this.gameObject);
-    }
+    private void Push() => PoolMgr.Instance.PushObj(gameObject.name, gameObject);
 }

@@ -15,12 +15,12 @@ public class Player_Shoot : MonoBehaviour
 
     private void Awake()
     {
-        shootAction = ShootRaycast;
+        shootAction = ShootPhysics;
         EventCenter.Instance.AddEventListener<OnShootEvnentArgs>(Config_Player.player_Event_Shoot, ShootingOverTrigger);
     }
 
     private void Update()
-    {
+    {   
         if (Input.GetKeyDown(Config_Key.key_T)) shootAction = ShootTransform;
         if (Input.GetKeyDown(Config_Key.key_Y)) shootAction = ShootPhysics;
         if (Input.GetKeyDown(Config_Key.key_U)) shootAction = ShootRaycast;
@@ -82,8 +82,8 @@ public class Player_Shoot : MonoBehaviour
         PoolMgr.Instance.GetObj(Config_ResLoadPaths.bullent_pf_Gun_BulletPhysics, (obj) =>
         {
             //以下为开火后调用的方法
-            obj.transform.position = tfShootPoint.position;//开火点
-            Vector3 shootDir = (tfShootPoint.position - tfGunEndPoint.position).normalized;
+            obj.transform.position = tfShootPoint.position;//开火点 子弹生成的位置
+            Vector3 shootDir = (tfShootPoint.position - tfGunEndPoint.position).normalized;//子弹的朝向
             obj.GetComponent<IBulletSetup>().Setup(shootDir);
         });
         #endregion
@@ -94,6 +94,7 @@ public class Player_Shoot : MonoBehaviour
     {
         #region 第三种射击方法 射线射击
         Vector3 shootDir = (tfShootPoint.position - tfGunEndPoint.position).normalized;
+        Debug.Log("射线距离：" + shootDir);
         Bullet_Raycast.Instance.Shoot(tfGunEndPoint.position, shootDir);
         #endregion
     }

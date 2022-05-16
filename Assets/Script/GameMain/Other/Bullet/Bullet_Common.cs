@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using CodeMonkey.Utils;
-using UnityEngine.Events;
 using System;
+using System.Collections;
+using Tool;
+using UnityEngine;
 
 /// <summary>
 /// 子弹脚本
@@ -11,7 +10,7 @@ using System;
 /// </summary>
 public class Bullet_Common : MonoBehaviour, IBulletSetup
 {
-    
+
     private Vector3 shootDir;
     private float moveSpeed = 100f;
     ///// <summary>
@@ -44,9 +43,9 @@ public class Bullet_Common : MonoBehaviour, IBulletSetup
         //没有碰撞到物体的在外面飞的子弹的销毁
         StartCoroutine(Push(() => { Push(); }, 2));
     }
-   
 
-    
+
+
 
     #region 第二种Damage方式 碰撞体  如需使用第一种 请注释以下
     private void OnTriggerEnter2D(Collider2D collision)
@@ -54,6 +53,7 @@ public class Bullet_Common : MonoBehaviour, IBulletSetup
         ICommonCollide gunTarget = collision.GetComponent<ICommonCollide>();
         if (gunTarget != null)
         {
+            
             // Hit enemy 敌人伤害
             int damageAmount = UnityEngine.Random.Range(100, 200);//随机伤害
             bool isCritical = UnityEngine.Random.Range(0, 100) < 30;//是否重击
@@ -61,6 +61,11 @@ public class Bullet_Common : MonoBehaviour, IBulletSetup
 
             gunTarget.Damage(damageAmount);
             StartCoroutine(Push(() => { Push(); }, 0));
+
+            //显示伤害文字效果
+            Component_Helper.Show_pf_Damage(collision.transform.position, damageAmount, isCritical);
+            //加载特效
+            Component_Helper.LoadEffect(Config_ResLoadPaths.Gun_pf_Effect, collision.transform.position);
         }
     }
     #endregion
