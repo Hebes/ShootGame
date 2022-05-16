@@ -1,9 +1,10 @@
 #git 文件夹
-Library
-Logs
-Temp
-UserSettings
-obj
+Library/
+Logs/
+Temp/
+UserSettings/
+obj/
+.vs
 
 # 忽略文件
 .vsconfig
