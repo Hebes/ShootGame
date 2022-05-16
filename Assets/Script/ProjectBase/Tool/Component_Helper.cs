@@ -24,16 +24,16 @@ namespace Tool
         /// <param name="currentTF">当前变换组件</param>
         /// <param name="childName">后代物体名称</param>
         /// <returns></returns>
-        public static Transform Find_Child_Transform(this Transform currentTF, string childName)
+        private static Transform tfGet(this Transform transform, string childName)
         {
             //递归:方法内部又调用自身的过程。
             //1.在子物体中查找
-            Transform childTF = currentTF.Find(childName);
+            Transform childTF = transform.Find(childName);
             if (childTF != null) return childTF;
-            for (int i = 0; i < currentTF.childCount; i++)
+            for (int i = 0; i < transform.childCount; i++)
             {
                 // 2.将任务交给子物体
-                childTF = Find_Child_Transform(currentTF.GetChild(i), childName);
+                childTF = tfGet(transform.GetChild(i), childName);
                 if (childTF != null) return childTF;
             }
             return null;
@@ -47,12 +47,27 @@ namespace Tool
         /// <param name="currentTF">当前变换组件</param>
         /// <param name="childName">后代物体名称</param>
         /// <returns></returns>
-        public static T Find_Child<T>(this Transform currentTF, string childName)
+        public static T Find_Child<T>(this Transform transform, string childName) where T : Component
         {
             //递归:方法内部又调用自身的过程。
             //1.在子物体中查找
-            return Find_Child_Transform(currentTF, childName).GetComponent<T>();
+            return tfGet(transform, childName).GetComponent<T>();
         }
+
+        /// <summary>
+        /// 获取根物体的脚本
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="transform"></param>
+        /// <param name="path"></param>
+        /// <param name="Component"></param>
+        /// <returns></returns>
+       public static T Get_Component_Up<T>(this Transform transform) where T : Component
+        {
+            return transform.root.GetComponent<T>();
+        }
+
+        //TUDO 有需要请拓展往上查找组件方法
         #endregion
 
         #region 生成伤害显示物体
@@ -61,7 +76,7 @@ namespace Tool
         /// </summary>
         /// <param name="position">显示伤害的位置</param>
         /// <param name="damageAmount">伤害的数值</param>
-        public static void Show_pf_Damage(Vector3 position, int damageAmount,bool isCriticalHit)
+        public static void Show_pf_Damage(Vector3 position, int damageAmount, bool isCriticalHit)
         {
             PoolMgr.Instance.GetObj(Config_ResLoadPaths.damage_pf, (obj) =>
             {
@@ -75,10 +90,12 @@ namespace Tool
         /// <summary>
         /// 加载特效
         /// </summary>
-        public static void LoadEffect(string path,Vector3 position)
+        public static void LoadEffect(string path, Vector3 position)
         {
             //加载特效
-            PoolMgr.Instance.GetObj(path, (tfObj) => {
+            PoolMgr.Instance.GetObj(path, (tfObj) =>
+            {
+
                 tfObj.transform.position = position + new Vector3(0, 0f) + UtilsClass.GetRandomDir() * Random.Range(0f, 2.2f);
                 tfObj.transform.rotation = Quaternion.identity;
             });

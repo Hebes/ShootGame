@@ -7,7 +7,7 @@ using UnityEngine;
 /// <summary>
 /// 子弹物理学
 /// </summary>
-public class Bullet_Physics : MonoBehaviour, IBullet
+public class Bullet_Physics : MonoBehaviour, IBulletSetup
 {
     #region 第二种子弹运动方式  子弹也是基于物理学
     private float moveSpeed = 100f;
@@ -27,7 +27,7 @@ public class Bullet_Physics : MonoBehaviour, IBullet
         GunTarget gunTarget = collision.GetComponent<GunTarget>();
         if (gunTarget != null)
         {
-            gunTarget.Damage();
+            gunTarget.Damage(300);
             StartCoroutine(Push(() => { Push(); }, 0));
         }
     }

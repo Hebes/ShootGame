@@ -14,7 +14,7 @@ public class UI_TargetWindow_TargetUI : MonoBehaviour
 
     private void Awake()
     {
-        textMeshPro = transform.Find_Child<TextMeshProUGUI>(Config_Common.UI_TargetWindow_Prefab_TargeText);
+        textMeshPro = transform.Find_Child<TextMeshProUGUI>(Config_Common.UI_SignWindow_pf_TargeText);
         rectTransform = GetComponent<RectTransform>();
         image = GetComponent<Image>();
     }
@@ -87,6 +87,7 @@ public class UI_TargetWindow_TargetUI : MonoBehaviour
     }
     private void Update()
     {
+        //离开摄像机显示的时候关闭图标和距离
         Vector2 pingScreenCoordinates = Camera.main.WorldToScreenPoint(ping.GetPosition);
         bool isOffScreen =
         pingScreenCoordinates.x > Screen.width ||
@@ -106,7 +107,7 @@ public class UI_TargetWindow_TargetUI : MonoBehaviour
             rectTransform.anchoredPosition = dir * uiRadius;
 
             //Update Distance text
-            Vector3 playerPos = Player_Manager.Instance.Player_Transform.position;
+            Vector3 playerPos = GameObject.FindGameObjectWithTag(Config_Tags.Player).GetComponent<Player_Components>(). Player_Transform.position;
             //考虑精灵大小，因此设置为3F，具体自行参考
             int distance = Mathf.RoundToInt(Vector3.Distance(ping.GetPosition, playerPos) / 3f);
             textMeshPro.text = distance + "M";

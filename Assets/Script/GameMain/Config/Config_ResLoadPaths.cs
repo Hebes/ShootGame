@@ -39,7 +39,6 @@ public static class Config_ResLoadPaths
     #region 通用加载路径
     //一级路径
     private const string CommonPath = "Common";
-    
     #endregion
 
     #region TargetSystem 系统相关加载资源
@@ -72,5 +71,9 @@ public static class Config_ResLoadPaths
 
     #region 伤害物体
     public const string damage_pf = CommonPath + "/Other/pfDamagePopup/Prefab/pfDamagePopup";
+    #endregion
+
+    #region 血条相关
+    public const string BarHP_pf = CommonPath + "/HPBar/Prefab/Bar_HP";
     #endregion
 }

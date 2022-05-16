@@ -6,21 +6,22 @@ public class Config_Common
 {
 
     #region HP
-        #region HP血条事件
-        public const string EventName_HPEvent = "HP_Event";
-        #endregion
+    #region HP血条事件
+    public const string EventName_HPEvent = "HP_Event";
+    #endregion
 
-        #region HP滑动变化气血物体
-        public const string HPbar_Prefab_Bar = "Bar";
+    #region HP滑动变化气血物体
+    public const string HP_pf_Bar = "Bar";
+    public const string HP_pf_BarHP = "Bar_HP";
     #endregion
     #endregion
 
     #region TargetSystem 目标系统的物体
-        #region 文字物体
-        public const string TargetSystem_Prefab_TargeText = "Targe_Text";
-        #endregion
-        #region UI_TargetWindow
-        public const string UI_TargetWindow_Prefab_TargeText = "TargetText";
+    #region 文字物体
+    public const string sign_pf_TargeText = "Targe_Text";
+    #endregion
+    #region UI_TargetWindow
+    public const string UI_SignWindow_pf_TargeText = "TargetText";
     #endregion
     #endregion
 

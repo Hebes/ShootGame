@@ -7,7 +7,7 @@ using Tool;
 /// <summary>
 /// 枪靶子脚本
 /// </summary>
-public class GunTarget : MonoBehaviour
+public class GunTarget : MonoBehaviour,ICommonCollide
 {
     private static List<GunTarget> targetList;
     private Animation thisAnimation;
@@ -46,21 +46,17 @@ public class GunTarget : MonoBehaviour
 
     private void Awake()
     {
-        if (targetList == null) targetList = new List<GunTarget>();
-        targetList.Add(this);
+        #region 第一种范围判定的射击方案
+        //这个是搭配第一种射击方案的。//不能删除
+        //if (targetList == null) targetList = new List<GunTarget>();
+        //targetList.Add(this);
+        #endregion
+
         thisAnimation = transform.Find_Child<Animation>(Config_Common.Gun_pf_Body);
     }
 
-    public void Damage()
+    public void Damage(int damageAmount)
     {
-        thisAnimation.Play();
-
-        ////加载特效
-        //PoolMgr.Instance.GetObj(Config_ResLoadPaths.Gun_pf_Effect, (tfObj) => {
-        //    tfObj.transform.position = transform.position + new Vector3(0, 0f) + UtilsClass.GetRandomDir() * Random.Range(0f, 2.2f);
-        //    tfObj.transform.rotation = Quaternion.identity;
-        //});
-
-        Component_Helper.LoadEffect(Config_ResLoadPaths.Gun_pf_Effect, transform.position);
+        thisAnimation.Play();//播放枪靶子动画
     }
 }

@@ -1,16 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class Bar_HealthSystem : BaseManager<Bar_HealthSystem>
+/// <summary>
+/// 血条系统
+/// How to make a Health System | Unity Tutorial
+/// 参考：https://www.youtube.com/watch?v=0T5ei9jN63M&list=PLzDRvYVwl53trtRTXjUS-ot2uRKaJtLy3&index=15
+/// </summary>
+public class Bar_HealthSystem
 {
+    /// <summary>
+    /// 血量变化触发的事件
+    /// </summary>
+    public event EventHandler OnHpChanged;
+    /// <summary>
+    /// 死亡触发的事件
+    /// </summary>
+    public event EventHandler OnDead;
     /// <summary>
     /// 当前健康值
     /// </summary>
+    [SerializeField]
     private int health;
     /// <summary>
     /// 最大健康值
     /// </summary>
+    [SerializeField]
     private int healthMax;
 
     /// <summary>
@@ -26,13 +42,11 @@ public class Bar_HealthSystem : BaseManager<Bar_HealthSystem>
     /// 初始化设置气血值
     /// </summary>
     /// <param name="healthMax"></param>
-    public void InitSetHealth(int healthMax)
+    public Bar_HealthSystem(int healthMax)
     {
         health = healthMax;
         this.healthMax = healthMax;
     }
-
-    
 
     /// <summary>
     /// 扣血
@@ -41,9 +55,18 @@ public class Bar_HealthSystem : BaseManager<Bar_HealthSystem>
     public void Damage(int damageAmount)
     {
         health -= damageAmount;
-        if (health < 0) health = 0;
+        if (health < 0)
+        {
+            health = 0;
+            Die();
+        }
 
-        EventCenter.Instance.EventTrigger(Config_Common.EventName_HPEvent);//执行监听方法
+        OnHpChanged?.Invoke(this, EventArgs.Empty);//扣血之后触发的事件
+    }
+
+    private void Die()
+    {
+        if (OnDead != null) OnDead(this, EventArgs.Empty);
     }
 
     /// <summary>
@@ -56,6 +79,6 @@ public class Bar_HealthSystem : BaseManager<Bar_HealthSystem>
 
         if (health > healthMax) health = healthMax;
 
-        EventCenter.Instance.EventTrigger(Config_Common.EventName_HPEvent);//执行监听方法
+        OnHpChanged?.Invoke(this, EventArgs.Empty);//加血之后触发的事件
     }
 }

@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Tool;
 
-public class Player_Move : MonoBehaviour,IMove
+public class Player_Move : MonoBehaviour, IMove
 {
     private float player_MoveSpeed = 50;
     private Vector3 velocityVector;
+    private Player_Components player_Components;
+
+    private void Awake()
+    {
+        player_Components = GetComponent<Player_Components>();
+    }
 
     public void SetMove(Vector3 velocityVector)
     {
@@ -32,13 +38,13 @@ public class Player_Move : MonoBehaviour,IMove
 
         if (isIdle)
         {
-            Player_Manager.Instance.Player_Animator.SetBool(Config_Player.player_Animator_Bool, false);
-            Player_Manager.Instance.Player_MiniMapIcon_Animator.SetBool(Config_Player.player_Animator_Bool, false);
+            player_Components.Player_Animator.SetBool(Config_Player.player_Animator_Bool, false);
+            player_Components.Player_MiniMapIcon_Animator.SetBool(Config_Player.player_Animator_Bool, false);
         }
         else
         {
-            Player_Manager.Instance.Player_Animator.SetBool(Config_Player.player_Animator_Bool, true);
-            Player_Manager.Instance.Player_MiniMapIcon_Animator.SetBool(Config_Player.player_Animator_Bool, true);
+            player_Components.Player_Animator.SetBool(Config_Player.player_Animator_Bool, true);
+            player_Components.Player_MiniMapIcon_Animator.SetBool(Config_Player.player_Animator_Bool, true);
         }
 
         GetComponent<IMove>().SetMove(moveVector);
@@ -46,6 +52,8 @@ public class Player_Move : MonoBehaviour,IMove
 
     private void FixedUpdate()
     {
-        Player_Manager.Instance.Player_Rigidbody2D.velocity = velocityVector * player_MoveSpeed;//刚体运动
+        player_Components.Player_Rigidbody2D.velocity = velocityVector * player_MoveSpeed;//刚体运动
     }
+
+
 }

@@ -71,7 +71,7 @@ public class Player_Shoot : MonoBehaviour
             //以下为开火后调用的方法
             obj.transform.position = tfShootPoint.position;//开火点
             Vector3 shootDir = (tfShootPoint.position - tfGunEndPoint.position).normalized;
-            obj.GetComponent<IBullet>().Setup(shootDir);
+            obj.GetComponent<IBulletSetup>().Setup(shootDir);
         });
     }
 
@@ -84,7 +84,7 @@ public class Player_Shoot : MonoBehaviour
             //以下为开火后调用的方法
             obj.transform.position = tfShootPoint.position;//开火点
             Vector3 shootDir = (tfShootPoint.position - tfGunEndPoint.position).normalized;
-            obj.GetComponent<IBullet>().Setup(shootDir);
+            obj.GetComponent<IBulletSetup>().Setup(shootDir);
         });
         #endregion
     }

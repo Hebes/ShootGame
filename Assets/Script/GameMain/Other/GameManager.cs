@@ -19,7 +19,7 @@ public class GameManager : SingletonMono<GameManager>
     {
         base.Init();
         cameraFollow = Camera_Follow.Instance;
-        followTransform = Player_Manager.Instance.Player_Transform;
+        followTransform = GameObject.Find("Player").GetComponent<Player_Components>().Player_Transform;
     }
 
     private void Start()

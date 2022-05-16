@@ -9,7 +9,7 @@ using System;
 /// 子弹脚本
 /// 参考视频：https://www.youtube.com/watch?v=Nke5JKPiQTw
 /// </summary>
-public class Bullet_Common : MonoBehaviour, IBullet
+public class Bullet_Common : MonoBehaviour, IBulletSetup
 {
     
     private Vector3 shootDir;
@@ -41,6 +41,7 @@ public class Bullet_Common : MonoBehaviour, IBullet
         //    StartCoroutine(Push(() => { Push(); }, 0));
         //}
         #endregion
+        //没有碰撞到物体的在外面飞的子弹的销毁
         StartCoroutine(Push(() => { Push(); }, 2));
     }
    
@@ -50,10 +51,15 @@ public class Bullet_Common : MonoBehaviour, IBullet
     #region 第二种Damage方式 碰撞体  如需使用第一种 请注释以下
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GunTarget gunTarget = collision.GetComponent<GunTarget>();
+        ICommonCollide gunTarget = collision.GetComponent<ICommonCollide>();
         if (gunTarget != null)
         {
-            gunTarget.Damage();
+            // Hit enemy 敌人伤害
+            int damageAmount = UnityEngine.Random.Range(100, 200);//随机伤害
+            bool isCritical = UnityEngine.Random.Range(0, 100) < 30;//是否重击
+            if (isCritical) damageAmount *= 2;//重击伤害*2
+
+            gunTarget.Damage(damageAmount);
             StartCoroutine(Push(() => { Push(); }, 0));
         }
     }

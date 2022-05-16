@@ -2,16 +2,18 @@ using CodeMonkey.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Tool;
 using UnityEngine;
 /// <summary>
 /// 枪口射击射线事件
+/// Aim at Mouse in Unity 2D (Shoot Weapon, Unity Tutorial for Beginners)
 /// 在 Unity 2D 中瞄准鼠标（射击武器，Unity 初学者教程）
 /// 参考：https://www.youtube.com/watch?v=fuGQFdhSPg4&t=527s
 /// </summary>
 public class OnShootEvnentArgs
 {
-    public Transform tfGunEndPoint;
     public Transform tfShootPoint;
+    public Transform tfGunEndPoint;
     public Vector3 shellPosition;
 }
 /// <summary>
@@ -26,7 +28,12 @@ public class Player_Weapen : MonoBehaviour
 
     private float shootTimer;
     private bool canShoot = true;
+    private Player_Components player_Components;
 
+    private void Awake()
+    {
+        player_Components = GetComponent<Player_Components>();
+    }
 
     void Update()
     {
@@ -46,12 +53,13 @@ public class Player_Weapen : MonoBehaviour
             canShoot = false;
 
             //播放枪械攻击动击动画
-            Player_Manager.Instance.Player_Gun_PlayerGun_Animator.SetTrigger(Config_Animator.gun_Trigger_Animator_Shoot);
+            player_Components.Player_Gun_PlayerGun_Animator.SetTrigger(Config_Animator.gun_Trigger_Animator_Shoot);
 
+            //发布攻击事件
             EventCenter.Instance.EventTrigger(Config_Player.player_Event_Shoot, new OnShootEvnentArgs
             {
-                tfGunEndPoint = Player_Manager.Instance.Player_Gun_PlayerGun_EndPoint,
-                tfShootPoint = Player_Manager.Instance.Player_Gun_PlayerGun_ShootPoint,
+                tfGunEndPoint = player_Components.Player_Gun_PlayerGun_EndPoint,
+                tfShootPoint = player_Components.Player_Gun_PlayerGun_ShootPoint,
             });
 
             StartCoroutine(enumerator());//开火间隔
@@ -72,18 +80,17 @@ public class Player_Weapen : MonoBehaviour
         ////设置枪械变换朝向
         if (MouseRightOrLeft(out float angle, out Vector3 mousePos))
         {
-            Player_Manager.Instance.Player_Gun_PlayerGun_Transform.localScale = new Vector2(-1, -1);//枪旋转
+            player_Components.Player_Gun_PlayerGun_Transform.localScale = new Vector2(-1, -1);//枪旋转
 
-            Player_Manager.Instance.Player_Hp_PlayerHPBar.localScale = //血条旋转
-                Player_Manager.Instance.Player_Transform.localScale = new Vector2(-1, 1);//玩家旋转
+            player_Components.Player_Hp_PlayerHPBar.localScale = //血条旋转
+               player_Components.Player_Transform.localScale = new Vector2(-1, 1);//玩家旋转
 
         }
         else
-            Player_Manager.Instance.Player_Hp_PlayerHPBar.localScale =
-                Player_Manager.Instance.Player_Transform.localScale =
-                Player_Manager.Instance.Player_Gun_PlayerGun_Transform.localScale = Vector2.one;
-
-        Player_Manager.Instance.Player_Gun_PlayerGun_Transform.eulerAngles = new Vector3(0, 0, angle);
+            player_Components.Player_Hp_PlayerHPBar.localScale =
+                player_Components.Player_Transform.localScale =
+                player_Components.Player_Gun_PlayerGun_Transform.localScale = Vector2.one;
+        player_Components.Player_Gun_PlayerGun_Transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
     /// <summary>
@@ -95,7 +102,7 @@ public class Player_Weapen : MonoBehaviour
         //鼠标在屏幕的位置
         Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
 
-        Vector3 aimDir = mousePos = (mousePosition - Player_Manager.Instance.Player_Transform.position).normalized;
+        Vector3 aimDir = mousePos = (mousePosition - player_Components.Player_Transform.position).normalized;
         float angle = vector = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
 
         return (angle > 90 || angle < -90) ? true : false;
@@ -118,6 +125,5 @@ public class Player_Weapen : MonoBehaviour
                 return false;
             }
         }
-
     }
 }
