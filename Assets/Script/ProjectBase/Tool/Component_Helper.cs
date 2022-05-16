@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// 普通的
 /// </summary>
-namespace Tool
+namespace Tool 
 {
     /// <summary>
     /// 帮助类
