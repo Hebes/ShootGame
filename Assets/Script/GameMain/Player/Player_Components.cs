@@ -23,10 +23,24 @@ public class Player_Components : MonoBehaviour
     private Transform player_Hp_PlayerHPBar;
     #endregion
 
+    #region 背包系统
+    private Inventory inventory;
+    //测试代码
+    [SerializeField]
+    private UI_Inventory uI_Inventory;
+    #endregion
 
     private void Awake()
     {
         Player_GetComponent();
+
+        //inventory = new Inventory();
+        //uI_Inventory.SetInventory(inventory);
+
+        //ItemWorld.SpawnItemWorld(new Vector3(20, 20), new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
+        //ItemWorld.SpawnItemWorld(new Vector3(-20, 20), new Item { itemType = Item.ItemType.ManaPotion, amount = 1 });
+        //ItemWorld.SpawnItemWorld(new Vector3(0, -20), new Item { itemType = Item.ItemType.Sword, amount = 1 });
+
     }
 
     /// <summary>

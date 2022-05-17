@@ -66,4 +66,15 @@ public class GameManager : SingletonMono<GameManager>
     public Sprite pingDefendSprite;//敌人图标
     public Sprite pingWatchingSprite;//敌人图标
     public Sprite pingEnemyseenSprite;//敌人图标
+
+
+    //以下为物品测试代码
+    public Sprite swordSprite;
+    public Sprite healthPotionSprite;
+    public Sprite manaPotionSprite;
+    public Sprite coinSprite;
+    public Sprite medkitSprite;
+
+    public Transform pfItemworld;
+
 }

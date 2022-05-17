@@ -1,0 +1,88 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+
+/// <summary>
+/// Unity中的简单库存系统(存储，使用，堆叠和掉落道具)
+/// Simple Inventory System in Unity (Store, Use, Stack and Drop Items)
+/// 参考：https://www.youtube.com/watch?v=2WnAOV7nHW0
+/// </summary>
+public class Inventory
+{
+    public event EventHandler OnItemListChanged;
+    private Action<Item> userItemAction;
+
+    private List<Item> itemList;
+    public Inventory(Action<Item> userItemAction)
+    {
+        this.userItemAction = userItemAction;
+        itemList = new List<Item>();
+
+        AddItem(new Item { itemType = Item.ItemType.Sword, amount = 1 });
+        AddItem(new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
+        AddItem(new Item { itemType = Item.ItemType.ManaPotion, amount = 1 });
+    }
+
+    public void AddItem(Item item)
+    {
+        if (item.IsStackable())
+        {
+            bool itemAlreadyInInventory = false;
+
+            foreach (Item inventoryItem in itemList)
+            {
+                if (inventoryItem.itemType == item.itemType)
+                {
+                    inventoryItem.amount += item.amount;
+                    itemAlreadyInInventory = true;
+                }
+            }
+            if (!itemAlreadyInInventory)
+            {
+                itemList.Add(item);
+            }
+        }
+        else
+        {
+            itemList.Add(item);
+        }
+        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public List<Item> GetItemList
+    {
+        get { return itemList; }
+    }
+
+    internal void RemoveItem(Item item)
+    {
+        if (item.IsStackable())
+        {
+            Item itemInInventory = null; 
+
+            foreach (Item inventoryItem in itemList)
+            {
+                if (inventoryItem.itemType == item.itemType)
+                {
+                    inventoryItem.amount -= item.amount;
+                    itemInInventory = inventoryItem;
+                }
+            }
+            if (itemInInventory!=null&& itemInInventory.amount<=0)
+            {
+                itemList.Remove(itemInInventory);
+            }
+        }
+        else
+        {
+            itemList.Remove(item);
+        }
+        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    internal void UserItem(Item item)
+    {
+        userItemAction(item);
+    }
+}
