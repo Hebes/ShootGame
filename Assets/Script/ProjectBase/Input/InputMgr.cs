@@ -15,7 +15,7 @@ public class InputMgr : BaseManager<InputMgr>
     /// 构造函数中 添加Updata监听
     /// </summary>
     /// 
-    public override void Init() => MonoMgr.Instance.AddUpdateListener(MyUpdate);
+    protected override void BaseManager_Init() => MonoMgr.Instance.AddUpdateListener(Update);
 
     /// <summary>
     /// 是否开启或关闭 我的输入检测
@@ -33,13 +33,13 @@ public class InputMgr : BaseManager<InputMgr>
     {
         //事件中心模块 分发按下抬起事件
         if (Input.GetKeyDown(key))
-            EventCenter.Instance.EventTrigger("某键按下", key);
+            EventCenter.Instance.EventTrigger(Config_Event.KeyInputDown, key);
         //事件中心模块 分发按下抬起事件
         if (Input.GetKeyUp(key))
-            EventCenter.Instance.EventTrigger("某键抬起", key);
+            EventCenter.Instance.EventTrigger(Config_Event.KeyInputUp, key);
     }
 
-    private void MyUpdate()
+    private void Update()
     {
         //没有开启输入检测 就不去检测 直接return
         if (!isStart)

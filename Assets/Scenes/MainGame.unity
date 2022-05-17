@@ -726,7 +726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item:
     itemType: 2
-    amount: 1
+    amount: 5
 --- !u!4 &386944146
 Transform:
   m_ObjectHideFlags: 0
@@ -976,7 +976,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe58c5e95b91ef42b0ebc02eaf28569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uI_Inventory: {fileID: 1536726119}
 --- !u!50 &460328554
 Rigidbody2D:
   serializedVersion: 4
@@ -1022,6 +1021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17594f8f862773499e4c67082be746d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Hp: 100
 --- !u!114 &460328557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5097,7 +5097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item:
     itemType: 3
-    amount: 1
+    amount: 10
 --- !u!4 &1842435184
 Transform:
   m_ObjectHideFlags: 0

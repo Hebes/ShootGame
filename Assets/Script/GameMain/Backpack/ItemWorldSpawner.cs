@@ -9,7 +9,7 @@ public class ItemWorldSpawner : MonoBehaviour
 
     private void Awake()
     {
-        ItemWorld.SpawnItemWorld(transform.position, item);
+        ItemWorld.SpawnItemWorld(transform.position, item);//设置物品
         Destroy(gameObject);
     }
 

@@ -13,7 +13,7 @@ public class MonoMgr : BaseManager<MonoMgr>
 {
     private MonoController controller;
 
-    public override void Init() => controller = MonoController.Instance;
+    protected override void BaseManager_Init() => controller = MonoController.Instance;
 
     #region isRun 用于暂停画面等
     /// <summary>

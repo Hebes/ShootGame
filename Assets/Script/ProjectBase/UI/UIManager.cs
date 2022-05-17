@@ -33,12 +33,12 @@ public class UIManager : BaseManager<UIManager>
     //记录我们UI的Canvas父对象 方便以后外部可能会使用它
     public RectTransform canvas;
 
-    public override void Init()
+    protected override void BaseManager_Init()
     {
-        base.Init();
+        base.BaseManager_Init();
         panelDic = new Dictionary<string, BasePanel>();
         //创建Canvas 让其过场景的时候 不被移除
-        GameObject obj = ResMgr.Instance.Load<GameObject>(Config_ResLoadPaths.PREFAB_UI_BASE_CANVAS);
+        GameObject obj = ResMgr.Instance.LoadRes<GameObject>(Config_ResLoadPaths.PREFAB_UI_BASE_CANVAS);
         canvas = obj.transform as RectTransform;
         Object.DontDestroyOnLoad(obj);
 
@@ -49,7 +49,7 @@ public class UIManager : BaseManager<UIManager>
         SystemLayer = canvas.Find(Config_ResLoadPaths.CANVAS_SYSTEMLAYER);
 
         //创建EventSystem 让其过场景的时候 不被移除
-        obj = ResMgr.Instance.Load<GameObject>(Config_ResLoadPaths.PREFAB_UI_BASE_EVENTSYSTEM);
+        obj = ResMgr.Instance.LoadRes<GameObject>(Config_ResLoadPaths.PREFAB_UI_BASE_EVENTSYSTEM);
         Object.DontDestroyOnLoad(obj);
     }
 
@@ -96,7 +96,7 @@ public class UIManager : BaseManager<UIManager>
             return;
         }
 
-        ResMgr.Instance.LoadAsync<GameObject>(Config_ResLoadPaths.PREFAB_UI_UIPANEL + panelName, (obj) =>
+        ResMgr.Instance.LoadResAysn<GameObject>(Config_ResLoadPaths.PREFAB_UI_UIPANEL + panelName, (obj) =>
         {
             //把他作为 Canvas的子对象
             //并且 要设置它的相对位置

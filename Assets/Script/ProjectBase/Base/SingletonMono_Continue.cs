@@ -6,14 +6,21 @@ using UnityEngine;
 //设计模式 单例模式的知识点
 //继承这种自动创建的 单例模式基类 不需要我们手动去拖 或者 api去加了
 //想用他 直接 GetInstance就行了
-public class SingletonAutoMono<T> : MonoBehaviour where T : Component
+//持久型的请用这个脚本
+/// <summary>
+/// 持续性SingletonMono 不销毁的
+/// </summary>
+/// <typeparam name="T"></typeparam>
+public class SingletonMono_Continue<T> : MonoBehaviour where T : Component
 {
     private static T instance;
 
     public static T Instance
     {
         get
-        {
+        {                        
+            if (instance == null) 
+                instance = FindObjectOfType<T>();
             if (instance == null)
             {
                 GameObject obj = new GameObject();
@@ -26,5 +33,16 @@ public class SingletonAutoMono<T> : MonoBehaviour where T : Component
             return instance;
                 //设置对象的名字为脚本名
         }
+    }
+
+    protected virtual void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this as T;
+            DontDestroyOnLoad(instance.gameObject);
+        }
+        else
+            Destroy(instance.gameObject);
     }
 }

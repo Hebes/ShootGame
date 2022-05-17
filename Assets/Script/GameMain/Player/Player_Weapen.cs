@@ -53,7 +53,7 @@ public class Player_Weapen : MonoBehaviour
             player_Components.Player_Gun_PlayerGun_Animator.SetTrigger(Config_Animator.gun_Trigger_Animator_Shoot);
 
             //发布攻击事件
-            EventCenter.Instance.EventTrigger(Config_Player.player_Event_Shoot, new OnShootEvnentArgs
+            EventCenter.Instance.EventTrigger(Config_Event.Player_Shoot, new OnShootEvnentArgs
             {
                 tfGunEndPoint = player_Components.Player_Gun_PlayerGun_EndPoint,
                 tfShootPoint = player_Components.Player_Gun_PlayerGun_ShootPoint,
@@ -75,7 +75,7 @@ public class Player_Weapen : MonoBehaviour
     private void HandleAiming()
     {
         ////设置枪械变换朝向
-        if (MouseRightOrLeft(out float angle, out Vector3 mousePos))
+        if (MouseRightOrLeft(out float angle))
         {
             player_Components.Player_Gun_PlayerGun_Transform.localScale = new Vector2(-1, -1);//枪旋转
 
@@ -94,33 +94,14 @@ public class Player_Weapen : MonoBehaviour
     /// 判断鼠标是左边还是右边
     /// </summary>
     /// <returns></returns>
-    private bool MouseRightOrLeft(out float vector, out Vector3 mousePos)
+    private bool MouseRightOrLeft(out float vector)
     {
         //鼠标在屏幕的位置
         Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
 
-        Vector3 aimDir = mousePos = (mousePosition - player_Components.Player_Transform.position).normalized;
+        Vector3 aimDir = (mousePosition - player_Components.Player_Transform.position).normalized;
         float angle = vector = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
 
         return (angle > 90 || angle < -90) ? true : false;
-    }
-    /// <summary>
-    /// 射击间隔
-    /// </summary>
-    private bool ShootTimer
-    {
-        get
-        {
-            if (shootTimer >= .15f)
-            {
-                shootTimer = 0;
-                return true;
-            }
-            else
-            {
-                shootTimer += Time.deltaTime;
-                return false;
-            }
-        }
     }
 }

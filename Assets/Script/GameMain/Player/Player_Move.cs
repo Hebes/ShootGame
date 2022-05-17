@@ -9,15 +9,9 @@ public class Player_Move : MonoBehaviour, IMove
     private Vector3 velocityVector;
     private Player_Components player_Components;
 
-    private void Awake()
-    {
-        player_Components = GetComponent<Player_Components>();
-    }
+    private void Awake() => player_Components = GetComponent<Player_Components>();
 
-    public void SetMove(Vector3 velocityVector)
-    {
-        this.velocityVector = velocityVector;
-    }
+    public void SetMove(Vector3 velocityVector) => this.velocityVector = velocityVector;
 
     private void Update()
     {
@@ -50,10 +44,5 @@ public class Player_Move : MonoBehaviour, IMove
         GetComponent<IMove>().SetMove(moveVector);
     }
 
-    private void FixedUpdate()
-    {
-        player_Components.Player_Rigidbody2D.velocity = velocityVector * player_MoveSpeed;//刚体运动
-    }
-
-
+    private void FixedUpdate() => player_Components.Player_Rigidbody2D.velocity = velocityVector * player_MoveSpeed;//刚体运动
 }

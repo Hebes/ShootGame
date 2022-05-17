@@ -4,7 +4,7 @@ using UnityEngine;
 
 //1.C#中 泛型的知识
 //2.设计模式中 单例模式的知识
-public class BaseManager<T> where T : new()
+public class BaseManager<T> where T : class, new()
 {
     private static T instance;
 
@@ -12,23 +12,23 @@ public class BaseManager<T> where T : new()
     {
         get
         {
-            if (instance == null)
-                instance = new T();
+            if (instance == null) instance = new T();
             return instance;
         }
     }
     public BaseManager()
     {
         if (instance == null)
-            Init();
-        else
-            Debug.Log(" 单例不为空!!!");
+        {
+            instance = this as T;
+            BaseManager_Init();
+        }
     }
 
     /// <summary>
     /// 通过BaseManager的Init初始化
     /// </summary>
-    public virtual void Init()
+    protected virtual void BaseManager_Init()
     {
 
     }

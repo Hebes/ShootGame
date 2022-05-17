@@ -27,9 +27,9 @@ public class TargetSystem : BaseManager<TargetSystem>
 
     private float pingButtonHoldDownTimer;
 
-    public override void Init()
+    protected override void BaseManager_Init()
     {
-        base.Init();
+        base.BaseManager_Init();
         pingList = new List<Ping>();
     }
 

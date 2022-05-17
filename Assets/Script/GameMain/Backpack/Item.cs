@@ -19,6 +19,8 @@ public class Item
     public ItemType itemType;
     public int amount;//数量
 
+
+    //获取精灵图片
     public Sprite GetSprite()
     {
         switch (itemType)
@@ -37,6 +39,10 @@ public class Item
         }
     }
 
+    /// <summary>
+    /// 获取颜色
+    /// </summary>
+    /// <returns></returns>
     public Color GetColor()
     {
         switch (itemType)
@@ -56,6 +62,10 @@ public class Item
 
     }
 
+    /// <summary>
+    /// 是否可以堆叠？
+    /// </summary>
+    /// <returns></returns>
     public bool IsStackable()
     {
         switch (itemType)

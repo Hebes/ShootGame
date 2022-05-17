@@ -16,7 +16,7 @@ public class Player_Shoot : MonoBehaviour
     private void Awake()
     {
         shootAction = ShootPhysics;
-        EventCenter.Instance.AddEventListener<OnShootEvnentArgs>(Config_Player.player_Event_Shoot, ShootingOverTrigger);
+        EventCenter.Instance.AddEventListener<OnShootEvnentArgs>(Config_Event.Player_Shoot, ShootingOverTrigger);
     }
 
     private void Update()

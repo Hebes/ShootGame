@@ -9,25 +9,15 @@ using UnityEngine.Events;
 /// 2.事件 
 /// 3.协程
 /// </summary>
-public class MonoController : SingletonAutoMono<MonoController>
+public class MonoController : SingletonMono_Continue<MonoController>
 {
     private event UnityAction updateEvent;
-    private bool isRun = true;
-    public bool IsRun
-    {
-        set => isRun = value;
-        get => isRun;
-    }
-
-    private void OnEnable()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
+    public bool IsRun { set; get; } = true;
 
     // Update is called once per frame
     void Update()
     {
-        if (isRun) return;
+        if (!IsRun) return;
 
         if (updateEvent != null)
             updateEvent();

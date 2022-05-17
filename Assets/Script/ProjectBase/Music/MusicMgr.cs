@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -47,7 +47,7 @@ public class MusicMgr : BaseManager<MusicMgr>
             bkMusic = obj.AddComponent<AudioSource>();
         }
         //异步加载背景音乐 加载完成后 播放
-        ResMgr.Instance.LoadAsync<AudioClip>("Music/BK/" + name, (clip) =>
+        ResMgr.Instance.LoadResAysn<AudioClip>("Music/BK/" + name, (clip) =>
         {
             bkMusic.clip = clip;
             bkMusic.loop = true;
@@ -100,7 +100,7 @@ public class MusicMgr : BaseManager<MusicMgr>
             soundObj.name = "Sound";
         }
         //当音效资源异步加载结束后 再添加一个音效
-        ResMgr.Instance.LoadAsync<AudioClip>("Music/Sound/" + name, (clip) =>
+        ResMgr.Instance.LoadResAysn<AudioClip>("Music/Sound/" + name, (clip) =>
         {
             AudioSource source = soundObj.AddComponent<AudioSource>();
             source.clip = clip;

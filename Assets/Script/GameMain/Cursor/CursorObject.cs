@@ -7,13 +7,7 @@ public class CursorObject : MonoBehaviour
 {
     [SerializeField] private ECursorType cursorType;
 
-    private void OnMouseEnter()
-    {
-        CursorManager.Instance.SetActiveCursorType(cursorType);
-    }
-    private void OnMouseExit()
-    {
-        CursorManager.Instance.SetActiveCursorType(ECursorType.Arrow);
-    }
+    private void OnMouseEnter() => CursorManager.Instance.SetActiveCursorType(cursorType);
+    private void OnMouseExit() => CursorManager.Instance.SetActiveCursorType(ECursorType.Arrow);
 
 }

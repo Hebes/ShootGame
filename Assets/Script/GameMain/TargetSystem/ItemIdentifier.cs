@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 物体标识符
 /// </summary>
-public class ItemIdentifier : SingletonMono<ItemIdentifier>
+public class ItemIdentifier : SingletonMono_Temp<ItemIdentifier>
 {
     public enum ItemType
     {

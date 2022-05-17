@@ -28,7 +28,6 @@ public class ItemWorld : MonoBehaviour
         ItemWorld itemWorld = SpawnItemWorld(dropPosition + randomDir * 8f, item);//在世界中生成
         itemWorld.GetComponent<Rigidbody2D>().AddForce(randomDir * 40f, ForceMode2D.Impulse);
         return itemWorld;
-
     }
 
 
@@ -46,6 +45,7 @@ public class ItemWorld : MonoBehaviour
     {
         this.item = item;
         spriteRenderer.sprite = item.GetSprite();
+        light2D.color = item.GetColor();
         textMeshPro.text = item.amount > 1 ? item.amount.ToString() : string.Empty;
     }
     public Item GetItem()

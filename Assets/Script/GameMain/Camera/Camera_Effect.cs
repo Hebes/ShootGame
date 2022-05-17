@@ -11,7 +11,7 @@ public class Camera_Effect : MonoBehaviour
 
     private void Awake()
     {
-        EventCenter.Instance.AddEventListener<OnShootEvnentArgs>(Config_Player.player_Event_Shoot, PlayerShootOverEffer);
+        EventCenter.Instance.AddEventListener<OnShootEvnentArgs>(Config_Event.Player_Shoot, PlayerShootOverEffer);
     }
 
     /// <summary>

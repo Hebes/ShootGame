@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Camera_Follow : SingletonMono<Camera_Follow>
+public class Camera_Follow : SingletonMono_Temp<Camera_Follow>
 {
     private Camera myCamera;
     private Func<Vector3> GetCameraFollowPositionFunc;
@@ -9,16 +9,14 @@ public class Camera_Follow : SingletonMono<Camera_Follow>
 
     private float cameraMoveSpeed = 3f;//相机移动速度
 
-    protected override void Init()
-    {
-        base.Init();
-        myCamera = GetComponent<Camera>();
-    }
 
-    private void Update()
+    protected override void Awake()
     {
-        HandleMovement();
-        HandleZoom();
+        myCamera = GetComponent<Camera>();
+        MonoMgr.Instance.AddUpdateListener(() => {
+            HandleMovement();
+            HandleZoom();
+        });
     }
 
     /// <summary>

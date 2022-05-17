@@ -12,25 +12,25 @@ public static class Config_ResLoadPaths
     public const string CANVAS_TWOLAYER = "TwoLayer";
     public const string CANVAS_THREELAYER = "ThreeLayer";
     public const string CANVAS_SYSTEMLAYER = "SystemLayer";
-    #endregion        
+    #endregion
 
     #region Resource资源路径相关
-        #region Resource-UI面板
-        //UI名字
-        public const string UI_GAMESTART = "UI_GameStart";//游戏开始面板
-        public const string UI_LOADING = "UI_Loading";//加载面板
-        public const string UI_SETTING = "UI_Setting";//设置面板
+    #region Resource-UI面板
+    //UI名字
+    public const string UI_GAMESTART = "UI_GameStart";//游戏开始面板
+    public const string UI_LOADING = "UI_Loading";//加载面板
+    public const string UI_SETTING = "UI_Setting";//设置面板
 
-        //第一层级
-        //public const string PREFAB = "Prefabs/";//prefab
-        //第二层级
-        public const string PREFAB_UI = "UI/";//prefab_ui
-        //第三层级
-        public const string PREFAB_UI_BASE = PREFAB_UI + "UI_Base/";
-        public const string PREFAB_UI_UIPANEL = PREFAB_UI + "UI_Panel/";//prefab_ui_UIPanel
-        //第四层级
-        public const string PREFAB_UI_BASE_CANVAS = PREFAB_UI_BASE + "Canvas";//UI基类面板
-        public const string PREFAB_UI_BASE_EVENTSYSTEM = PREFAB_UI_BASE + "EventSystem";//UI基类面板
+    //第一层级
+    //public const string PREFAB = "Prefabs/";//prefab
+    //第二层级
+    public const string PREFAB_UI = "UI/";//prefab_ui
+                                          //第三层级
+    public const string PREFAB_UI_BASE = PREFAB_UI + "UI_Base/";
+    public const string PREFAB_UI_UIPANEL = PREFAB_UI + "UI_Panel/";//prefab_ui_UIPanel
+                                                                    //第四层级
+    public const string PREFAB_UI_BASE_CANVAS = PREFAB_UI_BASE + "Canvas";//UI基类面板
+    public const string PREFAB_UI_BASE_EVENTSYSTEM = PREFAB_UI_BASE + "EventSystem";//UI基类面板
     #endregion
     #endregion
 
@@ -43,7 +43,7 @@ public static class Config_ResLoadPaths
 
     #region TargetSystem 系统相关加载资源
     //一级路径
-    public const string targetSystem_Prefab_TargetSystemIcon = CommonPath+ "/TargetPointIcon";
+    public const string targetSystem_Prefab_TargetSystemIcon = CommonPath + "/TargetPointIcon";
     //二级加载路径
     public const string targetSystem_Prefab_TargetSystemIcon_Prefab = targetSystem_Prefab_TargetSystemIcon + "/Prefab";
     //三级加载路径
@@ -75,5 +75,9 @@ public static class Config_ResLoadPaths
 
     #region 血条相关
     public const string BarHP_pf = CommonPath + "/HPBar/Prefab/Bar_HP";
+    #endregion
+
+    #region 物品相关
+    public const string item_pf_Sample = CommonPath + "/Backpack/Prefab/";
     #endregion
 }

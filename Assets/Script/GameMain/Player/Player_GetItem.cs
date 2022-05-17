@@ -11,10 +11,7 @@ public class Player_GetItem : MonoBehaviour
     private UI_Inventory uI_Inventory;
     #endregion
 
-    private void Awake()
-    {
-        inventory = new Inventory(UseItem);
-    }
+    private void Awake() => inventory = new Inventory(UseItem);
 
     private void UseItem(Item item)
     {
@@ -44,6 +41,10 @@ public class Player_GetItem : MonoBehaviour
         uI_Inventory.SetInventory(inventory);
     }
 
+    /// <summary>
+    /// 捡起物品
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ItemWorld itemWorld = collision.GetComponent<ItemWorld>();

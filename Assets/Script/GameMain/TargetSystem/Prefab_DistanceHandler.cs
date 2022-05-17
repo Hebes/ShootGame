@@ -7,12 +7,12 @@ using Tool;
 /// <summary>
 /// 距离处理管理者
 /// </summary>
-public class Prefab_DistanceHandler : SingletonMono<Prefab_DistanceHandler>
+public class Prefab_DistanceHandler : SingletonMono_Temp<Prefab_DistanceHandler>
 {
 
     private TextMeshPro distanceText;
-
-    private new void Awake()
+    
+    protected override void Awake()
     {
         distanceText = transform.Find_Child<TextMeshPro>(Config_Common.sign_pf_TargeText);
     }

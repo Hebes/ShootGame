@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : SingletonMono<GameManager>
+public class GameManager : SingletonMono_Temp<GameManager>
 {
     private Camera_Follow cameraFollow;
 
@@ -15,11 +15,23 @@ public class GameManager : SingletonMono<GameManager>
     [Tooltip("用鼠标定位摄像机")]
     private bool cameraPositionWithMouse;
 
-    protected override void Init()
+
+    protected override void Awake()
     {
-        base.Init();
         cameraFollow = Camera_Follow.Instance;
         followTransform = GameObject.Find("Player").GetComponent<Player_Components>().Player_Transform;
+
+
+        ////初始化资源加载
+        //List<MainGame_Init> mainGame_Inits = new List<MainGame_Init>()
+        //{
+        //    MainGame_ResManage.Instance,
+        //};
+
+        //foreach (var item in mainGame_Inits)
+        //{
+        //    item.Init();
+        //}
     }
 
     private void Start()
@@ -48,10 +60,10 @@ public class GameManager : SingletonMono<GameManager>
 
     //以下为测试代码
     public Color pingMoveColor;
-    public Color pingEnemyColor;    
+    public Color pingEnemyColor;
     public Sprite pingMoveSprite;//移动图标
     public Sprite pingEnemySprite;//敌人图标
-    
+
 
     public Color pingHelmetColor;
     public Color pingArmorColor;
