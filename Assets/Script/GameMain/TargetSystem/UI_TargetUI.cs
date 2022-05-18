@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Tool;
 
-public class UI_TargetWindow_TargetUI : MonoBehaviour
+public class UI_TargetUI : MonoBehaviour
 {
     private TargetSystem.Ping ping;
     private RectTransform rectTransform;
@@ -67,19 +67,6 @@ public class UI_TargetWindow_TargetUI : MonoBehaviour
            
         }
 
-        switch (ping.GetPingType)
-        {
-            default:
-            case TargetSystem.Ping.Type.Move:
-                break;
-            case TargetSystem.Ping.Type.Enemy:
-                
-                break;
-            case TargetSystem.Ping.Type.Item:
-                
-                break;
-        }
-
         ping.OnDestroyed += delegate (object sender, System.EventArgs e)
         {
             Destroy(gameObject);
@@ -107,7 +94,7 @@ public class UI_TargetWindow_TargetUI : MonoBehaviour
             rectTransform.anchoredPosition = dir * uiRadius;
 
             //Update Distance text
-            Vector3 playerPos = GameObject.FindGameObjectWithTag(Config_Tags.Player).GetComponent<Player_Components>(). Player_Transform.position;
+            Vector3 playerPos = GameObject.FindGameObjectWithTag(Config_Tags.Player.ToString()).GetComponent<Player_Components>(). Player_Transform.position;
             //考虑精灵大小，因此设置为3F，具体自行参考
             int distance = Mathf.RoundToInt(Vector3.Distance(ping.GetPosition, playerPos) / 3f);
             textMeshPro.text = distance + "M";

@@ -27,15 +27,24 @@ public class Item
         {
             default:
             case ItemType.Sword:
-                return GameManager.Instance.swordSprite;
+                //return GameManager.Instance.swordSprite;
+                return MainGame_Res_Sprite_Manage.Instance.Get_sprite("Sword");
             case ItemType.HealthPotion:
-                return GameManager.Instance.healthPotionSprite;
+                //return GameManager.Instance.healthPotionSprite;
+                return MainGame_Res_Sprite_Manage.Instance.Get_sprite("HealthPotion");
+
             case ItemType.ManaPotion:
-                return GameManager.Instance.manaPotionSprite;
+                //return GameManager.Instance.manaPotionSprite;
+                return MainGame_Res_Sprite_Manage.Instance.Get_sprite("ManaPotion");
+
             case ItemType.Coin:
-                return GameManager.Instance.coinSprite;
+                //return GameManager.Instance.coinSprite;
+                return MainGame_Res_Sprite_Manage.Instance.Get_sprite("Coin");
+
             case ItemType.Medkit:
-                return GameManager.Instance.medkitSprite;
+                //return GameManager.Instance.medkitSprite;
+                return MainGame_Res_Sprite_Manage.Instance.Get_sprite("Medkit");
+
         }
     }
 

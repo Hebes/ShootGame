@@ -1,15 +1,12 @@
 
-public class Config_Tags
+enum Config_Tags
 {
     /// <summary>玩家</summary>
-    public const string Player = "Player";
-
+    Player,
     /// <summary>敌人</summary>
-    public const string Enemy = "Enemy";
-
+    Enemy,
     /// <summary>子弹</summary>
-    public const string Bullet = "Bullet";
-
+    Bullet,
     /// <summary>特效</summary>
-    public const string Effect = "Effect";
+    Effect,
 }

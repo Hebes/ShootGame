@@ -19,10 +19,9 @@ public class Prefab_DistanceHandler : SingletonMono_Temp<Prefab_DistanceHandler>
 
     private void Update()
     {
-        Vector3 thisPrefabPos = transform.position;
-        Vector3 playerPos = GameObject.FindGameObjectWithTag(Config_Tags.Player).GetComponent<Player_Components>().Player_Transform.position;
+        Vector3 playerPos = GameObject.FindGameObjectWithTag(Config_Tags.Player.ToString()).GetComponent<Player_Components>().Player_Transform.position;
         //考虑精灵大小，因此设置为3F，具体自行参考
-        int distance = Mathf.RoundToInt(Vector3.Distance(thisPrefabPos, playerPos) / 3f);
+        int distance = Mathf.RoundToInt(Vector3.Distance(transform.position, playerPos) / 3f);
         distanceText.text = distance + "M";
     }
 }

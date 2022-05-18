@@ -7,9 +7,10 @@ public class PingWheel : SingletonMono_Temp<PingWheel>
 {
     private Vector3 pingPosition;
 
-
     protected override void Awake()
     {
+        base.Awake();
+
         transform.Find("MoveBtn").GetComponent<Button_UI>().ClickFunc = () =>
         {
             //null可替换成transform.Find("MoveBtn")

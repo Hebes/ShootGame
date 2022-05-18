@@ -10,7 +10,6 @@ using System;
 /// </summary>
 public class CursorManager : SingletonMono_Continue<CursorManager>
 {
-    [SerializeField] private List<CursorAnimation> cursorAnimationList;//用不到的，可以删除的，以用cursorList替换
     private List<CursorAnimation> cursorList;
     private CursorAnimation cursorAnimation;
 
@@ -66,10 +65,8 @@ public class CursorManager : SingletonMono_Continue<CursorManager>
     /// 设置活动的标签类型
     /// </summary>
     /// <param name="cursorType"></param>
-    public void SetActiveCursorType(ECursorType cursorType)
-    {
-        SetActiveCursorAnimation(GetCursorAnimation(cursorType));
-    }
+    public void SetActiveCursorType(ECursorType cursorType) 
+        => SetActiveCursorAnimation(GetCursorAnimation(cursorType));
     /// <summary>
     /// 获取标签的动画
     /// </summary>
@@ -97,7 +94,7 @@ public class CursorManager : SingletonMono_Continue<CursorManager>
     }
 
 
-    [System.Serializable]
+    [Serializable]
     public class CursorAnimation
     {
         public ECursorType cursorType;

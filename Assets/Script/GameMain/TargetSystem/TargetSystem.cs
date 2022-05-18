@@ -81,10 +81,12 @@ public class TargetSystem : BaseManager<TargetSystem>
         pingList.Add(ping);
 
         //TUDO 需要重构这段代码
-        ResourceRequest goRR = Resources.LoadAsync<Transform>(Config_ResLoadPaths.targetSystem_Prefab_TargetSystemIcon_Prefab_TargetSystemPrefab);
+        //ResourceRequest goRR = Resources.LoadAsync<Transform>(Config_ResLoadPaths.targetSystem_Prefab_TargetSystemIcon_Prefab_TargetSystemPrefab);
 
-        Transform pingTransform = (Transform)UnityEngine.Object.Instantiate(goRR.asset, ping.GetPosition, Quaternion.identity, parent);
+        //Transform pingTransform = (Transform)UnityEngine.Object.Instantiate(goRR.asset, ping.GetPosition, Quaternion.identity, parent);
 
+        Transform pingTransform =
+            MainGame_Res_pf_Manage.Instance.GetAndInstantiate("TargetPrefab", ping.GetPosition, Quaternion.identity, parent).GetComponent<Transform>();
 
         switch (ping.GetPingType)
         {
@@ -165,7 +167,7 @@ public class TargetSystem : BaseManager<TargetSystem>
     public void PingButtonHeldDownUpdate()
     {
         pingButtonHoldDownTimer += Time.deltaTime;
-        //Debug.Log(pingButtonHoldDownTimer);
+
         if (pingButtonHoldDownTimer> PING_BUTTON_HOLDDOWN_WHEEL_SHOW_TIME)
         {            
             if (!PingWheel.Instance.IsVisibleStatic)

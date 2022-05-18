@@ -41,14 +41,11 @@ public static class Config_ResLoadPaths
     private const string CommonPath = "Common";
     #endregion
 
-    #region TargetSystem 系统相关加载资源
+    #region TargetSystem->ts系统相关加载资源 目标点相关图标
     //一级路径
-    public const string targetSystem_Prefab_TargetSystemIcon = CommonPath + "/TargetPointIcon";
+    public const string ts_pf_path = CommonPath + "/TargetPointIcon";
     //二级加载路径
-    public const string targetSystem_Prefab_TargetSystemIcon_Prefab = targetSystem_Prefab_TargetSystemIcon + "/Prefab";
-    //三级加载路径
-    public const string targetSystem_Prefab_TargetSystemIcon_Prefab_TargetSystemPrefab = targetSystem_Prefab_TargetSystemIcon_Prefab + "/TargetPrefab";
-    public const string targetSystem_UI_TargetUI = targetSystem_Prefab_TargetSystemIcon_Prefab + "/TargetUI";
+    public const string ts_pf_path_Prefab = ts_pf_path + "/Prefab/";
     #endregion
 
     #region 鼠标光标加载资源
@@ -78,6 +75,12 @@ public static class Config_ResLoadPaths
     #endregion
 
     #region 物品相关
-    public const string item_pf_Sample = CommonPath + "/Backpack/Prefab/";
+    public const string item_Backpack = CommonPath + "/Backpack";
+    #region pf
+    public const string item_pf_Sample = item_Backpack + "/Prefab/";
+    #endregion
+    #region sprite
+    public const string item_Sprite_Icon = item_Backpack + "/Picture/";
+    #endregion
     #endregion
 }

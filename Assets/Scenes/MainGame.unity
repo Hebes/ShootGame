@@ -1364,6 +1364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172d6347d6a9eea49b07df073e06fdcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraPositionWithMouse: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2484,7 +2485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &928355903
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2953,7 +2954,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c7eb859ce63a742a94cb745c25a9db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPositionWithMouse: 0
   pingMoveColor: {r: 0.0152851045, g: 0.9433962, b: 0, a: 1}
   pingEnemyColor: {r: 1, g: 0.24242005, b: 0, a: 1}
   pingMoveSprite: {fileID: 21300000, guid: 1bad51f37730e2d43989cbf750f643c8, type: 3}
@@ -2969,12 +2969,6 @@ MonoBehaviour:
   pingDefendSprite: {fileID: 21300000, guid: a49a358ef2d834e4a9bcb2f302660b44, type: 3}
   pingWatchingSprite: {fileID: 21300000, guid: 5b1fe07a03ac3384ab9fe5bf52413cdb, type: 3}
   pingEnemyseenSprite: {fileID: 21300000, guid: a5137761ad6d3eb4185fff4b3de562c4, type: 3}
-  swordSprite: {fileID: 21300000, guid: 0567c05197d0d374ca05f1aed297c2e4, type: 3}
-  healthPotionSprite: {fileID: 21300000, guid: 28cd643389c25de4eb77f49567812e47, type: 3}
-  manaPotionSprite: {fileID: 21300000, guid: 567c1dba48fd591478dcf0bb74786ddf, type: 3}
-  coinSprite: {fileID: 21300000, guid: cf36dfe8f1a0e82469863e44b6425d50, type: 3}
-  medkitSprite: {fileID: 21300000, guid: fbb108ca9ae39704c94c4c6321df3d1a, type: 3}
-  pfItemworld: {fileID: 3827699408361673315, guid: a219d31b645875f4d9745830d4a61fe0, type: 3}
 --- !u!4 &1088649168
 Transform:
   m_ObjectHideFlags: 0

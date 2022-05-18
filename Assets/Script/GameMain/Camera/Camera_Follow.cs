@@ -1,3 +1,4 @@
+using CodeMonkey.Utils;
 using System;
 using UnityEngine;
 
@@ -9,14 +10,40 @@ public class Camera_Follow : SingletonMono_Temp<Camera_Follow>
 
     private float cameraMoveSpeed = 3f;//相机移动速度
 
+    [Tooltip("摄像机的位置兼玩家位置")]
+    private Transform playerTransform;
+
+    [SerializeField]
+    [Tooltip("用鼠标定位摄像机")]
+    private bool cameraPositionWithMouse;
 
     protected override void Awake()
     {
         myCamera = GetComponent<Camera>();
+        playerTransform = GameObject.Find(Config_Tags.Player.ToString()).GetComponent<Player_Components>().Player_Transform;
+
         MonoMgr.Instance.AddUpdateListener(() => {
             HandleMovement();
             HandleZoom();
         });
+
+        Setup(GetCameraPosition, () => 70f, true, true);//70为摄像机的大小
+    }
+
+    
+    /// <summary>
+    /// 摄像机移动
+    /// </summary>
+    /// <returns></returns>
+    private Vector3 GetCameraPosition()
+    {
+        if (cameraPositionWithMouse)
+        {
+            Vector3 playerToMouseDirection = UtilsClass.GetMouseWorldPosition() - playerTransform.position;
+            return playerTransform.position + playerToMouseDirection * .3f;
+        }
+        else
+            return playerTransform.position;
     }
 
     /// <summary>
@@ -55,22 +82,22 @@ public class Camera_Follow : SingletonMono_Temp<Camera_Follow>
     /// 设置摄像机跟随位置的委托
     /// </summary>
     /// <param name="GetCameraFollowPositionFunc"></param>
-    public void SetGetCameraFollowPositionFunc(Func<Vector3> GetCameraFollowPositionFunc)
-    {
-        this.GetCameraFollowPositionFunc = GetCameraFollowPositionFunc;
-    }
+    public void SetGetCameraFollowPositionFunc(Func<Vector3> GetCameraFollowPositionFunc) 
+        => this.GetCameraFollowPositionFunc = GetCameraFollowPositionFunc;
 
     /// <summary>
     /// 设置相机变焦
     /// </summary>
     /// <param name="cameraZoom"></param>
-    public void SetCameraZoom(float cameraZoom) => SetGetCameraZoomFunc(() => cameraZoom);
+    public void SetCameraZoom(float cameraZoom) 
+        => SetGetCameraZoomFunc(() => cameraZoom);
 
     /// <summary>
     /// 设置相机变焦委托
     /// </summary>
     /// <param name="GetCameraZoomFunc"></param>
-    public void SetGetCameraZoomFunc(Func<float> GetCameraZoomFunc) => this.GetCameraZoomFunc = GetCameraZoomFunc;
+    public void SetGetCameraZoomFunc(Func<float> GetCameraZoomFunc) 
+        => this.GetCameraZoomFunc = GetCameraZoomFunc;
 
 
     /// <summary>
