@@ -41,14 +41,14 @@ public class EventCenter : BaseManager<EventCenter>
 {
     //key —— 事件的名字（比如：怪物死亡，玩家死亡，通关 等等）
     //value —— 对应的是 监听这个事件 对应的委托函数们
-    private Dictionary<Config_Event, IEventInfo> eventDic = new Dictionary<Config_Event, IEventInfo>();
+    private Dictionary<EEvent, IEventInfo> eventDic = new Dictionary<EEvent, IEventInfo>();
 
     /// <summary>
     /// 添加事件监听
     /// </summary>
     /// <param name="name">事件的名字</param>
     /// <param name="action">准备用来处理事件 的委托函数</param>
-    public void AddEventListener<T>(Config_Event config_Event, UnityAction<T> action)
+    public void AddEventListener<T>(EEvent config_Event, UnityAction<T> action)
     {
         //有没有对应的事件监听
         //有的情况
@@ -68,7 +68,7 @@ public class EventCenter : BaseManager<EventCenter>
     /// </summary>
     /// <param name="name"></param>
     /// <param name="action"></param>
-    public void AddEventListener(Config_Event config_Event, UnityAction action)
+    public void AddEventListener(EEvent config_Event, UnityAction action)
     {
         //有没有对应的事件监听
         //有的情况
@@ -89,7 +89,7 @@ public class EventCenter : BaseManager<EventCenter>
     /// </summary>
     /// <param name="name">事件的名字</param>
     /// <param name="action">对应之前添加的委托函数</param>
-    public void RemoveEventListener<T>(Config_Event config_Event, UnityAction<T> action)
+    public void RemoveEventListener<T>(EEvent config_Event, UnityAction<T> action)
     {
         if (eventDic.ContainsKey(config_Event))
             (eventDic[config_Event] as EventInfo<T>).actions -= action;
@@ -100,7 +100,7 @@ public class EventCenter : BaseManager<EventCenter>
     /// </summary>
     /// <param name="name"></param>
     /// <param name="action"></param>
-    public void RemoveEventListener(Config_Event config_Event, UnityAction action)
+    public void RemoveEventListener(EEvent config_Event, UnityAction action)
     {
         if (eventDic.ContainsKey(config_Event))
             (eventDic[config_Event] as EventInfo).actions -= action;
@@ -110,7 +110,7 @@ public class EventCenter : BaseManager<EventCenter>
     /// 事件触发
     /// </summary>
     /// <param name="name">哪一个名字的事件触发了</param>
-    public void EventTrigger<T>(Config_Event config_Event, T info)
+    public void EventTrigger<T>(EEvent config_Event, T info)
     {
         //有没有对应的事件监听
         //有的情况
@@ -127,7 +127,7 @@ public class EventCenter : BaseManager<EventCenter>
     /// 事件触发（不需要参数的）
     /// </summary>
     /// <param name="name"></param>
-    public void EventTrigger(Config_Event config_Event)
+    public void EventTrigger(EEvent config_Event)
     {
         //有没有对应的事件监听
         //有的情况

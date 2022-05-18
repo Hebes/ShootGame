@@ -14,7 +14,7 @@ public class UI_TargetUI : MonoBehaviour
 
     private void Awake()
     {
-        textMeshPro = transform.Find_Child<TextMeshProUGUI>(Config_Common.UI_SignWindow_pf_TargeText);
+        textMeshPro = transform.Find_Child<TextMeshProUGUI>(Config_Common.UI_pf_TargeText);
         rectTransform = GetComponent<RectTransform>();
         image = GetComponent<Image>();
     }
@@ -94,7 +94,7 @@ public class UI_TargetUI : MonoBehaviour
             rectTransform.anchoredPosition = dir * uiRadius;
 
             //Update Distance text
-            Vector3 playerPos = GameObject.FindGameObjectWithTag(Config_Tags.Player.ToString()).GetComponent<Player_Components>(). Player_Transform.position;
+            Vector3 playerPos = GameObject.FindGameObjectWithTag(ETags.Player.ToString()).GetComponent<Player_Components>(). Player_Transform.position;
             //考虑精灵大小，因此设置为3F，具体自行参考
             int distance = Mathf.RoundToInt(Vector3.Distance(ping.GetPosition, playerPos) / 3f);
             textMeshPro.text = distance + "M";

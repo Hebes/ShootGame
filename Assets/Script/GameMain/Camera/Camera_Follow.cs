@@ -20,17 +20,16 @@ public class Camera_Follow : SingletonMono_Temp<Camera_Follow>
     protected override void Awake()
     {
         myCamera = GetComponent<Camera>();
-        playerTransform = GameObject.Find(Config_Tags.Player.ToString()).GetComponent<Player_Components>().Player_Transform;
-
-        MonoMgr.Instance.AddUpdateListener(() => {
-            HandleMovement();
-            HandleZoom();
-        });
+        playerTransform = GameObject.Find(ETags.Player.ToString()).GetComponent<Player_Components>().Player_Transform;
 
         Setup(GetCameraPosition, () => 70f, true, true);//70为摄像机的大小
     }
+    private void Update()
+    {
+        HandleMovement();
+        HandleZoom();
+    }
 
-    
     /// <summary>
     /// 摄像机移动
     /// </summary>

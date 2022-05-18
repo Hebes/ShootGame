@@ -1,0 +1,8 @@
+MedicalBox=Common/Backpack/Prefab/MedicalBox
+pfBullet=Common/Gun/Bullet/Prefab/pfBullet
+pfBulletPhysics=Common/Gun/Bullet/Prefab/pfBulletPhysics
+pfSmoke=Common/Gun/Effect/pfSmoke
+Bar_HP=Common/HPBar/Prefab/Bar_HP
+pfDamagePopup=Common/Other/pfDamagePopup/Prefab/pfDamagePopup
+TargetPrefab=Common/TargetPointIcon/Prefab/TargetPrefab
+UI_Target=Common/TargetPointIcon/Prefab/UI_Target

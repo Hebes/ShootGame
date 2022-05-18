@@ -10,9 +10,8 @@ public class ItemWorld : MonoBehaviour
 {
     public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
     {
-        Transform transform = 
-            MainGame_Res_pf_Manage.Instance.GetAndInstantiate("MedicalBox", position, Quaternion.identity).GetComponent<Transform>();
-        ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
+        ItemWorld itemWorld = 
+            MainGame_Res_pf_Manage.Instance.GetAndInstantiate(EpfName.MedicalBox.ToString(), position, Quaternion.identity).GetComponent<ItemWorld>();
         itemWorld.SetItem(item);
         return itemWorld;
     }

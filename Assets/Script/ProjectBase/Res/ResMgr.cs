@@ -53,7 +53,8 @@ public class ResMgr : BaseManager<ResMgr>
     public void LoadAllResAysn<T>(string path, Action<T[]> callback) where T : UnityEngine.Object
         => loader.LoadAllResAysn(path, callback);
     #endregion
-    
+
+    #region 通过加载并实例化
     /// <summary>
     /// 加载物体
     /// </summary>
@@ -71,6 +72,8 @@ public class ResMgr : BaseManager<ResMgr>
         => loader.LoadPrefabAndInstantiate(path, parent);
     public GameObject Load_pf_Instantiate(string path, Vector3 position, Quaternion rotation, Transform parent = null)
         => loader.LoadPrefabAndInstantiate(path, position, rotation, parent);
+    #endregion
+
 
 
     #region 以下为旧代码

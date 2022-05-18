@@ -7,7 +7,7 @@ public class ItemWorldSpawner : MonoBehaviour
     [SerializeField]
     private Item item;
 
-    private void Awake()
+    private void Start()
     {
         ItemWorld.SpawnItemWorld(transform.position, item);//设置物品
         Destroy(gameObject);

@@ -75,7 +75,7 @@ public class ScenesMgr : BaseManager<ScenesMgr>
             while (displayProgress < (int)asyncOperation.progress * 100)
             {
                 ++displayProgress;
-                EventCenter.Instance.EventTrigger(Config_Event.Loading, displayProgress);
+                EventCenter.Instance.EventTrigger(EEvent.Loading, displayProgress);
                 yield return displayProgress;
             }
         }
@@ -86,7 +86,7 @@ public class ScenesMgr : BaseManager<ScenesMgr>
         {
             ++displayProgress;
             //事件中心 向外分发 进度情况  外面想用就用
-            EventCenter.Instance.EventTrigger(Config_Event.Loading, displayProgress);
+            EventCenter.Instance.EventTrigger(EEvent.Loading, displayProgress);
             //这里面去更新进度条
             yield return displayProgress;
         }

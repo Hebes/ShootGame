@@ -11,7 +11,7 @@ public class UI_TargetWindow : SingletonMono_Temp<UI_TargetWindow>
 {
     public void AddPing(TargetSystem.Ping ping)
     {
-        GameObject gameObject = MainGame_Res_pf_Manage.Instance.GetAndInstantiate("TargetUI", transform);
+        GameObject gameObject = MainGame_Res_pf_Manage.Instance.GetAndInstantiate("UI_Target", transform);
         gameObject.transform.GetComponent<UI_TargetUI>().Ping(ping);//设置TargetUI位置
     }
 

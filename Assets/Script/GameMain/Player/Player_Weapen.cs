@@ -53,7 +53,7 @@ public class Player_Weapen : MonoBehaviour
             player_Components.Player_Gun_PlayerGun_Animator.SetTrigger(Config_Animator.gun_Trigger_Animator_Shoot);
 
             //发布攻击事件
-            EventCenter.Instance.EventTrigger(Config_Event.Player_Shoot, new OnShootEvnentArgs
+            EventCenter.Instance.EventTrigger(EEvent.Player_Shoot, new OnShootEvnentArgs
             {
                 tfGunEndPoint = player_Components.Player_Gun_PlayerGun_EndPoint,
                 tfShootPoint = player_Components.Player_Gun_PlayerGun_ShootPoint,
