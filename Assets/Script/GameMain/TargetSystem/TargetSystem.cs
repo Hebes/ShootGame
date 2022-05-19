@@ -90,36 +90,28 @@ public class TargetSystem : BaseManager<TargetSystem>
             case Ping.Type.Move:
                 break;
             case Ping.Type.Enemy:
-                pingTransform.Find_Child<SpriteRenderer>("TargetBody").sprite = GameManager.Instance.pingEnemySprite;
-                pingTransform.Find_Child<TextMeshPro>("Targe_Text").color = GameManager.Instance.pingEnemyColor;
+                SetColor(pingTransform, Res_Sprite_Manage.Instance.Get_sprite(ESprite.AttackPing), Config_Color.CEnemy);
                 break;
             case Ping.Type.Item:
-                pingTransform.Find_Child<SpriteRenderer>("TargetBody").sprite = ItemIdentifier.Instance.GetItemSprite(ping.GetItemType());
-                pingTransform.Find_Child<TextMeshPro>("Targe_Text").color = ItemIdentifier.Instance.GetItemColor(ping.GetItemType());
+                SetColor(pingTransform, ItemIdentifier.Instance.GetItemSprite(ping.GetItemType()), ItemIdentifier.Instance.GetItemColor(ping.GetItemType()));
                 break;
             case Ping.Type.Looting:
-                pingTransform.Find_Child<SpriteRenderer>("TargetBody").sprite = GameManager.Instance.pingLootingSprite;
-                pingTransform.Find_Child<TextMeshPro>("Targe_Text").color = GameManager.Instance.pingEnemyColor;
+                SetColor(pingTransform, Res_Sprite_Manage.Instance.Get_sprite(ESprite.LootingCircleIcon), Config_Color.CLooting);
                 break;
             case Ping.Type.Attacking:
-                pingTransform.Find_Child<SpriteRenderer>("TargetBody").sprite = GameManager.Instance.pingAttackingSprite;
-                pingTransform.Find_Child<TextMeshPro>("Targe_Text").color = GameManager.Instance.pingEnemyColor;
+                SetColor(pingTransform, Res_Sprite_Manage.Instance.Get_sprite(ESprite.AttackingHereCircleIcon), Config_Color.CAttacking);
                 break;
             case Ping.Type.GoingHere:
-                pingTransform.Find_Child<SpriteRenderer>("TargetBody").sprite = GameManager.Instance.pingGoingHereSprite;
-                pingTransform.Find_Child<TextMeshPro>("Targe_Text").color = GameManager.Instance.pingEnemyColor;
+                SetColor(pingTransform, Res_Sprite_Manage.Instance.Get_sprite(ESprite.MoveCircleIcon), Config_Color.CGoingHere);
                 break;
             case Ping.Type.Defend:
-                pingTransform.Find_Child<SpriteRenderer>("TargetBody").sprite = GameManager.Instance.pingDefendSprite;
-                pingTransform.Find_Child<TextMeshPro>("Targe_Text").color = GameManager.Instance.pingEnemyColor;
+                SetColor(pingTransform, Res_Sprite_Manage.Instance.Get_sprite(ESprite.DefendCircleIcon), Config_Color.CDefend);
                 break;
             case Ping.Type.Watching:
-                pingTransform.Find_Child<SpriteRenderer>("TargetBody").sprite = GameManager.Instance.pingWatchingSprite;
-                pingTransform.Find_Child<TextMeshPro>("Targe_Text").color = GameManager.Instance.pingEnemyColor;
+                SetColor(pingTransform, Res_Sprite_Manage.Instance.Get_sprite(ESprite.WatchingHereCircleIcon), Config_Color.CWatching);
                 break;
             case Ping.Type.Enemyseen:
-                pingTransform.Find_Child<SpriteRenderer>("TargetBody").sprite = GameManager.Instance.pingEnemyseenSprite;
-                pingTransform.Find_Child<TextMeshPro>("Targe_Text").color = GameManager.Instance.pingEnemyColor;
+                SetColor(pingTransform, Res_Sprite_Manage.Instance.Get_sprite(ESprite.EnemySeenCircleIcon), Config_Color.CEnemyseen);
                 break;
         }
 
@@ -133,6 +125,12 @@ public class TargetSystem : BaseManager<TargetSystem>
 
         lastPing = ping;
         lastPingTime = Time.time;
+    }
+
+    private void SetColor(Transform transform ,Sprite sprite,Color color)
+    {
+        transform.Find_Child<SpriteRenderer>("TargetBody").sprite = sprite;
+        transform.Find_Child<TextMeshPro>("Targe_Text").color = color;
     }
 
     public void DestroyLastPing()

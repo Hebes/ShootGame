@@ -27,23 +27,15 @@ public class Item
         {
             default:
             case ItemType.Sword:
-                //return GameManager.Instance.swordSprite;
-                return MainGame_Res_Sprite_Manage.Instance.Get_sprite("Sword");
+                return Res_Sprite_Manage.Instance.Get_sprite(ESprite.Sword);
             case ItemType.HealthPotion:
-                //return GameManager.Instance.healthPotionSprite;
-                return MainGame_Res_Sprite_Manage.Instance.Get_sprite("HealthPotion");
-
+                return Res_Sprite_Manage.Instance.Get_sprite(ESprite.HealthPotion);
             case ItemType.ManaPotion:
-                //return GameManager.Instance.manaPotionSprite;
-                return MainGame_Res_Sprite_Manage.Instance.Get_sprite("ManaPotion");
-
+                return Res_Sprite_Manage.Instance.Get_sprite(ESprite.ManaPotion);
             case ItemType.Coin:
-                //return GameManager.Instance.coinSprite;
-                return MainGame_Res_Sprite_Manage.Instance.Get_sprite("Coin");
-
+                return Res_Sprite_Manage.Instance.Get_sprite(ESprite.Coin);
             case ItemType.Medkit:
-                //return GameManager.Instance.medkitSprite;
-                return MainGame_Res_Sprite_Manage.Instance.Get_sprite("Medkit");
+                return Res_Sprite_Manage.Instance.Get_sprite(ESprite.Medkit);
 
         }
     }
@@ -58,15 +50,15 @@ public class Item
         {
             default:
             case ItemType.Sword:
-                return new Color(0, 0, 0);
+                return Config_Color.CShineSword;
             case ItemType.HealthPotion:
-                return new Color(1, 0, 0);
+                return Config_Color.CShineHealthPotion;
             case ItemType.ManaPotion:
-                return new Color(0, 0, 1);
+                return Config_Color.CShineManaPotion;
             case ItemType.Coin:
-                return new Color(1, 1, 0);
+                return Config_Color.CShineCoin;
             case ItemType.Medkit:
-                return new Color(0, 1, 1);
+                return Config_Color.CShineMedkit;
         }
 
     }

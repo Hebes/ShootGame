@@ -7,6 +7,7 @@ public class Player_HP : MonoBehaviour, ICommonCollide
 {
     private Bar_HealthSystem bar_HealthSystem;
     [SerializeField] private int Hp = 100;
+    private Player_Components player_Components;
 
     public void Damage(int damageAmount)
     {
@@ -15,9 +16,12 @@ public class Player_HP : MonoBehaviour, ICommonCollide
 
     private void Awake()
     {
-        Player_Components player_Components = GetComponent<Player_Components>();
-        Transform tfPlayerHPBar = player_Components.Player_Hp_PlayerHPBar;
+        player_Components = GetComponent<Player_Components>();
+    }
 
+    private void Start()
+    {
+        Transform tfPlayerHPBar = player_Components.Player_HP_HPBar;
         //实例化血条
         GameObject pfHpBar = ResMgr.Instance.Load_pf_Instantiate(Config_ResLoadPaths.BarHP_pf, new Vector3(tfPlayerHPBar.position.x, tfPlayerHPBar.position.y + 8.5f), Quaternion.identity, tfPlayerHPBar);
 
@@ -27,16 +31,16 @@ public class Player_HP : MonoBehaviour, ICommonCollide
     }
 
     #region 可以删除的
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Z))
-    //    {
-    //        bar_HealthSystem.Damage(10);
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.X))
-    //    {
-    //        bar_HealthSystem.Heal(10);
-    //    }
-    //}
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            bar_HealthSystem.Damage(10);
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            bar_HealthSystem.Heal(10);
+        }
+    }
     #endregion
 }

@@ -30,7 +30,10 @@ public class Player_Weapen : MonoBehaviour
     private bool canShoot = true;
     private Player_Components player_Components;
 
-    private void Awake() => player_Components = GetComponent<Player_Components>();
+    private void Awake()
+    {
+        player_Components = GetComponent<Player_Components>();
+    }
 
     void Update()
     {
@@ -50,13 +53,13 @@ public class Player_Weapen : MonoBehaviour
             canShoot = false;
 
             //播放枪械攻击动击动画
-            player_Components.Player_Gun_PlayerGun_Animator.SetTrigger(Config_Animator.gun_Trigger_Animator_Shoot);
+            player_Components.Player_Gun_Animator.SetTrigger(Config_Animator.gun_Trigger_Animator_Shoot);
 
             //发布攻击事件
             EventCenter.Instance.EventTrigger(EEvent.Player_Shoot, new OnShootEvnentArgs
             {
-                tfGunEndPoint = player_Components.Player_Gun_PlayerGun_EndPoint,
-                tfShootPoint = player_Components.Player_Gun_PlayerGun_ShootPoint,
+                tfGunEndPoint = player_Components.Player_Gun_EndPoint,
+                tfShootPoint = player_Components.Player_Gun_ShootPoint,
             });
 
             StartCoroutine(enumerator());//开火间隔
@@ -74,20 +77,20 @@ public class Player_Weapen : MonoBehaviour
     /// </summary>
     private void HandleAiming()
     {
+
         ////设置枪械变换朝向
         if (MouseRightOrLeft(out float angle))
         {
-            player_Components.Player_Gun_PlayerGun_Transform.localScale = new Vector2(-1, -1);//枪旋转
-
-            player_Components.Player_Hp_PlayerHPBar.localScale = //血条旋转
-               player_Components.Player_Transform.localScale = new Vector2(-1, 1);//玩家旋转
-
+            player_Components.Player_Gun_Transform.localScale = new Vector2(-1, -1);//枪旋转
+            player_Components.Player_Rotation.localScale = new Vector2(-1, 1);//玩家旋转
         }
         else
-            player_Components.Player_Hp_PlayerHPBar.localScale =
-                player_Components.Player_Transform.localScale =
-                player_Components.Player_Gun_PlayerGun_Transform.localScale = Vector2.one;
-        player_Components.Player_Gun_PlayerGun_Transform.eulerAngles = new Vector3(0, 0, angle);
+        {
+            player_Components.Player_Rotation.localScale =
+                player_Components.Player_Gun_Transform.localScale = Vector2.one;
+        }
+
+        player_Components.Player_Gun_Transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
     /// <summary>

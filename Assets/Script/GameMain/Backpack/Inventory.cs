@@ -20,6 +20,10 @@ public class Inventory
         itemList = new List<Item>();
     }
 
+    /// <summary>
+    /// 增加物品
+    /// </summary>
+    /// <param name="item"></param>
     public void AddItem(Item item)
     {
         if (item.IsStackable())
@@ -51,6 +55,10 @@ public class Inventory
         get { return itemList; }
     }
 
+    /// <summary>
+    /// 减少物品
+    /// </summary>
+    /// <param name="item"></param>
     internal void RemoveItem(Item item)
     {
         if (item.IsStackable())

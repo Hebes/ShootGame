@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// 普通的
 /// </summary>
-namespace Tool 
+namespace Tool
 {
     /// <summary>
     /// 帮助类
@@ -62,7 +62,7 @@ namespace Tool
         /// <param name="path"></param>
         /// <param name="Component"></param>
         /// <returns></returns>
-       public static T Get_Component_Up<T>(this Transform transform) where T : Component
+        public static T Get_Component_Up<T>(this Transform transform) where T : Component
         {
             return transform.root.GetComponent<T>();
         }
@@ -101,6 +101,34 @@ namespace Tool
             });
         }
         #endregion
+
+        /// <summary>
+        /// 聊天冒泡框
+        /// </summary>
+        /// <param name="path">加载的路径</param>
+        /// <param name="parent">设置在哪个父物体下面</param>
+        /// <param name="localPosition">位置</param>
+        /// <param name="iconType">图标类型</param>
+        /// <param name="text">设置的文字</param>
+        public static void Show_pfChatBubble(string path, Transform parent, Vector3 localPosition, IconType iconType, string text,Transform tfgo=null)
+        {
+            //if (path==null)
+            //{
+            //    Transform go = Object.Instantiate(tfgo, parent);
+            //    go.GetComponent<ChatBubble>().Create(go, localPosition, iconType, text);
+            //}
+            //else
+            //{
+            //    PoolMgr.Instance.GetObj(path, (tfObj) =>
+            //    {
+            //        Transform chatBubbleTransform = tfObj.GetComponent<Transform>();
+            //        chatBubbleTransform.SetParent(parent);
+            //        chatBubbleTransform.GetComponent<ChatBubble>().Create(chatBubbleTransform, localPosition, iconType, text);
+            //    });
+            //}
+            
+        }
+
     }
 }
 

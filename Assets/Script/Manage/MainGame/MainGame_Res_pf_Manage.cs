@@ -15,7 +15,6 @@ public class MainGame_Res_pf_Manage :BaseManager<MainGame_Res_pf_Manage>, MainGa
     public void Init()
     {
         res_pf_Dic = new Dictionary<string, GameObject>();
-
         MonoMgr.Instance.StartCoroutine(Load());
     }
 
@@ -23,16 +22,8 @@ public class MainGame_Res_pf_Manage :BaseManager<MainGame_Res_pf_Manage>, MainGa
     {
         Dictionary<string, string> temp_dic = ResourceMappingSystem.Instance.ResourceDic(ETextName.pfConfigMap);
         yield return temp_dic;
-        Add_ResPfDic(temp_dic);
-    }
-
-    /// <summary>
-    /// 添加到物体字典
-    /// </summary>
-    /// <param name="dic"></param>
-    private void Add_ResPfDic(Dictionary<string, string> dic)
-    {
-        foreach (var item in dic)
+        //添加到物体字典
+        foreach (var item in temp_dic)
             res_pf_Dic[item.Key] = ResMgr.Instance.LoadRes<GameObject>(item.Value);
     }
     

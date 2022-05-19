@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Tool;
 
+/// <summary>
+/// 玩家移动
+/// Character Controller in Unity 2D! (Move, Dodge, Dash)
+/// Unity 2D 中的角色控制器！（移动、闪避、冲刺）
+/// 参考：https://www.youtube.com/watch?v=Bf_5qIt9Gr8&t=56s
+/// </summary>
 public class Player_Move : MonoBehaviour, IMove
 {
     private float player_MoveSpeed = 50;
@@ -32,13 +38,13 @@ public class Player_Move : MonoBehaviour, IMove
 
         if (isIdle)
         {
-            player_Components.Player_Animator.SetBool(Config_Player.player_Animator_Bool, false);
-            player_Components.Player_MiniMapIcon_Animator.SetBool(Config_Player.player_Animator_Bool, false);
+            player_Components.Player_Animator.SetBool("IsMoving", false);
+            player_Components.Player_MiniMap_Animator.SetBool("IsMoving", false);
         }
         else
         {
-            player_Components.Player_Animator.SetBool(Config_Player.player_Animator_Bool, true);
-            player_Components.Player_MiniMapIcon_Animator.SetBool(Config_Player.player_Animator_Bool, true);
+            player_Components.Player_Animator.SetBool("IsMoving", true);
+            player_Components.Player_MiniMap_Animator.SetBool("IsMoving", true);
         }
 
         GetComponent<IMove>().SetMove(moveVector);

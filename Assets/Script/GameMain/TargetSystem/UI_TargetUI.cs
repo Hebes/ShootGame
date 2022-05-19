@@ -33,38 +33,38 @@ public class UI_TargetUI : MonoBehaviour
             case TargetSystem.Ping.Type.Move:
                 break;
             case TargetSystem.Ping.Type.Enemy:
-                image.sprite = GameManager.Instance.pingEnemySprite;
-                textMeshPro.color = GameManager.Instance.pingEnemyColor;
+                image.sprite = Res_Sprite_Manage.Instance.Get_sprite(ESprite.AttackPing);
+                textMeshPro.color = Config_Color.CEnemy;
                 break;
             case TargetSystem.Ping.Type.Item:
                 image.sprite = ItemIdentifier.Instance.GetItemSprite(ping.GetItemType());
                 textMeshPro.color = ItemIdentifier.Instance.GetItemColor(ping.GetItemType());
                 break;
             case TargetSystem.Ping.Type.Looting:
-                image.sprite = GameManager.Instance.pingLootingSprite;
-                textMeshPro.color = GameManager.Instance.pingEnemyColor;
+                image.sprite = Res_Sprite_Manage.Instance.Get_sprite(ESprite.LootingCircleIcon);
+                textMeshPro.color = Config_Color.CLooting;
                 break;
             case TargetSystem.Ping.Type.Attacking:
-                image.sprite = GameManager.Instance.pingAttackingSprite;
-                textMeshPro.color = GameManager.Instance.pingEnemyColor;
+                image.sprite = Res_Sprite_Manage.Instance.Get_sprite(ESprite.AttackCircleIcon);
+                textMeshPro.color = Config_Color.CAttacking;
                 break;
             case TargetSystem.Ping.Type.GoingHere:
-                image.sprite = GameManager.Instance.pingGoingHereSprite;
-                textMeshPro.color = GameManager.Instance.pingEnemyColor;
+                image.sprite = Res_Sprite_Manage.Instance.Get_sprite(ESprite.MoveCircleIcon);
+                textMeshPro.color = Config_Color.CGoingHere;
                 break;
             case TargetSystem.Ping.Type.Defend:
-                image.sprite = GameManager.Instance.pingDefendSprite;
-                textMeshPro.color = GameManager.Instance.pingEnemyColor;
+                image.sprite = Res_Sprite_Manage.Instance.Get_sprite(ESprite.DefendCircleIcon);
+                textMeshPro.color = Config_Color.CDefend;
                 break;
             case TargetSystem.Ping.Type.Watching:
-                image.sprite = GameManager.Instance.pingWatchingSprite;
-                textMeshPro.color = GameManager.Instance.pingEnemyColor;
+                image.sprite = Res_Sprite_Manage.Instance.Get_sprite(ESprite.WatchingHereCircleIcon);
+                textMeshPro.color = Config_Color.CWatching;
                 break;
             case TargetSystem.Ping.Type.Enemyseen:
-                image.sprite = GameManager.Instance.pingEnemyseenSprite;
-                textMeshPro.color = GameManager.Instance.pingEnemyColor;
+                image.sprite = Res_Sprite_Manage.Instance.Get_sprite(ESprite.EnemySeenCircleIcon);
+                textMeshPro.color = Config_Color.CEnemyseen;
                 break;
-           
+
         }
 
         ping.OnDestroyed += delegate (object sender, System.EventArgs e)
@@ -94,7 +94,7 @@ public class UI_TargetUI : MonoBehaviour
             rectTransform.anchoredPosition = dir * uiRadius;
 
             //Update Distance text
-            Vector3 playerPos = GameObject.FindGameObjectWithTag(ETags.Player.ToString()).GetComponent<Player_Components>(). Player_Transform.position;
+            Vector3 playerPos = GameObject.FindGameObjectWithTag(ETags.Player.ToString()).GetComponent<Player_Components>().Player_Transform.position;
             //考虑精灵大小，因此设置为3F，具体自行参考
             int distance = Mathf.RoundToInt(Vector3.Distance(ping.GetPosition, playerPos) / 3f);
             textMeshPro.text = distance + "M";

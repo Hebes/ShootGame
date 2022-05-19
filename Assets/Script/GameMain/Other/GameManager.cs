@@ -4,55 +4,61 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using Tool;
 
-/*
-1、AddComponentMenu 导航栏菜单
-2、ContextMenu 右键菜单
-3、HeaderAttribute
-4、HideInInspector 可以让public变量在Inspector上隐藏，无法在Editor中进行编辑
-5、MultilineAttribute 支持输入多行文本
-6、RangeAttribute 限定输入值的范围
-7、RequireComponent 组件依赖，使用该组件后自动添加依赖组件
-8、RuntimeInitializeOnLoadMethodAttribute
-9、SerializeField 强制对变量进行序列化，即使变量是private
-10、SpaceAttribute 增加空位
-11、TooltipAttribute 提示信息，当鼠标移到Inspector上时显示相应的提示
-12、InitializeOnLoadAttribute
-13、InitializeOnLoadMethodAttribute
-14、MenuItem 导航栏的菜单项
- */
+
 
 public class GameManager : SingletonMono_Temp<GameManager>
 {
-    
-    
+    private Player_Components player;
+    public Transform[] Npc;
+    private int npcIndex;
+    public Transform tfgo;
 
-
-    protected override  void Awake()
+    protected override void Awake()
     {
-        
+        base.Awake();
+        player = GameObject.Find("Player").GetComponent<Player_Components>();
+    }
+    private void Start()
+    {
+        ChatBubble.Create(player.Player_ChatBubble_transform, new Vector3(2f, 6f), IconType.Neutral, "Here is some text!");
+        FunctionPeriodic.Create(() => {
+            Transform npcTransform = Npc[npcIndex].Find_Child<Transform>("Enemy_ChatBubble");
+            npcIndex = (npcIndex + 1) % Npc.Length;
+            string message = GetRandomMessage();
+
+            IconType[] iconArray =
+                new IconType[] { IconType.Happy, IconType.Neutral, IconType.Angry };
+            IconType icon = iconArray[UnityEngine.Random.Range(0, iconArray.Length)];
+
+            ChatBubble.Create(npcTransform, new Vector3(3, 8), icon, message);
+        }, 1.5f);
     }
 
+    private string GetRandomMessage()
+    {
+        string[] messageArray = new string[] {
+            "Hello World!",
+            "Good morning!",
+            "Subscribe to Code Monkey!",
+            "Check out Code Monkey on Steam!",
+            "This is a really excellent place!",
+            "I'm having so much fun walking around!",
+            "I'm really sad about something",
+            "I heard someone said something!",
+            "I was wondering why the ball was getting bigger, then it hit me",
+            "Did you hear about the guy whose whole left side was cut off? He’s all right now",
+            "I'm reading a book about anti-gravity. It's impossible to put down!",
+            "Don't trust atoms. They make up everything!",
+            "What did the pirate say on his 80th birthday? AYE MATEY",
+            "What’s Forrest Gump’s password? 1forrest1",
+            "Two guys walk into a bar, the third one ducks.",
+            "How many tickles does it take to make an octopus laugh? Ten-tickles",
+            "Our wedding was so beautiful, even the cake was in tiers.",
+            "What do you call a dinosaur with a extensive vocabulary? A thesaurus."
+        };
 
-    //以下为测试代码
-    public Color pingMoveColor;
-    public Color pingEnemyColor;
-    public Sprite pingMoveSprite;//移动图标
-    public Sprite pingEnemySprite;//敌人图标
-
-
-    public Color pingHelmetColor;
-    public Color pingArmorColor;
-    public Sprite pingMedkitSprite;//医疗箱的图标
-    public Sprite pingHelmetSprite;//头盔的图标
-    public Sprite pingArmorSprite;//盔甲的图标
-
-
-    public Sprite pingLootingSprite;//敌人图标
-    public Sprite pingAttackingSprite;//敌人图标
-    public Sprite pingGoingHereSprite;//敌人图标    
-    public Sprite pingDefendSprite;//敌人图标
-    public Sprite pingWatchingSprite;//敌人图标
-    public Sprite pingEnemyseenSprite;//敌人图标
-
+        return messageArray[UnityEngine.Random.Range(0, messageArray.Length)];
+    }
 }

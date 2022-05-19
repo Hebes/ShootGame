@@ -43,6 +43,7 @@ public class ResourceMappingSystem : BaseManager<ResourceMappingSystem>
             if (uwr.result == UnityWebRequest.Result.ConnectionError || uwr.result == UnityWebRequest.Result.ProtocolError)
             {
                 Debug.Log(uwr.error);
+                Debug.Log("必须检查配置文件，请用我自己的工具生成!!");
             }
             else
             {
@@ -80,7 +81,7 @@ public class ResourceMappingSystem : BaseManager<ResourceMappingSystem>
     {
         line = line.Trim();//去除空行
         string[] keyValue = line.Split('=');
-        temp_dic.Add(keyValue[0], keyValue[1]);
+        temp_dic.Add(keyValue[0].Replace(" ",""), keyValue[1]);
     }
 
     //TODU 缺少资源卸载的

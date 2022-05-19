@@ -5,22 +5,23 @@ using Tool;
 
 public class Player_Components : MonoBehaviour
 {
-    #region Player_Body
+    //玩家本体
     private Animator player_Animator;
     private Rigidbody2D player_Rigidbody2D;
-    private Animator player_MiniMapIcon_Animator;
-    #endregion
+    private Animator player_MiniMap_Animator;
+    private Transform player_Rotation;
 
-    #region Player_Gun
-    private Transform player_Gun_PlayerGun_EndPoint;
-    private Transform player_Gun_PlayerGun_ShootPoint;
-    private Animator player_Gun_PlayerGun_Animator;
-    #endregion
+    //玩家枪
+    private Transform player_Gun_EndPoint;
+    private Transform player_Gun_ShootPoint;
+    private Transform player_Gun_Transform;
+    private Animator player_Gun_Animator;
 
-    #region Player_HP
-    
-    private Transform player_Hp_PlayerHPBar;
-    #endregion
+    // 玩家血条
+    private Transform player_HP_HPBar;
+
+    //玩家冒泡框
+    private Transform player_ChatBubble_transform;
 
     private void Awake() => Player_GetComponent();
 
@@ -29,19 +30,22 @@ public class Player_Components : MonoBehaviour
     /// </summary>
     private void Player_GetComponent()
     {
-        //角色
-        player_Animator = transform.Find_Child<Animator>(Config_Player.player_pf_Body);
+        //一个物体获取单个组件
+        player_Rotation = transform.Find_Child<Transform>("Rotation");
+        player_Animator = transform.Find_Child<Animator>("Player_Body");
         player_Rigidbody2D = transform.GetComponent<Rigidbody2D>();
-        player_MiniMapIcon_Animator = transform.Find_Child<Animator>(Config_Player.player_pf_MiniMap);
+        player_MiniMap_Animator = transform.Find_Child<Animator>("MiniMap");
 
-        //角色的枪
-        Player_Gun_PlayerGun_Transform = transform.Find_Child<Transform>(Config_Player.player_pf_Gun_PlayerGun);
-        player_Gun_PlayerGun_Animator = transform.Find_Child<Animator>(Config_Player.player_pf_Gun_PlayerGun);
-        player_Gun_PlayerGun_EndPoint = transform.Find_Child<Transform>(Config_Player.player_pf_Gun_PlayerGun_EndPoint);
-        player_Gun_PlayerGun_ShootPoint = transform.Find_Child<Transform>(Config_Player.player_pf_Gun_PlayerGun_ShootPoint);
+        player_Gun_EndPoint = transform.Find_Child<Transform>("Gun_EndPoint");
+        player_Gun_ShootPoint = transform.Find_Child<Transform>("Gun_ShootPoint");
 
-        //角色的血条
-        player_Hp_PlayerHPBar = transform.Find_Child<Transform>(Config_Player.player_HP_PlayerHPBar);
+        player_HP_HPBar = transform.Find_Child<Transform>("Player_HPBar");
+
+        player_ChatBubble_transform = transform.Find_Child<Transform>("Player_ChatBubble");
+
+        //一个物体获取多个组件
+        player_Gun_Transform = transform.Find_Child<Transform>("Player_Gun");
+        player_Gun_Animator = transform.Find_Child<Animator>("Player_Gun");
     }
 
 
@@ -49,11 +53,13 @@ public class Player_Components : MonoBehaviour
     public Animator Player_Animator => player_Animator;
     public Rigidbody2D Player_Rigidbody2D => player_Rigidbody2D;
     public Transform Player_Transform => transform;
-    public Animator Player_MiniMapIcon_Animator => player_MiniMapIcon_Animator;
-    public Transform Player_Gun_PlayerGun_Transform { set; get; }
-    public Animator Player_Gun_PlayerGun_Animator => player_Gun_PlayerGun_Animator;
-    public Transform Player_Hp_PlayerHPBar => player_Hp_PlayerHPBar;
-    public Transform Player_Gun_PlayerGun_EndPoint => player_Gun_PlayerGun_EndPoint;
-    public Transform Player_Gun_PlayerGun_ShootPoint => player_Gun_PlayerGun_ShootPoint;
+    public Animator Player_MiniMap_Animator => player_MiniMap_Animator;
+    public Transform Player_Gun_Transform => player_Gun_Transform;
+    public Animator Player_Gun_Animator => player_Gun_Animator;
+    public Transform Player_HP_HPBar => player_HP_HPBar;
+    public Transform Player_Gun_EndPoint => player_Gun_EndPoint;
+    public Transform Player_Gun_ShootPoint => player_Gun_ShootPoint;
+    public Transform Player_ChatBubble_transform => player_ChatBubble_transform;
+    public Transform Player_Rotation => player_Rotation;
 
 }

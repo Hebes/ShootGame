@@ -41,6 +41,7 @@ enum ETags
 public enum EResourceType
 {
     prefab,
+    sprite,
 }
 /// <summary>
 /// 文本名字
@@ -49,6 +50,7 @@ public enum ETextName
 {
     enumConfigMap,
     pfConfigMap,
+    spritConfigMap,
 }
 /// <summary>
 /// 物体名称
@@ -65,6 +67,38 @@ public enum EpfName {
 }
 #endregion
 
+#region Sprite
+public enum ESprite
+{
+    Border,
+    BorderGrey,
+    Coin,
+    GradientVertical,
+    HealthPotion,
+    ManaPotion,
+    Medkit,
+    Sword,
+    ApexMedkit,
+    ArmorPing,
+    ArmorTier3,
+    AttackCircleIcon,
+    AttackPingOutline,
+    AttackPing,
+    AttackingHereCircleIcon,
+    DefendCircleIcon,
+    EnemySeenCircleIcon,
+    HelmetPing,
+    HelmetTier2,
+    LootingCircleIcon,
+    MedkitPing,
+    MoveCircleIcon,
+    MovePingOutline,
+    MovePingSide,
+    MovePing,
+    PingPole,
+    WatchingHereCircleIcon,
+}
+#endregion
 
 #region 场景
 public enum EScenes

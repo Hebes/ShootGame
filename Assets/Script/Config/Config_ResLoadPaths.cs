@@ -75,12 +75,16 @@ public static class Config_ResLoadPaths
     #endregion
 
     #region 物品相关
-    public const string item_Backpack = CommonPath + "/Backpack";
     #region pf
-    public const string item_pf_Sample = item_Backpack + "/Prefab/";
+    public const string item_pf_Sample = CommonPath + "/Backpack/Prefab/";
     #endregion
-    #region sprite
-    public const string item_Sprite_Icon = item_Backpack + "/Picture/";
     #endregion
+
+    #region 代码加载路径
+    //物体加载路径
+    public const string CommonPath_allRes = "Assets/Resources";
+    //图片加载路径
+    public const string item_Sprite_Icon = CommonPath_allRes + "/Common/Backpack/Picture";
+    public const string item_Sprite_TargetPointIcon = CommonPath_allRes + "/Common/TargetPointIcon/Picture";
     #endregion
 }
