@@ -6,6 +6,12 @@ using TMPro;
 using UnityEngine;
 using Tool;
 
+/// <summary>
+/// 输入面板
+/// Simple Text Input Field Window in Unity (Submit Score, Name)
+/// Unity中的简单文本输入字段窗口(提交分数，名称)  
+/// 参考：https://www.youtube.com/watch?v=4n6RT805rCc&ab_channel=CodeMonkey
+/// </summary>
 public class UI_InputWindow : SingletonMono_Temp<UI_InputWindow>
 {
     private Button_UI okBtn;
@@ -87,7 +93,6 @@ public class UI_InputWindow : SingletonMono_Temp<UI_InputWindow>
 
     public void Show_Static(string titleString, string inputString, string validCharacters, int characterLimit, Action onCancel, Action<string> onOk)
     {
-        print("进入");
         Show(titleString, inputString, validCharacters, characterLimit, onCancel, onOk);
     }
 

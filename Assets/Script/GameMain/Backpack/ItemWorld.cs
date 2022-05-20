@@ -25,7 +25,7 @@ public class ItemWorld : MonoBehaviour
     public static ItemWorld DropItem(Vector3 dropPosition, Item item)
     {
         Vector3 randomDir = UtilsClass.GetRandomDir();
-        ItemWorld itemWorld = SpawnItemWorld(dropPosition + randomDir * 8f, item);//在世界中生成
+        ItemWorld itemWorld = SpawnItemWorld(dropPosition + randomDir * 20f, item);//在世界中生成 20  丢的距离
         itemWorld.GetComponent<Rigidbody2D>().AddForce(randomDir * 40f, ForceMode2D.Impulse);
         return itemWorld;
     }

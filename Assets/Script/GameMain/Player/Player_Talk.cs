@@ -15,7 +15,6 @@ public class Player_Talk : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            print(1);
             UI_InputWindow.Instance.Show_Static(
                 "Say what?",
                 "",

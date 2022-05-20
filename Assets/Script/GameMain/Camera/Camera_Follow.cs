@@ -13,36 +13,12 @@ public class Camera_Follow : SingletonMono_Temp<Camera_Follow>
     [Tooltip("摄像机的位置兼玩家位置")]
     private Transform playerTransform;
 
-    [SerializeField]
-    [Tooltip("用鼠标定位摄像机")]
-    private bool cameraPositionWithMouse;
+    protected override void Awake() => myCamera = GetComponent<Camera>();
 
-    protected override void Awake()
-    {
-        myCamera = GetComponent<Camera>();
-        playerTransform = GameObject.Find(ETags.Player.ToString()).GetComponent<Player_Components>().Player_Transform;
-
-        Setup(GetCameraPosition, () => 70f, true, true);//70为摄像机的大小
-    }
     private void Update()
     {
         HandleMovement();
         HandleZoom();
-    }
-
-    /// <summary>
-    /// 摄像机移动
-    /// </summary>
-    /// <returns></returns>
-    private Vector3 GetCameraPosition()
-    {
-        if (cameraPositionWithMouse)
-        {
-            Vector3 playerToMouseDirection = UtilsClass.GetMouseWorldPosition() - playerTransform.position;
-            return playerTransform.position + playerToMouseDirection * .3f;
-        }
-        else
-            return playerTransform.position;
     }
 
     /// <summary>

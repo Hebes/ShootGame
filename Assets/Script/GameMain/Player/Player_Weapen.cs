@@ -26,9 +26,12 @@ public class Player_Weapen : MonoBehaviour
     /// </summary>
     private OnShootEvnentArgs onShootEvnentArgs;
 
-    private float shootTimer;
     private bool canShoot = true;
     private Player_Components player_Components;
+
+    //迷雾功能
+    [SerializeField]
+    private FieldOfView fieldOfView;
 
     private void Awake()
     {
@@ -39,6 +42,7 @@ public class Player_Weapen : MonoBehaviour
     {
         HandleAiming();
         HandleShooting();
+        Field_View();
     }
     /// <summary>
     /// 射击的方法
@@ -106,5 +110,21 @@ public class Player_Weapen : MonoBehaviour
         float angle = vector = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
 
         return (angle > 90 || angle < -90) ? true : false;
+    }
+
+    /// <summary>
+    /// 迷雾功能
+    /// </summary>
+    private void Field_View()
+    {
+        //鼠标在屏幕的位置
+        Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
+
+        Vector3 aimDir = (mousePosition - player_Components.Player_Transform.position).normalized;
+        float n = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+        if (n < 0) n += 360;
+        fieldOfView.SetAimDirection(n);
+
+        fieldOfView.SetOrigin(transform.position+new Vector3(1,1));  
     }
 }

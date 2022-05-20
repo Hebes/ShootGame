@@ -12,12 +12,12 @@ TagManager:
   - Water
   - UI
   - MiniMap
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Wall
+  - Player
+  - Enemy
+  - Mask
+  - BehindMask
+  - Black
   - 
   - 
   - 

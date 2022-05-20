@@ -11,17 +11,31 @@ using Tool;
 public class GameManager : SingletonMono_Temp<GameManager>
 {
     private Player_Components player;
+    [Tooltip("摄像机的位置兼玩家位置")]
+    private Transform playerTransform;
+
+
     public Transform[] Npc;
     private int npcIndex;
     public Transform tfgo;
 
+    
+
+    [SerializeField]
+    [Tooltip("用鼠标定位摄像机")]
+    private bool cameraPositionWithMouse;
+
     protected override void Awake()
     {
         base.Awake();
-        player = GameObject.Find("Player").GetComponent<Player_Components>();
+        GameObject playerGO = GameObject.Find(ETags.Player.ToString());
+        player = playerGO.GetComponent<Player_Components>();
+        playerTransform = player.Player_Transform;
     }
     private void Start()
     {
+        Camera_Follow.Instance.Setup(GetCameraPosition, () => 70f, true, true);//70为摄像机的大小
+
         ChatBubble.Create(player.Player_ChatBubble_transform, new Vector3(2f, 6f), IconType.Neutral, "Here is some text!");
         FunctionPeriodic.Create(() => {
             Transform npcTransform = Npc[npcIndex].Find_Child<Transform>("Enemy_ChatBubble");
@@ -61,4 +75,20 @@ public class GameManager : SingletonMono_Temp<GameManager>
 
         return messageArray[UnityEngine.Random.Range(0, messageArray.Length)];
     }
+
+    /// <summary>
+    /// 摄像机移动
+    /// </summary>
+    /// <returns></returns>
+    private Vector3 GetCameraPosition()
+    {
+        if (cameraPositionWithMouse)
+        {
+            Vector3 playerToMouseDirection = UtilsClass.GetMouseWorldPosition() - playerTransform.position;
+            return playerTransform.position + playerToMouseDirection * .3f;
+        }
+        else
+            return playerTransform.position;
+    }
+
 }
