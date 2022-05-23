@@ -30,12 +30,12 @@ public class Player_Weapen : MonoBehaviour
     private Player_Components player_Components;
 
     //迷雾功能
-    [SerializeField]
     private FieldOfView fieldOfView;
 
     private void Awake()
     {
         player_Components = GetComponent<Player_Components>();
+        fieldOfView = GameObject.Find("FieldOfView").GetComponent<FieldOfView>();
     }
 
     void Update()
@@ -125,6 +125,6 @@ public class Player_Weapen : MonoBehaviour
         if (n < 0) n += 360;
         fieldOfView.SetAimDirection(n);
 
-        fieldOfView.SetOrigin(transform.position+new Vector3(1,1));  
+        fieldOfView.SetOrigin(transform.position + new Vector3(1, 1));
     }
 }
