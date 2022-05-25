@@ -49,7 +49,7 @@ public class GameRoot : MonoBehaviour
     /// <summary>
     /// 确保第一个场景为MenuScene
     /// </summary>
-    [RuntimeInitializeOnLoadMethod]
+        [RuntimeInitializeOnLoadMethod]
     static void Initialize()
     {
         if (SceneManager.GetActiveScene().name == EScenes.MenuScene.ToString()) return;
@@ -73,7 +73,7 @@ public class GameRoot : MonoBehaviour
         //初始化资源加载  正常因放在第一场景加载
         List<MainGame_Init> mainGame_Inits = new List<MainGame_Init>()
         {
-            MainGame_Res_pf_Manage.Instance,
+            Manage_Res_pf.Instance,
             Res_Sprite_Manage.Instance,
         };
 
@@ -84,6 +84,6 @@ public class GameRoot : MonoBehaviour
         }
         #endregion
 
-        return "InitRsvOver";
+        return "初始化加载完成";//InitRsvOver
     }
 }

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 /// <summary>
 /// 事件配置表
 /// </summary>
@@ -19,6 +21,10 @@ using UnityEngine;
     KeyInputUp,
 
 }
+
+
+
+
 /// <summary>
 /// Tag配置
 /// </summary>
@@ -33,6 +39,9 @@ enum ETags
     /// <summary>特效</summary>
     Effect,
 }
+
+
+
 
 #region 资源加载
 /// <summary>
@@ -57,6 +66,7 @@ public enum ETextName
 /// </summary>
 public enum EpfName {
     MedicalBox,
+    ChatBubble,
     pfBullet,
     pfBulletPhysics,
     pfSmoke,
@@ -66,6 +76,8 @@ public enum EpfName {
     UI_Target,
 }
 #endregion
+
+
 
 #region Sprite
 public enum ESprite
@@ -100,11 +112,39 @@ public enum ESprite
 }
 #endregion
 
+
+
+
 #region 场景
 public enum EScenes
 {
     None,
     MenuScene,
     MainGame
+}
+#endregion
+
+
+
+
+#region enemy
+/// <summary>
+/// 转换条件
+/// </summary>
+public enum Transition
+{
+    NullTransition = 0,//空的转换条件
+    SeePlayer,//看到玩家
+    LostPlayer,//追赶过程中遗失目标玩家
+}
+
+/// <summary>
+/// 当前状态
+/// </summary>
+public enum StateID
+{
+    NullState,//空的状态
+    Patrol,//巡逻状态
+    Chase,//追赶状态
 }
 #endregion

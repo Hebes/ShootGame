@@ -4,6 +4,30 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
+public enum ECursorType
+{
+    /// <summary>
+    /// 默认箭头
+    /// </summary>
+    Arrow,
+    /// <summary>
+    /// 抓取
+    /// </summary>
+    Grab,
+    /// <summary>
+    /// 选择
+    /// </summary>
+    Select,
+    /// <summary>
+    /// 攻击
+    /// </summary>
+    Attack,
+    /// <summary>
+    /// 移动
+    /// </summary>
+    Move,
+}
+
 /// <summary>
 /// 光标管理
 /// 参考：https://www.youtube.com/watch?v=8Fm37H1Mwxw&list=RDCMUCFK6NCbuCIVzA6Yj1G_ZqCg&start_radio=1

@@ -5,10 +5,9 @@ using UnityEngine;
 public class Player_Talk : MonoBehaviour
 {
     private Player_Components player_Components;
-    private void Awake()
-    {
-        player_Components = GetComponent<Player_Components>();
-    }
+    private void Awake() => player_Components = GetComponent<Player_Components>();
+    private void Start() 
+        => ChatBubble.Create(player_Components.Player_ChatBubble_transform, new Vector3(2f, 6f), IconType.Neutral, "Here is some text!");
 
     // Update is called once per frame
     void Update()
@@ -20,9 +19,7 @@ public class Player_Talk : MonoBehaviour
                 "",
                 "abcdefghijklmnopqrstuvxywz! ABCDEFGHIJKLMNOPQRSTUVXYWZ,.?",
                 50,
-                () =>
-                {
-                },
+                () => { },
                 (string inputText) =>
                 {
                     ChatBubble.Create(player_Components.Player_ChatBubble_transform, new Vector3(3, 8), IconType.Happy, inputText);

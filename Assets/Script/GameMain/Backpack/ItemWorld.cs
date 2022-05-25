@@ -11,7 +11,7 @@ public class ItemWorld : MonoBehaviour
     public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
     {
         ItemWorld itemWorld = 
-            MainGame_Res_pf_Manage.Instance.GetAndInstantiate(EpfName.MedicalBox.ToString(), position, Quaternion.identity).GetComponent<ItemWorld>();
+            Manage_Res_pf.Instance.GetAndInstantiate(EpfName.MedicalBox.ToString(), position, Quaternion.identity).GetComponent<ItemWorld>();
         itemWorld.SetItem(item);
         return itemWorld;
     }

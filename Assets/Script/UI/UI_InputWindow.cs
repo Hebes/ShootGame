@@ -6,6 +6,14 @@ using TMPro;
 using UnityEngine;
 using Tool;
 
+enum UI_InputWindow_Component
+{
+    okBtn,
+    cancelBtn,
+    titleText,
+    inputField,
+}
+
 /// <summary>
 /// 输入面板
 /// Simple Text Input Field Window in Unity (Submit Score, Name)
@@ -23,10 +31,10 @@ public class UI_InputWindow : SingletonMono_Temp<UI_InputWindow>
     protected override void Awake()
     {
         base.Awake();
-        okBtn = transform.Find("okBtn").GetComponent<Button_UI>();
-        cancelBtn = transform.Find("cancelBtn").GetComponent<Button_UI>();
-        titleText = transform.Find_Child<TextMeshProUGUI>("titleText");
-        inputField = transform.Find("inputField").GetComponent<TMP_InputField>();
+        okBtn = transform.Find(UI_InputWindow_Component.okBtn.ToString()).GetComponent<Button_UI>();
+        cancelBtn = transform.Find(UI_InputWindow_Component.cancelBtn.ToString()).GetComponent<Button_UI>();
+        titleText = transform.Find_Child<TextMeshProUGUI>(UI_InputWindow_Component.titleText.ToString());
+        inputField = transform.Find(UI_InputWindow_Component.inputField.ToString()).GetComponent<TMP_InputField>();
 
         Hide();
     }
@@ -34,21 +42,21 @@ public class UI_InputWindow : SingletonMono_Temp<UI_InputWindow>
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
-        {
             okBtn.ClickFunc();
-        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
             cancelBtn.ClickFunc();
-        }
     }
 
-    private void Hide()
-    {
-        gameObject.SetActive(false);
-    }
+    private void Hide() => gameObject.SetActive(false);
 
-    private void Show(string titleString, string inputString, string validCharacters, int characterLimit, Action onCancel, Action<string> onOk)
+    private void Show(
+        string titleString, 
+        string inputString, 
+        string validCharacters, 
+        int characterLimit, 
+        Action onCancel, 
+        Action<string> onOk)
     {
         gameObject.SetActive(true);
         transform.SetAsLastSibling();
@@ -77,19 +85,7 @@ public class UI_InputWindow : SingletonMono_Temp<UI_InputWindow>
         };
     }
 
-    private char ValidateChar(string validCharacters, char addedChar)
-    {
-        if (validCharacters.IndexOf(addedChar) != -1)
-        {
-            // Valid 有效
-            return addedChar;
-        }
-        else
-        {
-            // Invalid 无效的
-            return '\0';
-        }
-    }
+    private char ValidateChar(string validCharacters, char addedChar) => validCharacters.IndexOf(addedChar) != -1 ? addedChar : '\0';
 
     public void Show_Static(string titleString, string inputString, string validCharacters, int characterLimit, Action onCancel, Action<string> onOk)
     {

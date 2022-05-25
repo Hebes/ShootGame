@@ -1,4 +1,5 @@
 MedicalBox=Common/Backpack/Prefab/MedicalBox
+ChatBubble=Common/ChatBubble/Prefab/ChatBubble
 pfBullet=Common/Gun/Bullet/Prefab/pfBullet
 pfBulletPhysics=Common/Gun/Bullet/Prefab/pfBulletPhysics
 pfSmoke=Common/Gun/Effect/pfSmoke

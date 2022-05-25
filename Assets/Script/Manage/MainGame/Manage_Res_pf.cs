@@ -8,15 +8,12 @@ using UnityEngine.UI;
 /// MainGame场景的 物体 资源加载管理器
 /// pf=prefab
 /// </summary>
-public class MainGame_Res_pf_Manage :BaseManager<MainGame_Res_pf_Manage>, MainGame_Init
+public class Manage_Res_pf :BaseManager<Manage_Res_pf>, MainGame_Init
 {
-    private Dictionary<string, GameObject> res_pf_Dic;    
+    private Dictionary<string, GameObject> res_pf_Dic = new Dictionary<string, GameObject>();
 
-    public void Init()
-    {
-        res_pf_Dic = new Dictionary<string, GameObject>();
-        MonoMgr.Instance.StartCoroutine(Load());
-    }
+    public void Init() => MonoMgr.Instance.StartCoroutine(Load());
+
 
     IEnumerator Load()
     {

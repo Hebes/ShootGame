@@ -22,7 +22,7 @@ public class UnityEditorHelper : Editor
     [System.Obsolete]
     static void Generate_enum_txt()
     {
-        string text = Generate_enum(ETextName.spritConfigMap, ETextName.enumConfigMap);
+        string text = Generate_enum(ETextName.pfConfigMap, ETextName.enumConfigMap);
         BuildMap(text, ETextName.enumConfigMap);
     }
 

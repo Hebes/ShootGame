@@ -9,6 +9,16 @@ public enum IconType
     Neutral,//中立
     Angry,//愤怒
 }
+
+/// <summary>
+/// 物体组件
+/// </summary>
+public enum ChatBubble_Component
+{
+    Background,
+    Icon,
+    Text,
+}
 /// <summary>
 /// Unity 中的简单聊天气泡！（聊天，NPC，多人）
 /// Simple Chat Bubble in Unity! (Chat, NPC, Multiplayer)
@@ -18,9 +28,10 @@ public class ChatBubble : MonoBehaviour
 {
     public static void Create(Transform parent, Vector3 localPosition, IconType iconType, string text)
     {
-        Transform chatBubbleTransform = Instantiate(GameManager.Instance.tfgo, parent);
-        chatBubbleTransform.localPosition = localPosition;
+        Transform chatBubbleTransform = 
+            Manage_Res_pf.Instance.GetAndInstantiate(EpfName.ChatBubble.ToString(), parent).GetComponent<Transform>();
 
+        chatBubbleTransform.localPosition = localPosition;
         chatBubbleTransform.GetComponent<ChatBubble>().Setup(iconType, text);
 
         Destroy(chatBubbleTransform.gameObject, 5f);
@@ -37,9 +48,9 @@ public class ChatBubble : MonoBehaviour
 
     private void Awake()
     {
-        backgroundSpriteRenderer = transform.Find("Background").GetComponent<SpriteRenderer>();
-        iconSpriteRenderer = transform.Find("Icon").GetComponent<SpriteRenderer>();
-        textMeshPro = transform.Find("Text").GetComponent<TextMeshPro>();   
+        backgroundSpriteRenderer = transform.Find(ChatBubble_Component.Background.ToString()).GetComponent<SpriteRenderer>();
+        iconSpriteRenderer = transform.Find(ChatBubble_Component.Icon.ToString()).GetComponent<SpriteRenderer>();
+        textMeshPro = transform.Find(ChatBubble_Component.Text.ToString()).GetComponent<TextMeshPro>();   
     }
 
     private void Setup(IconType iconType, string text)
@@ -56,7 +67,7 @@ public class ChatBubble : MonoBehaviour
 
         iconSpriteRenderer.sprite = GetIconSprite(iconType);
 
-        //TUDO 这里需要填写执行下面脚本
+        //TUDO 这里需要填写执行下面脚本 文字弹跳显示
         //TextWriter.AddWriter_Static(textMeshPro, text, .5f, true, true, () => { });
     }
 

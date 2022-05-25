@@ -82,7 +82,7 @@ public class TargetSystem : BaseManager<TargetSystem>
 
         //TUDO 需要重构这段代码
         Transform pingTransform =
-            MainGame_Res_pf_Manage.Instance.GetAndInstantiate(EpfName.TargetPrefab.ToString(), ping.GetPosition, Quaternion.identity, parent).GetComponent<Transform>();
+            Manage_Res_pf.Instance.GetAndInstantiate(EpfName.TargetPrefab.ToString(), ping.GetPosition, Quaternion.identity, parent).GetComponent<Transform>();
 
         switch (ping.GetPingType)
         {

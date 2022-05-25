@@ -28,16 +28,13 @@ public class GameManager : SingletonMono_Temp<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        GameObject playerGO = GameObject.Find(ETags.Player.ToString());
-        player = playerGO.GetComponent<Player_Components>();
-        playerTransform = player.Player_Transform;
+        playerTransform = GameObject.Find(ETags.Player.ToString()).GetComponent<Player_Components>().Player_Transform;
+        Camera_Follow.Instance.Setup(GetCameraPosition, () => 70f, true, true);//70为摄像机的大小
     }
     private void Start()
     {
-        Camera_Follow.Instance.Setup(GetCameraPosition, () => 70f, true, true);//70为摄像机的大小
-
-        ChatBubble.Create(player.Player_ChatBubble_transform, new Vector3(2f, 6f), IconType.Neutral, "Here is some text!");
-        FunctionPeriodic.Create(() => {
+        FunctionPeriodic.Create(() =>
+        {
             Transform npcTransform = Npc[npcIndex].Find_Child<Transform>("Enemy_ChatBubble");
             npcIndex = (npcIndex + 1) % Npc.Length;
             string message = GetRandomMessage();
@@ -80,15 +77,9 @@ public class GameManager : SingletonMono_Temp<GameManager>
     /// 摄像机移动
     /// </summary>
     /// <returns></returns>
-    private Vector3 GetCameraPosition()
-    {
-        if (cameraPositionWithMouse)
-        {
-            Vector3 playerToMouseDirection = UtilsClass.GetMouseWorldPosition() - playerTransform.position;
-            return playerTransform.position + playerToMouseDirection * .3f;
-        }
-        else
-            return playerTransform.position;
-    }
+    private Vector3 GetCameraPosition() 
+        => cameraPositionWithMouse ? 
+        playerTransform.position + ((UtilsClass.GetMouseWorldPosition() - playerTransform.position) * .3f) : 
+        playerTransform.position;
 
 }
