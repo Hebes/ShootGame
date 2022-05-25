@@ -95,7 +95,6 @@ namespace Tool
             //加载特效
             PoolMgr.Instance.GetObj(path, (tfObj) =>
             {
-
                 tfObj.transform.position = position + new Vector3(0, 0f) + UtilsClass.GetRandomDir() * Random.Range(0f, 2.2f);
                 tfObj.transform.rotation = Quaternion.identity;
             });

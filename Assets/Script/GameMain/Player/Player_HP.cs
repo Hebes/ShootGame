@@ -6,18 +6,11 @@ using UnityEngine;
 public class Player_HP : MonoBehaviour, ICommonCollide
 {
     private Bar_HealthSystem bar_HealthSystem;
-    [SerializeField] private int Hp = 100;
     private Player_Components player_Components;
 
-    public void Damage(int damageAmount)
-    {
-        bar_HealthSystem.Damage(damageAmount);
-    }
+    public void Damage(int damageAmount) => bar_HealthSystem.Damage(damageAmount);
 
-    private void Awake()
-    {
-        player_Components = GetComponent<Player_Components>();
-    }
+    private void Awake() => player_Components = GetComponent<Player_Components>();
 
     private void Start()
     {
@@ -26,7 +19,7 @@ public class Player_HP : MonoBehaviour, ICommonCollide
         GameObject pfHpBar = ResMgr.Instance.Load_pf_Instantiate(Config_ResLoadPaths.BarHP_pf, new Vector3(tfPlayerHPBar.position.x, tfPlayerHPBar.position.y + 8.5f), Quaternion.identity, tfPlayerHPBar);
 
         //血条组件
-        bar_HealthSystem = new Bar_HealthSystem(Hp);
+        bar_HealthSystem = new Bar_HealthSystem(100);
         pfHpBar.GetComponent<Bar_Health>().Setup(bar_HealthSystem);
     }
 

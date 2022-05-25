@@ -18,7 +18,7 @@ public class PoolData
         //给我们的抽屉 创建一个父对象 并且把他作为我们pool(衣柜)对象的子物体
         fatherObj = new GameObject(obj.name);
         fatherObj.transform.parent = poolObj.transform;
-        poolList = new List<GameObject>() {};
+        poolList = new List<GameObject>() { };
         PushObj(obj);
     }
 
@@ -77,7 +77,7 @@ public class PoolMgr : BaseManager<PoolMgr>
         //有抽屉 并且抽屉里有东西
         if (poolDic.ContainsKey(path) && poolDic[path].poolList.Count > 0)
         {
-            callBack(poolDic[path].GetObj());
+            callBack?.Invoke(poolDic[path].GetObj());
         }
         else
         {
@@ -85,12 +85,8 @@ public class PoolMgr : BaseManager<PoolMgr>
             ResMgr.Instance.LoadResAysn<GameObject>(path, (o) =>
             {
                 o.name = path;
-                callBack(o);
+                callBack?.Invoke(o);
             });
-
-            //obj = GameObject.Instantiate(Resources.Load<GameObject>(name));
-            //把对象名字改的和池子名字一样
-            //obj.name = name;
         }
     }
 
@@ -99,8 +95,7 @@ public class PoolMgr : BaseManager<PoolMgr>
     /// </summary>
     public void PushObj(string name, GameObject obj)
     {
-        if (poolObj == null)
-            poolObj = new GameObject("Pool");
+        poolObj = poolObj ?? new GameObject("Pool");
 
         //里面有抽屉
         if (poolDic.ContainsKey(name))

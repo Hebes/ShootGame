@@ -12,6 +12,12 @@ public enum UI_AssistantComponent
     message,
 }
 
+/// <summary>
+/// 旁白框显示
+/// How to make Text Writing Effect in Unity
+/// 如何在Unity中使文本书写效果
+/// 参考：https://www.youtube.com/watch?v=ZVh4nH8Mayg
+/// </summary>
 public class UI_Assistant : MonoBehaviour
 {
     private Text messageText;

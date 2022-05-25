@@ -77,8 +77,8 @@ public class Eneny_Patrol : FSMState
                 enemy_Components.Enemy_Body.localScale = new Vector3(body_localScale.x, body_localScale.y);
                 return new Vector3(0, -1).normalized;
             case Enemy_Orientation.Left:
-                enemy_Components.Enemy_Body.localScale = new Vector3(-body_localScale.x, body_localScale.y);
-                return new Vector3(-1, 0).normalized;
+                enemy_Components.Enemy_Body.localScale = new Vector3(-body_localScale.x, body_localScale.y);//旋转
+                return new Vector3(-1, 0).normalized;//移动
             case Enemy_Orientation.Right:
                 enemy_Components.Enemy_Body.localScale = new Vector3(body_localScale.x, body_localScale.y);
                 return new Vector3(1, 0).normalized;

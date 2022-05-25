@@ -10,20 +10,17 @@ using Tool;
 
 public class GameManager : SingletonMono_Temp<GameManager>
 {
-    private Player_Components player;
     [Tooltip("摄像机的位置兼玩家位置")]
     private Transform playerTransform;
+    [SerializeField]
+    [Tooltip("用鼠标定位摄像机")]
+    private bool cameraPositionWithMouse;
+
 
 
     public Transform[] Npc;
     private int npcIndex;
     public Transform tfgo;
-
-    
-
-    [SerializeField]
-    [Tooltip("用鼠标定位摄像机")]
-    private bool cameraPositionWithMouse;
 
     protected override void Awake()
     {
@@ -33,18 +30,18 @@ public class GameManager : SingletonMono_Temp<GameManager>
     }
     private void Start()
     {
-        FunctionPeriodic.Create(() =>
-        {
-            Transform npcTransform = Npc[npcIndex].Find_Child<Transform>("Enemy_ChatBubble");
-            npcIndex = (npcIndex + 1) % Npc.Length;
-            string message = GetRandomMessage();
+        //FunctionPeriodic.Create(() =>
+        //{
+        //    Transform npcTransform = Npc[npcIndex].Find_Child<Transform>("Enemy_ChatBubble");
+        //    npcIndex = (npcIndex + 1) % Npc.Length;
+        //    string message = GetRandomMessage();
 
-            IconType[] iconArray =
-                new IconType[] { IconType.Happy, IconType.Neutral, IconType.Angry };
-            IconType icon = iconArray[UnityEngine.Random.Range(0, iconArray.Length)];
+        //    IconType[] iconArray =
+        //        new IconType[] { IconType.Happy, IconType.Neutral, IconType.Angry };
+        //    IconType icon = iconArray[UnityEngine.Random.Range(0, iconArray.Length)];
 
-            ChatBubble.Create(npcTransform, new Vector3(3, 8), icon, message);
-        }, 1.5f);
+        //    ChatBubble.Create(npcTransform, new Vector3(3, 8), icon, message);
+        //}, 1.5f);
     }
 
     private string GetRandomMessage()

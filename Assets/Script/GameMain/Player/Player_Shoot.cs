@@ -18,6 +18,7 @@ public class Player_Shoot : MonoBehaviour
         shootAction = ShootPhysics;
         EventCenter.Instance.AddEventListener<OnShootEvnentArgs>(EEvent.Player_Shoot, ShootingOverTrigger);
     }
+    private void OnDestroy() => EventCenter.Instance.RemoveEventListener<OnShootEvnentArgs>(EEvent.Player_Shoot, ShootingOverTrigger);
 
     private void Update()
     {   
@@ -29,39 +30,7 @@ public class Player_Shoot : MonoBehaviour
     /// 射击完毕后触发
     /// </summary>
     /// <param name="arg0"></param>
-    private void ShootingOverTrigger(OnShootEvnentArgs e)
-    {
-        shootAction(e.tfGunEndPoint, e.tfShootPoint);
-
-        #region 第一种射击方法 
-        ////池子中加载物体
-        //PoolMgr.Instance.GetObj(Config_ResLoadPaths.bullent_pf_Gun_Bullet, (obj) =>
-        //{
-        //    //以下为开火后调用的方法
-        //    obj.transform.position = e.tfShootPoint.position;//开火点
-        //    Vector3 shootDir = (e.tfShootPoint.position - e.tfGunEndPoint.position).normalized;
-        //    obj.GetComponent<Bullet_Common>().Setup(shootDir);
-        //});
-        #endregion
-
-        #region 第二种射击方法 子弹基于物理学
-        //PoolMgr.Instance.GetObj(Config_ResLoadPaths.bullent_pf_Gun_BulletPhysics, (obj) =>
-        //{
-        //    //以下为开火后调用的方法
-        //    obj.transform.position = e.tfShootPoint.position;//开火点
-        //    Vector3 shootDir = (e.tfShootPoint.position - e.tfGunEndPoint.position).normalized;
-        //    obj.GetComponent<Bullet_Physics>().Setup(shootDir);
-        //});
-        #endregion
-
-        #region 第三种射击方法 射线射击
-        //Vector3 shootDir = (e.tfShootPoint.position - e.tfGunEndPoint.position).normalized;
-        //Bullet_Raycast.Instance.Shoot(e.tfGunEndPoint.position, shootDir);
-        //#endregion
-
-        //WeaponTracer.Create(e.tfGunEndPoint, UtilsClass.GetMouseWorldPosition());//鼠标射线
-        #endregion
-    }
+    private void ShootingOverTrigger(OnShootEvnentArgs e) => shootAction(e.tfGunEndPoint, e.tfShootPoint);
     //第一种射击方法
     private void ShootTransform(Transform tfGunEndPoint, Transform tfShootPoint)
     {

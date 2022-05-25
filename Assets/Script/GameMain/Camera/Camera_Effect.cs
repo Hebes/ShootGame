@@ -9,10 +9,8 @@ using UnityEngine;
 public class Camera_Effect : MonoBehaviour
 {
 
-    private void Awake()
-    {
-        EventCenter.Instance.AddEventListener<OnShootEvnentArgs>(EEvent.Player_Shoot, PlayerShootOverEffer);
-    }
+    private void Awake() => EventCenter.Instance.AddEventListener<OnShootEvnentArgs>(EEvent.Player_Shoot, PlayerShootOverEffer);
+    private void OnDestroy() => EventCenter.Instance.RemoveEventListener<OnShootEvnentArgs>(EEvent.Player_Shoot, PlayerShootOverEffer);
 
     /// <summary>
     /// 玩家射击完毕后需要处理的事件
@@ -22,4 +20,5 @@ public class Camera_Effect : MonoBehaviour
         //屏幕抖动
         UtilsClass.ShakeCamera(.5f, .05f);
     }
+
 }
