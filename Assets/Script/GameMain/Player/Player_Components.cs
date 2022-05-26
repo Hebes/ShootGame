@@ -3,7 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Tool;
 
-public class Player_Components : MonoBehaviour
+enum EPlayer_Components
+{
+    Rotation,
+    Player_Body,
+    MiniMap,
+    Gun_EndPoint,
+    Gun_ShootPoint,
+    Player_HPBar,
+    Player_ChatBubble,
+    Player_Gun,
+}
+
+public class Player_Components : CursorObject
 {
     //玩家本体
     private Animator player_Animator;
@@ -31,21 +43,21 @@ public class Player_Components : MonoBehaviour
     private void Player_GetComponent()
     {
         //一个物体获取单个组件
-        player_Rotation = transform.Find_Child<Transform>("Rotation");
-        player_Animator = transform.Find_Child<Animator>("Player_Body");
+        player_Rotation = transform.Find_Child<Transform>(EPlayer_Components.Rotation.ToString());
+        player_Animator = transform.Find_Child<Animator>(EPlayer_Components.Player_Body.ToString());
         player_Rigidbody2D = transform.GetComponent<Rigidbody2D>();
-        player_MiniMap_Animator = transform.Find_Child<Animator>("MiniMap");
-
-        player_Gun_EndPoint = transform.Find_Child<Transform>("Gun_EndPoint");
-        player_Gun_ShootPoint = transform.Find_Child<Transform>("Gun_ShootPoint");
-
-        player_HP_HPBar = transform.Find_Child<Transform>("Player_HPBar");
-
-        player_ChatBubble_transform = transform.Find_Child<Transform>("Player_ChatBubble");
+        player_MiniMap_Animator = transform.Find_Child<Animator>(EPlayer_Components.MiniMap.ToString());
+        player_Gun_EndPoint = transform.Find_Child<Transform>(EPlayer_Components.Gun_EndPoint.ToString());
+        player_Gun_ShootPoint = transform.Find_Child<Transform>(EPlayer_Components.Gun_ShootPoint.ToString());
+        player_HP_HPBar = transform.Find_Child<Transform>(EPlayer_Components.Player_HPBar.ToString());
+        player_ChatBubble_transform = transform.Find_Child<Transform>(EPlayer_Components.Player_ChatBubble.ToString());
 
         //一个物体获取多个组件
-        player_Gun_Transform = transform.Find_Child<Transform>("Player_Gun");
-        player_Gun_Animator = transform.Find_Child<Animator>("Player_Gun");
+        player_Gun_Transform = transform.Find_Child<Transform>(EPlayer_Components.Player_Gun.ToString());
+        player_Gun_Animator = transform.Find_Child<Animator>(EPlayer_Components.Player_Gun.ToString());
+
+        //设置鼠标类型
+        SetCursorType = ECursorType.Select;
     }
 
 

@@ -48,14 +48,9 @@ public class ItemWorld : MonoBehaviour
         light2D.color = item.GetColor();
         textMeshPro.text = item.amount > 1 ? item.amount.ToString() : string.Empty;
     }
-    public Item GetItem()
-    {
-        return item;
-    }
-    public void DestroySelf()
-    {
-        Destroy(gameObject);
-    }
+
+    public Item GetItem() => item;
+    public void DestroySelf() => Destroy(gameObject);
 
 
 }

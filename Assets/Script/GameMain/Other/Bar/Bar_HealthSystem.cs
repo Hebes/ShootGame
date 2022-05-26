@@ -21,22 +21,17 @@ public class Bar_HealthSystem
     /// <summary>
     /// 当前健康值
     /// </summary>
-    [SerializeField]
     private int health;
     /// <summary>
     /// 最大健康值
     /// </summary>
-    [SerializeField]
     private int healthMax;
 
     /// <summary>
     /// 获取当前的血量比例
     /// </summary>
     /// <returns></returns>
-    public float GetHealthPercent
-    {
-        get { return (float)health / healthMax; }
-    }
+    public float GetHealthPercent => (float)health / healthMax;
 
     /// <summary>
     /// 初始化设置气血值
@@ -64,10 +59,7 @@ public class Bar_HealthSystem
         OnHpChanged?.Invoke(this, EventArgs.Empty);//扣血之后触发的事件
     }
 
-    private void Die()
-    {
-        if (OnDead != null) OnDead(this, EventArgs.Empty);
-    }
+    private void Die() => OnDead?.Invoke(this, EventArgs.Empty);
 
     /// <summary>
     /// 加血

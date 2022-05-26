@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Tool;
 using UnityEngine;
+using UnityEngine.EventSystems;
+
 /// <summary>
 /// 枪口射击射线事件
 /// Aim at Mouse in Unity 2D (Shoot Weapon, Unity Tutorial for Beginners)
@@ -21,11 +23,6 @@ public class OnShootEvnentArgs
 /// </summary>
 public class Player_Weapen : MonoBehaviour
 {
-    /// <summary>
-    /// 用来添加枪射击完毕后需要处理的事情，比如屏幕抖动
-    /// </summary>
-    private OnShootEvnentArgs onShootEvnentArgs;
-
     private bool canShoot = true;
     private Player_Components player_Components;
 
@@ -41,8 +38,8 @@ public class Player_Weapen : MonoBehaviour
     void Update()
     {
         HandleAiming();
-        HandleShooting();
         Field_View();
+        if (!InteractwithUI()) HandleShooting();//修正穿透UI点进
     }
     /// <summary>
     /// 射击的方法
@@ -59,7 +56,7 @@ public class Player_Weapen : MonoBehaviour
             //播放枪械攻击动击动画
             player_Components.Player_Gun_Animator.SetTrigger(Config_Animator.gun_Trigger_Animator_Shoot);
 
-            //发布攻击事件
+            //发布攻击事件 用来添加枪射击完毕后需要处理的事情，比如屏幕抖动
             EventCenter.Instance.EventTrigger(EEvent.Player_Shoot, new OnShootEvnentArgs
             {
                 tfGunEndPoint = player_Components.Player_Gun_EndPoint,
@@ -127,4 +124,7 @@ public class Player_Weapen : MonoBehaviour
 
         fieldOfView.SetOrigin(transform.position + new Vector3(1, 1));
     }
+
+    private bool InteractwithUI() => EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+
 }

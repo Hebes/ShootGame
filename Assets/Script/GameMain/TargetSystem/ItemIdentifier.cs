@@ -26,12 +26,9 @@ public class ItemIdentifier : SingletonMono_Temp<ItemIdentifier>
         switch (itemType)
         {
             default:
-            case ItemType.Medkit:
-                return Res_Sprite_Manage.Instance.Get_sprite(ESprite.MedkitPing); 
-            case ItemType.Helmet:
-                return Res_Sprite_Manage.Instance.Get_sprite(ESprite.ArmorPing); 
-            case ItemType.Armor:
-                return Res_Sprite_Manage.Instance.Get_sprite(ESprite.HelmetPing); 
+            case ItemType.Medkit: return Res_Sprite_Manage.Instance.Get_sprite(ESprite.MedkitPing);
+            case ItemType.Helmet: return Res_Sprite_Manage.Instance.Get_sprite(ESprite.ArmorPing);
+            case ItemType.Armor: return Res_Sprite_Manage.Instance.Get_sprite(ESprite.HelmetPing);
         }
     }
 
@@ -45,12 +42,9 @@ public class ItemIdentifier : SingletonMono_Temp<ItemIdentifier>
         switch (itemType)
         {
             default:
-            case ItemType.Medkit:
-                return Config_Color.CMedkit;
-            case ItemType.Helmet:
-                return Config_Color.CHelmet;
-            case ItemType.Armor:
-                return Config_Color.CArmor;
+            case ItemType.Medkit: return Config_Color.CMedkit;
+            case ItemType.Helmet: return Config_Color.CHelmet;
+            case ItemType.Armor: return Config_Color.CArmor;
         }
     }
 }

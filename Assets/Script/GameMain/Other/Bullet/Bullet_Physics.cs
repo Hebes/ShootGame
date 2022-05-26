@@ -27,7 +27,6 @@ public class Bullet_Physics : MonoBehaviour, IBulletSetup
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         ICommonCollide target = collision.GetComponent<ICommonCollide>();
         if (target != null)
         {

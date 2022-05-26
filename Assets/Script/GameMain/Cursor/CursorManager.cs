@@ -79,9 +79,9 @@ public class CursorManager : SingletonMono_Continue<CursorManager>
         frameTimer -= Time.deltaTime;
         if (frameTimer <= 0f)
         {
-            frameTimer += cursorAnimation.frameRate;
+            frameTimer += cursorAnimation.frameRate;//帧频
             currentFrame = (currentFrame + 1) % frameCount;
-            Cursor.SetCursor(cursorAnimation.textureArray[currentFrame], cursorAnimation.offset, CursorMode.Auto);
+            Cursor.SetCursor(cursorAnimation.textureArray[currentFrame], cursorAnimation.offset, CursorMode.Auto);//设置鼠标标签
         }
     }
 
@@ -100,7 +100,7 @@ public class CursorManager : SingletonMono_Continue<CursorManager>
     {
         foreach (CursorAnimation cursorAnimation in cursorList)
             if (cursorAnimation.cursorType == cursorType) return cursorAnimation;
-        // Couldn't find this CursorType !
+        // 找不到这个CursorType！
         return null;
     }
 

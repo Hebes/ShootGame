@@ -53,14 +53,10 @@ public class EventCenter : BaseManager<EventCenter>
         //有没有对应的事件监听
         //有的情况
         if (eventDic.ContainsKey(config_Event))
-        {
             (eventDic[config_Event] as EventInfo<T>).actions += action;
-        }
         //没有的情况
         else
-        {
             eventDic.Add(config_Event, new EventInfo<T>(action));
-        }
     }
 
     /// <summary>
@@ -73,14 +69,10 @@ public class EventCenter : BaseManager<EventCenter>
         //有没有对应的事件监听
         //有的情况
         if (eventDic.ContainsKey(config_Event))
-        {
             (eventDic[config_Event] as EventInfo).actions += action;
-        }
         //没有的情况
         else
-        {
             eventDic.Add(config_Event, new EventInfo(action));
-        }
     }
 
 
@@ -117,8 +109,8 @@ public class EventCenter : BaseManager<EventCenter>
         if (eventDic.ContainsKey(config_Event))
         {
             //eventDic[name]();
-            if ((eventDic[config_Event] as EventInfo<T>).actions != null)
-                (eventDic[config_Event] as EventInfo<T>).actions.Invoke(info);
+            //if ((eventDic[config_Event] as EventInfo<T>).actions != null)
+            (eventDic[config_Event] as EventInfo<T>).actions?.Invoke(info);
             //eventDic[name].Invoke(info);
         }
     }
@@ -134,8 +126,8 @@ public class EventCenter : BaseManager<EventCenter>
         if (eventDic.ContainsKey(config_Event))
         {
             //eventDic[name]();
-            if ((eventDic[config_Event] as EventInfo).actions != null)
-                (eventDic[config_Event] as EventInfo).actions.Invoke();
+            //if ((eventDic[config_Event] as EventInfo).actions != null)
+            (eventDic[config_Event] as EventInfo).actions?.Invoke();
             //eventDic[name].Invoke(info);
         }
     }
@@ -144,8 +136,5 @@ public class EventCenter : BaseManager<EventCenter>
     /// 清空事件中心
     /// 主要用在 场景切换时
     /// </summary>
-    public void Clear()
-    {
-        eventDic.Clear();
-    }
+    public void Clear() => eventDic.Clear();
 }
