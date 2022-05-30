@@ -29,7 +29,7 @@ public class ChatBubble : MonoBehaviour
     public static void Create(Transform parent, Vector3 localPosition, IconType iconType, string text)
     {
         Transform chatBubbleTransform = 
-            Manage_Res_pf.Instance.GetAndInstantiate(EpfName.ChatBubble.ToString(), parent).GetComponent<Transform>();
+            Manage_Res_pf.Instance.GetAndInstantiate(EpfName.ChatBubble, parent).GetComponent<Transform>();
 
         chatBubbleTransform.localPosition = localPosition;
         chatBubbleTransform.GetComponent<ChatBubble>().Setup(iconType, text);
@@ -82,8 +82,5 @@ public class ChatBubble : MonoBehaviour
         }
     }
 
-    private void Push()
-    {
-        PoolMgr.Instance.PushObj(name, gameObject);
-    }
+    private void Push() => PoolMgr.Instance.PushObj(name, gameObject);
 }

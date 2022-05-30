@@ -10,10 +10,11 @@ using System;
 /// </summary>
 public class Inventory
 {
-    public event EventHandler OnItemListChanged;
-    private Action<Item> userItemAction;
+    public event EventHandler OnItemListChanged;//物品列表交换触发的事件
+    private Action<Item> userItemAction;//使用物品后触发的事件
 
     private List<Item> itemList;
+
     public Inventory(Action<Item> userItemAction)
     {
         this.userItemAction = userItemAction;
@@ -26,34 +27,26 @@ public class Inventory
     /// <param name="item"></param>
     public void AddItem(Item item)
     {
-        if (item.IsStackable())
+        if (item.IsStackable())//是否可以堆叠
         {
-            bool itemAlreadyInInventory = false;
+            bool itemAlreadyInInventory = false;//库存中的物品
 
             foreach (Item inventoryItem in itemList)
             {
-                if (inventoryItem.itemType == item.itemType)
+                if (inventoryItem.itemType == item.itemType)//TUDO 需要添加更多的条件判断
                 {
-                    inventoryItem.amount += item.amount;
+                    inventoryItem.amount += item.amount;//存在数量++
                     itemAlreadyInInventory = true;
                 }
             }
-            if (!itemAlreadyInInventory)
-            {
-                itemList.Add(item);
-            }
+            if (!itemAlreadyInInventory) itemList.Add(item);
         }
-        else
-        {
+        else//不可以堆叠的话直接添加
             itemList.Add(item);
-        }
-        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        OnItemListChanged?.Invoke(this, EventArgs.Empty);//物品列表交换触发的事件
     }
 
-    public List<Item> GetItemList
-    {
-        get { return itemList; }
-    }
+    public List<Item> GetItemList => itemList;
 
     /// <summary>
     /// 减少物品
@@ -61,9 +54,9 @@ public class Inventory
     /// <param name="item"></param>
     internal void RemoveItem(Item item)
     {
-        if (item.IsStackable())
+        if (item.IsStackable())//是否可以堆叠
         {
-            Item itemInInventory = null; 
+            Item itemInInventory = null;
 
             foreach (Item inventoryItem in itemList)
             {
@@ -73,7 +66,7 @@ public class Inventory
                     itemInInventory = inventoryItem;
                 }
             }
-            if (itemInInventory!=null&& itemInInventory.amount<=0)
+            if (itemInInventory != null && itemInInventory.amount <= 0)
             {
                 itemList.Remove(itemInInventory);
             }
@@ -85,8 +78,5 @@ public class Inventory
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    internal void UserItem(Item item)
-    {
-        userItemAction(item);
-    }
+    internal void UserItem(Item item) => userItemAction(item);
 }

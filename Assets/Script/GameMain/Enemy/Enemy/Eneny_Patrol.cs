@@ -22,18 +22,6 @@ public class Eneny_Patrol : FSMState
         body_localScale = enemy_Components.Enemy_Body.localScale;
     }
 
-    private enum Enemy_Orientation
-    {
-        Up = 0,//上
-        Down,//下
-        Left,//左
-        Right,//右
-        LeftUp,//左上
-        LeftDown,//左下
-        RightUp,//右上
-        RightDown,//右下
-    }
-
     public override void Action()
     {
         m_Timer += Time.deltaTime;
@@ -42,7 +30,7 @@ public class Eneny_Patrol : FSMState
         {
             if (isMove)
             {
-                pos = Move_v3();
+                pos = Move_v3().normalized * 2;
                 isMove = false;
             }
 
@@ -66,34 +54,9 @@ public class Eneny_Patrol : FSMState
 
     private Vector3 Move_v3()
     {
-        //设置下一次移动的方位
-        switch ((Enemy_Orientation)Random.Range(0, (int)Enemy_Orientation.RightDown))
-        {
-            default:
-            case Enemy_Orientation.Up:
-                enemy_Components.Enemy_Body.localScale = new Vector3(body_localScale.x, body_localScale.y);
-                return new Vector3(0, 1).normalized;
-            case Enemy_Orientation.Down:
-                enemy_Components.Enemy_Body.localScale = new Vector3(body_localScale.x, body_localScale.y);
-                return new Vector3(0, -1).normalized;
-            case Enemy_Orientation.Left:
-                enemy_Components.Enemy_Body.localScale = new Vector3(-body_localScale.x, body_localScale.y);//旋转
-                return new Vector3(-1, 0).normalized;//移动
-            case Enemy_Orientation.Right:
-                enemy_Components.Enemy_Body.localScale = new Vector3(body_localScale.x, body_localScale.y);
-                return new Vector3(1, 0).normalized;
-            case Enemy_Orientation.LeftUp:
-                enemy_Components.Enemy_Body.localScale = new Vector3(-body_localScale.x, body_localScale.y);
-                return new Vector3(-1, 1).normalized;
-            case Enemy_Orientation.LeftDown:
-                enemy_Components.Enemy_Body.localScale = new Vector3(-body_localScale.x, body_localScale.y);
-                return new Vector3(-1, -1).normalized;
-            case Enemy_Orientation.RightUp:
-                enemy_Components.Enemy_Body.localScale = new Vector3(body_localScale.x, body_localScale.y);
-                return new Vector3(1, 1).normalized;
-            case Enemy_Orientation.RightDown:
-                enemy_Components.Enemy_Body.localScale = new Vector3(body_localScale.x, body_localScale.y);
-                return new Vector3(1, -1).normalized;
-        }
+        int x= Random.Range(-50, 50);
+        int y= Random.Range(-30, 30);
+        enemy_Components.Enemy_Body.localScale= x < 0? new Vector3(-body_localScale.x, body_localScale.y):new Vector3(body_localScale.x, body_localScale.y); 
+        return new Vector3(x, y);
     }
 }

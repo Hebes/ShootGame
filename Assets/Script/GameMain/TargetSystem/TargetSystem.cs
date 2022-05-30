@@ -82,7 +82,7 @@ public class TargetSystem : BaseManager<TargetSystem>
 
         //TUDO 需要重构这段代码
         Transform pingTransform =
-            Manage_Res_pf.Instance.GetAndInstantiate(EpfName.TargetPrefab.ToString(), ping.GetPosition, Quaternion.identity, parent).GetComponent<Transform>();
+            Manage_Res_pf.Instance.GetAndInstantiate(EpfName.TargetPrefab, ping.GetPosition, Quaternion.identity, parent).GetComponent<Transform>();
 
         switch (ping.GetPingType)
         {
@@ -90,28 +90,28 @@ public class TargetSystem : BaseManager<TargetSystem>
             case Ping.Type.Move:
                 break;
             case Ping.Type.Enemy:
-                SetColor(pingTransform, Res_Sprite_Manage.Instance.Get_sprite(ESprite.AttackPing), Config_Color.CEnemy);
+                SetColor(pingTransform, Manage_Res_Sprite.Instance.Get_sprite(ESprite.AttackPing), Config_Color.CEnemy);
                 break;
             case Ping.Type.Item:
                 SetColor(pingTransform, ItemIdentifier.Instance.GetItemSprite(ping.GetItemType()), ItemIdentifier.Instance.GetItemColor(ping.GetItemType()));
                 break;
             case Ping.Type.Looting:
-                SetColor(pingTransform, Res_Sprite_Manage.Instance.Get_sprite(ESprite.LootingCircleIcon), Config_Color.CLooting);
+                SetColor(pingTransform, Manage_Res_Sprite.Instance.Get_sprite(ESprite.LootingCircleIcon), Config_Color.CLooting);
                 break;
             case Ping.Type.Attacking:
-                SetColor(pingTransform, Res_Sprite_Manage.Instance.Get_sprite(ESprite.AttackingHereCircleIcon), Config_Color.CAttacking);
+                SetColor(pingTransform, Manage_Res_Sprite.Instance.Get_sprite(ESprite.AttackingHereCircleIcon), Config_Color.CAttacking);
                 break;
             case Ping.Type.GoingHere:
-                SetColor(pingTransform, Res_Sprite_Manage.Instance.Get_sprite(ESprite.MoveCircleIcon), Config_Color.CGoingHere);
+                SetColor(pingTransform, Manage_Res_Sprite.Instance.Get_sprite(ESprite.MoveCircleIcon), Config_Color.CGoingHere);
                 break;
             case Ping.Type.Defend:
-                SetColor(pingTransform, Res_Sprite_Manage.Instance.Get_sprite(ESprite.DefendCircleIcon), Config_Color.CDefend);
+                SetColor(pingTransform, Manage_Res_Sprite.Instance.Get_sprite(ESprite.DefendCircleIcon), Config_Color.CDefend);
                 break;
             case Ping.Type.Watching:
-                SetColor(pingTransform, Res_Sprite_Manage.Instance.Get_sprite(ESprite.WatchingHereCircleIcon), Config_Color.CWatching);
+                SetColor(pingTransform, Manage_Res_Sprite.Instance.Get_sprite(ESprite.WatchingHereCircleIcon), Config_Color.CWatching);
                 break;
             case Ping.Type.Enemyseen:
-                SetColor(pingTransform, Res_Sprite_Manage.Instance.Get_sprite(ESprite.EnemySeenCircleIcon), Config_Color.CEnemyseen);
+                SetColor(pingTransform, Manage_Res_Sprite.Instance.Get_sprite(ESprite.EnemySeenCircleIcon), Config_Color.CEnemyseen);
                 break;
         }
 

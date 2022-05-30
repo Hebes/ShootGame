@@ -12,11 +12,8 @@ public class GunTarget : MonoBehaviour,ICommonCollide
     private static List<GunTarget> targetList;
     private Animation thisAnimation;
 
-    public Vector3 GetPosition
-    {
-        get { return transform.position; }
-         
-    }
+    public Vector3 GetPosition => transform.position;
+
     /// <summary>
     /// 
     /// </summary>
@@ -55,8 +52,5 @@ public class GunTarget : MonoBehaviour,ICommonCollide
         thisAnimation = transform.Find_Child<Animation>(Config_Common.Gun_pf_Body);
     }
 
-    public void Damage(int damageAmount)
-    {
-        thisAnimation.Play();//播放枪靶子动画
-    }
+    public void Damage(int damageAmount) => thisAnimation.Play();//播放枪靶子动画
 }

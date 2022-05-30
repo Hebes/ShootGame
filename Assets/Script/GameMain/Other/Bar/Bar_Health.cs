@@ -20,13 +20,8 @@ public class Bar_Health : MonoBehaviour
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void Bar_HealthSystem_OnHealthChange(object sender, EventArgs e)
-    {
-        UpdateHealthBar();
-    }
+    private void Bar_HealthSystem_OnHealthChange(object sender, EventArgs e) => UpdateHealthBar();
 
-    private void UpdateHealthBar()
-    {
-        transform.Find(Config_Common.HP_pf_Bar).localScale = new Vector2(bar_HealthSystem.GetHealthPercent, 1f);
-    }
+    private void UpdateHealthBar() 
+        => transform.Find(Config_Common.HP_pf_Bar).localScale = new Vector2(bar_HealthSystem.GetHealthPercent, 1f);
 }

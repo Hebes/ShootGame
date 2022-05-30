@@ -9,8 +9,10 @@ using UnityEngine;
 public class Camera_Effect : MonoBehaviour
 {
 
-    private void Awake() => EventCenter.Instance.AddEventListener<OnShootEvnentArgs>(EEvent.Player_Shoot, PlayerShootOverEffer);
-    private void OnDestroy() => EventCenter.Instance.RemoveEventListener<OnShootEvnentArgs>(EEvent.Player_Shoot, PlayerShootOverEffer);
+    private void Awake() 
+        => EventCenter.Instance.AddEventListener<OnShootEvnentArgs>(EEvent.Player_Shoot, PlayerShootOverEffer);
+    private void OnDestroy() 
+        => EventCenter.Instance.RemoveEventListener<OnShootEvnentArgs>(EEvent.Player_Shoot, PlayerShootOverEffer);
 
     /// <summary>
     /// 玩家射击完毕后需要处理的事件

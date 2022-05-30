@@ -33,7 +33,7 @@ public class UI_TargetUI : MonoBehaviour
             case TargetSystem.Ping.Type.Move:
                 break;
             case TargetSystem.Ping.Type.Enemy:
-                image.sprite = Res_Sprite_Manage.Instance.Get_sprite(ESprite.AttackPing);
+                image.sprite = Manage_Res_Sprite.Instance.Get_sprite(ESprite.AttackPing);
                 textMeshPro.color = Config_Color.CEnemy;
                 break;
             case TargetSystem.Ping.Type.Item:
@@ -41,27 +41,27 @@ public class UI_TargetUI : MonoBehaviour
                 textMeshPro.color = ItemIdentifier.Instance.GetItemColor(ping.GetItemType());
                 break;
             case TargetSystem.Ping.Type.Looting:
-                image.sprite = Res_Sprite_Manage.Instance.Get_sprite(ESprite.LootingCircleIcon);
+                image.sprite = Manage_Res_Sprite.Instance.Get_sprite(ESprite.LootingCircleIcon);
                 textMeshPro.color = Config_Color.CLooting;
                 break;
             case TargetSystem.Ping.Type.Attacking:
-                image.sprite = Res_Sprite_Manage.Instance.Get_sprite(ESprite.AttackCircleIcon);
+                image.sprite = Manage_Res_Sprite.Instance.Get_sprite(ESprite.AttackCircleIcon);
                 textMeshPro.color = Config_Color.CAttacking;
                 break;
             case TargetSystem.Ping.Type.GoingHere:
-                image.sprite = Res_Sprite_Manage.Instance.Get_sprite(ESprite.MoveCircleIcon);
+                image.sprite = Manage_Res_Sprite.Instance.Get_sprite(ESprite.MoveCircleIcon);
                 textMeshPro.color = Config_Color.CGoingHere;
                 break;
             case TargetSystem.Ping.Type.Defend:
-                image.sprite = Res_Sprite_Manage.Instance.Get_sprite(ESprite.DefendCircleIcon);
+                image.sprite = Manage_Res_Sprite.Instance.Get_sprite(ESprite.DefendCircleIcon);
                 textMeshPro.color = Config_Color.CDefend;
                 break;
             case TargetSystem.Ping.Type.Watching:
-                image.sprite = Res_Sprite_Manage.Instance.Get_sprite(ESprite.WatchingHereCircleIcon);
+                image.sprite = Manage_Res_Sprite.Instance.Get_sprite(ESprite.WatchingHereCircleIcon);
                 textMeshPro.color = Config_Color.CWatching;
                 break;
             case TargetSystem.Ping.Type.Enemyseen:
-                image.sprite = Res_Sprite_Manage.Instance.Get_sprite(ESprite.EnemySeenCircleIcon);
+                image.sprite = Manage_Res_Sprite.Instance.Get_sprite(ESprite.EnemySeenCircleIcon);
                 textMeshPro.color = Config_Color.CEnemyseen;
                 break;
 

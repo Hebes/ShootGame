@@ -6,7 +6,10 @@ using System;
 [Serializable]
 public class Item
 {
-    public enum ItemType
+    public EItemType itemType;
+    public int amount;//数量
+
+    public enum EItemType
     {
         Normal,
         Sword,
@@ -16,27 +19,17 @@ public class Item
         Medkit,
     }
 
-    public ItemType itemType;
-    public int amount;//数量
-
-
     //获取精灵图片
     public Sprite GetSprite()
     {
         switch (itemType)
         {
             default:
-            case ItemType.Sword:
-                return Res_Sprite_Manage.Instance.Get_sprite(ESprite.Sword);
-            case ItemType.HealthPotion:
-                return Res_Sprite_Manage.Instance.Get_sprite(ESprite.HealthPotion);
-            case ItemType.ManaPotion:
-                return Res_Sprite_Manage.Instance.Get_sprite(ESprite.ManaPotion);
-            case ItemType.Coin:
-                return Res_Sprite_Manage.Instance.Get_sprite(ESprite.Coin);
-            case ItemType.Medkit:
-                return Res_Sprite_Manage.Instance.Get_sprite(ESprite.Medkit);
-
+            case EItemType.Sword:         return Manage_Res_Sprite.Instance.Get_sprite(ESprite.Sword);
+            case EItemType.HealthPotion:  return Manage_Res_Sprite.Instance.Get_sprite(ESprite.HealthPotion);
+            case EItemType.ManaPotion:    return Manage_Res_Sprite.Instance.Get_sprite(ESprite.ManaPotion);
+            case EItemType.Coin:          return Manage_Res_Sprite.Instance.Get_sprite(ESprite.Coin);
+            case EItemType.Medkit:        return Manage_Res_Sprite.Instance.Get_sprite(ESprite.Medkit);
         }
     }
 
@@ -49,18 +42,12 @@ public class Item
         switch (itemType)
         {
             default:
-            case ItemType.Sword:
-                return Config_Color.CShineSword;
-            case ItemType.HealthPotion:
-                return Config_Color.CShineHealthPotion;
-            case ItemType.ManaPotion:
-                return Config_Color.CShineManaPotion;
-            case ItemType.Coin:
-                return Config_Color.CShineCoin;
-            case ItemType.Medkit:
-                return Config_Color.CShineMedkit;
+            case EItemType.Sword:        return Config_Color.CShineSword;
+            case EItemType.HealthPotion: return Config_Color.CShineHealthPotion;
+            case EItemType.ManaPotion:   return Config_Color.CShineManaPotion;
+            case EItemType.Coin:         return Config_Color.CShineCoin;
+            case EItemType.Medkit:       return Config_Color.CShineMedkit;
         }
-
     }
 
     /// <summary>
@@ -72,12 +59,12 @@ public class Item
         switch (itemType)
         {
             default:
-            case ItemType.Coin:
-            case ItemType.HealthPotion:
-            case ItemType.ManaPotion:
-            case ItemType.Medkit:
+            case EItemType.Coin:
+            case EItemType.HealthPotion:
+            case EItemType.ManaPotion:
+            case EItemType.Medkit:
                 return true;
-            case ItemType.Sword:
+            case EItemType.Sword:
                 return false;
         }
     }

@@ -49,7 +49,7 @@ public class GameRoot : MonoBehaviour
     /// <summary>
     /// 确保第一个场景为MenuScene
     /// </summary>
-        [RuntimeInitializeOnLoadMethod]
+    [RuntimeInitializeOnLoadMethod]
     static void Initialize()
     {
         if (SceneManager.GetActiveScene().name == EScenes.MenuScene.ToString()) return;
@@ -71,13 +71,14 @@ public class GameRoot : MonoBehaviour
     {
         #region 更改Edit->Project Setting->Script Execution Order的脚本顺序
         //初始化资源加载  正常因放在第一场景加载
-        List<MainGame_Init> mainGame_Inits = new List<MainGame_Init>()
+        List<Manage_Init> mainGame_Inits = new List<Manage_Init>()
         {
             Manage_Res_pf.Instance,
-            Res_Sprite_Manage.Instance,
+            Manage_Res_Sprite.Instance,
+            Manage_JsonRead.Instance,
         };
 
-        foreach (MainGame_Init item in mainGame_Inits)
+        foreach (Manage_Init item in mainGame_Inits)
         {
             item.Init();
             await Task.Delay(TimeSpan.FromSeconds(0.5f));

@@ -1,4 +1,5 @@
 
+using UnityEngine;
 
 public static class Config_ResLoadPaths
 {
@@ -70,21 +71,5 @@ public static class Config_ResLoadPaths
     public const string damage_pf = CommonPath + "/Other/pfDamagePopup/Prefab/pfDamagePopup";
     #endregion
 
-    #region 血条相关
-    public const string BarHP_pf = CommonPath + "/HPBar/Prefab/Bar_HP";
-    #endregion
-
-    #region 物品相关
-    #region pf
-    public const string item_pf_Sample = CommonPath + "/Backpack/Prefab/";
-    #endregion
-    #endregion
-
-    #region 代码加载路径
-    //物体加载路径
-    public const string CommonPath_allRes = "Assets/Resources";
-    //图片加载路径
-    public const string item_Sprite_Icon = CommonPath_allRes + "/Common/Backpack/Picture";
-    public const string item_Sprite_TargetPointIcon = CommonPath_allRes + "/Common/TargetPointIcon/Picture";
-    #endregion
+    
 }

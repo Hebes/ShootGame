@@ -10,9 +10,6 @@ public class Camera_Follow : SingletonMono_Temp<Camera_Follow>
 
     private float cameraMoveSpeed = 3f;//相机移动速度
 
-    [Tooltip("摄像机的位置兼玩家位置")]
-    private Transform playerTransform;
-
     protected override void Awake() => myCamera = GetComponent<Camera>();
 
     private void Update()

@@ -12,10 +12,8 @@ using Tool;
 public class TargetingSystem_PhysicsOverlap : MonoBehaviour
 {
     private float range = 60;
-    private Enemy_Components enemy_Components;
-    private void Awake() => enemy_Components = transform.Get_Component_Up<Enemy_Components>();
 
-    private void Update()
+    public void Update_TargetingSystem_PhysicsOverlap(Enemy_Components enemy_Components)
     {
         Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(enemy_Components.Eneny_Transform.position, range);
         foreach (var item in collider2Ds)

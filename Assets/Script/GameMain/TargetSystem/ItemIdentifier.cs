@@ -26,9 +26,9 @@ public class ItemIdentifier : SingletonMono_Temp<ItemIdentifier>
         switch (itemType)
         {
             default:
-            case ItemType.Medkit: return Res_Sprite_Manage.Instance.Get_sprite(ESprite.MedkitPing);
-            case ItemType.Helmet: return Res_Sprite_Manage.Instance.Get_sprite(ESprite.ArmorPing);
-            case ItemType.Armor: return Res_Sprite_Manage.Instance.Get_sprite(ESprite.HelmetPing);
+            case ItemType.Medkit: return Manage_Res_Sprite.Instance.Get_sprite(ESprite.MedkitPing);
+            case ItemType.Helmet: return Manage_Res_Sprite.Instance.Get_sprite(ESprite.ArmorPing);
+            case ItemType.Armor: return Manage_Res_Sprite.Instance.Get_sprite(ESprite.HelmetPing);
         }
     }
 

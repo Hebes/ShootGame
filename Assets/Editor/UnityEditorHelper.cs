@@ -2,19 +2,35 @@ using UnityEditor;
 using UnityEngine;
 using System.IO;
 using UnityEngine.Networking;
-
+/// <summary>
+/// 物体的类型
+/// </summary>
+public enum EResourceType
+{
+    prefab,
+    sprite,
+}
 public class UnityEditorHelper : Editor
 {
+    #region 代码加载路径
+    //物体加载路径
+    private static string CommonPath_allRes = "Assets/Resources";
+    //图片加载路径
+    private static string item_Sprite_Icon = CommonPath_allRes + "/Common/Backpack/Picture";
+    private static string item_Sprite_TargetPointIcon = CommonPath_allRes + "/Common/TargetPointIcon/Picture";
+    #endregion
+
+
     [MenuItem("我自己的工具/生成/prefab资源映射表")]
     static void Generate_pf_txt()
     {
-        Generate(EResourceType.prefab, "prefab", new string[] { Config_ResLoadPaths.CommonPath_allRes }, ETextName.pfConfigMap);
+        Generate(EResourceType.prefab, "prefab", new string[] { CommonPath_allRes }, ETextName.ConfigMap_pf);
     }
 
     [MenuItem("我自己的工具/生成/sprite资源映射表")]
     static void Generate_sprite_txt()
     {
-        Generate(EResourceType.sprite, "png", new string[] { Config_ResLoadPaths.item_Sprite_Icon, Config_ResLoadPaths.item_Sprite_TargetPointIcon }, ETextName.spritConfigMap);
+        Generate(EResourceType.sprite, "png", new string[] { item_Sprite_Icon, item_Sprite_TargetPointIcon }, ETextName.ConfigMap_sprit);
     }
 
 
@@ -22,10 +38,9 @@ public class UnityEditorHelper : Editor
     [System.Obsolete]
     static void Generate_enum_txt()
     {
-        string text = Generate_enum(ETextName.pfConfigMap, ETextName.enumConfigMap);
-        BuildMap(text, ETextName.enumConfigMap);
+        string text = Generate_enum(ETextName.ConfigMap_sprit, ETextName.ConfigMap_enum);
+        BuildMap(text, ETextName.ConfigMap_enum);
     }
-
 
     /// <summary>
     /// 生成配置文件
@@ -33,6 +48,7 @@ public class UnityEditorHelper : Editor
     /// </summary>
     private static void Generate(EResourceType resourceType, string fileEnd, string[] path, ETextName fileName)
     {
+        
         /*
          Unity AssetDatabase和Resources资源管理 https://blog.csdn.net/u014230923/article/details/51433455
          AssetDatabase :包含了只适用于编译器中操作资源的相关功能。

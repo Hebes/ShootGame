@@ -10,13 +10,10 @@ using Tool;
 
 public class GameManager : SingletonMono_Temp<GameManager>
 {
-    [Tooltip("摄像机的位置兼玩家位置")]
-    private Transform playerTransform;
+    private Transform playerTransform;//摄像机的位置兼玩家位置
+
     [SerializeField]
-    [Tooltip("用鼠标定位摄像机")]
-    private bool cameraPositionWithMouse;
-
-
+    private bool cameraPositionWithMouse;//用鼠标定位摄像机
 
     public Transform[] Npc;
     private int npcIndex;

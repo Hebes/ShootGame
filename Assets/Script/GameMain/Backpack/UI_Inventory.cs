@@ -5,7 +5,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using CodeMonkey.Utils;
+enum EUI_Inventory
+{
+    ItemSlotContainer,
+    ItemSlotTemplate,
+}
 
+/// <summary>
+/// 背包系统
+/// </summary>
 public class UI_Inventory : MonoBehaviour
 {
     private Inventory inventory;
@@ -14,17 +22,18 @@ public class UI_Inventory : MonoBehaviour
 
     private Player_GetItem player_GetItem;
 
-    public void SetPlayer(Player_GetItem player_GetItem)
-    {
-        this.player_GetItem = player_GetItem;
-    }
+    public void SetPlayer(Player_GetItem player_GetItem) => this.player_GetItem = player_GetItem;
 
     private void Awake()
     {
-        itemSlotContainer = transform.Find("itemSlotContainer");
-        itemSlotTemplate = itemSlotContainer.Find("ItemSlotTemplate");
-
+        itemSlotContainer = transform.Find(EUI_Inventory.ItemSlotContainer.ToString());
+        itemSlotTemplate = itemSlotContainer.Find(EUI_Inventory.ItemSlotTemplate.ToString());
     }
+
+    /// <summary>
+    /// 设置库存
+    /// </summary>
+    /// <param name="inventory"></param>
     public void SetInventory(Inventory inventory)
     {
         this.inventory = inventory;
@@ -32,11 +41,18 @@ public class UI_Inventory : MonoBehaviour
         RefreshInventoryItems();
     }
 
+    /// <summary>
+    /// 刷新库存物品
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Inventory_OnItemListChanged(object sender, EventArgs e)
     {
         RefreshInventoryItems();
     }
-
+    /// <summary>
+    /// 刷新库存物品
+    /// </summary>
     private void RefreshInventoryItems()
     {
         foreach (Transform child in itemSlotContainer)
@@ -46,9 +62,9 @@ public class UI_Inventory : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        int x = 0;
-        int y = 0;
-        float itemSlotCellSize = 100f;
+        //int x = 0;
+        //int y = 0;
+        //float itemSlotCellSize = 100f;
 
         foreach (Item item in inventory.GetItemList)
         {
@@ -70,18 +86,18 @@ public class UI_Inventory : MonoBehaviour
             };
 
 
-            itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
+            //itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
             Image image = itemSlotRectTransform.Find("Image").GetComponent<Image>();
             image.sprite = item.GetSprite();
             TextMeshProUGUI text = itemSlotRectTransform.Find("amountText").GetComponent<TextMeshProUGUI>();
             text.text = item.amount > 1 ? item.amount.ToString() : string.Empty;
 
-            x++;
-            if (x >= 4)
-            {
-                x = 0;
-                y--;
-            }
+            //x++;
+            //if (x >= 4)
+            //{
+            //    x = 0;
+            //    y--;
+            //}
 
         }
     }

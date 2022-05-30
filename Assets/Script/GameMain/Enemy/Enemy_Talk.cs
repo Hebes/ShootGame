@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class Enemy_Talk : MonoBehaviour
 {
-    private Enemy_Components enemy_Components;
     private float timer;
 
-    private void Awake() => enemy_Components = GetComponent<Enemy_Components>();
-
-    private void Update()
+    public void Update_Enemy_Talk(Enemy_Components enemy_Components)
     {
         timer += Time.deltaTime;
         if (timer > 5f)

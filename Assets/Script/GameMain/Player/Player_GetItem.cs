@@ -12,33 +12,35 @@ public class Player_GetItem : MonoBehaviour
     #endregion
 
     private void Awake() => inventory = new Inventory(UseItem);
-
-    private void UseItem(Item item)
-    {
-        switch (item.itemType)
-        {
-            case Item.ItemType.HealthPotion:
-                //TDUO 这里可以添加吃药水得特效
-                Debug.Log("吃了HP药水,HP回复了!(PS:这里可以添加吃药水得特效)");
-                inventory.RemoveItem(new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
-                break;
-            case Item.ItemType.ManaPotion:
-                //TDUO 这里可以添加吃药水得特效
-                Debug.Log("吃了MP药水,MP回复了!(PS:这里可以添加吃药水得特效)");
-                inventory.RemoveItem(new Item { itemType = Item.ItemType.ManaPotion, amount = 1 });
-                break;
-            case Item.ItemType.Medkit:
-                //TDUO 这里可以添加吃药水得特效
-                Debug.Log("吃了HP药包,HP回复了!(PS:这里可以添加吃药包得特效)");
-                inventory.RemoveItem(new Item { itemType = Item.ItemType.Medkit, amount = 1 });
-                break;
-        }
-    }
-
     private void Start()
     {
         uI_Inventory.SetPlayer(this);
         uI_Inventory.SetInventory(inventory);
+    }
+    /// <summary>
+    /// 使用药水
+    /// </summary>
+    /// <param name="item"></param>
+    private void UseItem(Item item)
+    {
+        switch (item.itemType)
+        {
+            case Item.EItemType.HealthPotion:
+                //TDUO 这里可以添加吃药水得特效
+                Debug.Log("吃了HP药水,HP回复了!(PS:这里可以添加吃药水得特效)");
+                inventory.RemoveItem(new Item { itemType = Item.EItemType.HealthPotion, amount = 1 });
+                break;
+            case Item.EItemType.ManaPotion:
+                //TDUO 这里可以添加吃药水得特效
+                Debug.Log("吃了MP药水,MP回复了!(PS:这里可以添加吃药水得特效)");
+                inventory.RemoveItem(new Item { itemType = Item.EItemType.ManaPotion, amount = 1 });
+                break;
+            case Item.EItemType.Medkit:
+                //TDUO 这里可以添加吃药水得特效
+                Debug.Log("吃了HP药包,HP回复了!(PS:这里可以添加吃药包得特效)");
+                inventory.RemoveItem(new Item { itemType = Item.EItemType.Medkit, amount = 1 });
+                break;
+        }
     }
 
     /// <summary>
@@ -55,8 +57,5 @@ public class Player_GetItem : MonoBehaviour
         }
     }
 
-    public Vector3 GetPosition()
-    {
-        return transform.position;
-    }
+    public Vector3 GetPosition() => transform.position;
 }
