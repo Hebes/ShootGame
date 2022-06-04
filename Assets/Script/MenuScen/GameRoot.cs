@@ -20,12 +20,28 @@ using UnityEngine.SceneManagement;
 13、InitializeOnLoadMethodAttribute
 14、MenuItem 导航栏的菜单项
  */
+
+#region 场景
+public enum EScenes
+{
+    None,
+    MenuScene,
+    MainGame,
+    Test,
+}
+#endregion
 public class GameRoot : MonoBehaviour
 {
     //测试 切换场景
     public void ChangeScene()
     {
         SceneManager.LoadScene(EScenes.MainGame.ToString());
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            SceneManager.LoadScene(EScenes.Test.ToString());
     }
 
     #region 第一种加载比Awake快的方法
@@ -55,8 +71,6 @@ public class GameRoot : MonoBehaviour
         if (SceneManager.GetActiveScene().name == EScenes.MenuScene.ToString()) return;
         SceneManager.LoadScene(EScenes.MenuScene.ToString());
     }
-
-
     private async void Awake()
     {
         string str = await InitRsv();
@@ -73,9 +87,9 @@ public class GameRoot : MonoBehaviour
         //初始化资源加载  正常因放在第一场景加载
         List<Manage_Init> mainGame_Inits = new List<Manage_Init>()
         {
+            Manage_JsonRead.Instance,
             Manage_Res_pf.Instance,
             Manage_Res_Sprite.Instance,
-            Manage_JsonRead.Instance,
         };
 
         foreach (Manage_Init item in mainGame_Inits)

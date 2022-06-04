@@ -40,16 +40,24 @@ enum ETags
     Effect,
 }
 
-#region 场景
-public enum EScenes
+
+
+
+/// <summary>
+/// 物体名称
+/// </summary>
+public enum EpfName
 {
-    None,
-    MenuScene,
-    MainGame
+    MedicalBox,
+    ChatBubble,
+    pfBullet,
+    pfBulletPhysics,
+    pfSmoke,
+    Bar_HP,
+    pfDamagePopup,
+    TargetPrefab,
+    UI_Target,
 }
-#endregion
-
-
 
 
 #region enemy

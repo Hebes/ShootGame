@@ -16,8 +16,13 @@ public class GameManager : SingletonMono_Temp<GameManager>
     private bool cameraPositionWithMouse;//用鼠标定位摄像机
 
     public Transform[] Npc;
-    private int npcIndex;
     public Transform tfgo;
+    public ItemWorld1 itemWorld1;
+
+    [SerializeField]
+    private UI_HotkeyBar uI_HotkeyBar;
+    [SerializeField]
+    private UI_Inventory1 uI_Inventory1;
 
     protected override void Awake()
     {
@@ -26,6 +31,18 @@ public class GameManager : SingletonMono_Temp<GameManager>
         Camera_Follow.Instance.Setup(GetCameraPosition, () => 70f, true, true);//70为摄像机的大小
     }
     private void Start()
+    {
+        NPCToke();
+        BackpackInit();
+    }
+
+    private void BackpackInit()
+    {
+        uI_HotkeyBar.RefreshHotkeyBar();
+        uI_Inventory1.RefreshInventoryItems();
+    }
+
+    private void NPCToke()
     {
         //FunctionPeriodic.Create(() =>
         //{
@@ -76,4 +93,6 @@ public class GameManager : SingletonMono_Temp<GameManager>
         playerTransform.position + ((UtilsClass.GetMouseWorldPosition() - playerTransform.position) * .3f) : 
         playerTransform.position;
 
+
+   
 }

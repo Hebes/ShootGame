@@ -60,8 +60,6 @@ public class Player_Components : CursorObject
         SetCursorType = ECursorType.Select;
     }
 
-
-
     public Animator Player_Animator => player_Animator;
     public Rigidbody2D Player_Rigidbody2D => player_Rigidbody2D;
     public Transform Player_Transform => transform;

@@ -49,11 +49,19 @@ public class Manage_Res_Sprite :BaseManager<Manage_Res_Sprite>,Manage_Init
         //添加到物体字典
         foreach (var item in temp_dic)
             res_Sprite_Dic[item.Key] = ResMgr.Instance.LoadRes<Sprite>(item.Value);
+        Debug.Log("图片资源加载完毕！");
     }
 
     public Sprite Get_sprite(ESprite eSprite)
     {
         if (!res_Sprite_Dic.TryGetValue(eSprite.ToString(), out Sprite sprite))
+            Debug.LogError($"未找到名为:{eSprite}的Sprite");
+        return sprite;
+    }
+
+    public Sprite Get_sprite(string eSprite)
+    {
+        if (!res_Sprite_Dic.TryGetValue(eSprite, out Sprite sprite))
             Debug.LogError($"未找到名为:{eSprite}的Sprite");
         return sprite;
     }

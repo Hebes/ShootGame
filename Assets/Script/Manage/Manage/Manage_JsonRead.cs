@@ -7,11 +7,6 @@ using Newtonsoft.Json;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
 
-public enum ETextAssetsName
-{
-    Demo,
-    Test1Dic,
-}
 public class ConfigJsonDataCenter : BaseManager<ConfigJsonDataCenter>
 {
     public Dictionary<int, ConfigItemData> configItemData;
@@ -19,12 +14,18 @@ public class ConfigJsonDataCenter : BaseManager<ConfigJsonDataCenter>
 
 public class Manage_JsonRead : SingletonMono_Continue<Manage_JsonRead>, Manage_Init
 {
-    private Dictionary<int, ConfigItemData> configItemData;
+    private Dictionary<int, ConfigItemData> itemDataDic;
 
     private string outPath = "/Editor/Json/";//输出的路径
     private string json = "Config_Json/";
 
-    public void Init() => ParsingJson();
+    public void Init()
+    {
+        ParsingJson();
+        Debug.Log("Json加载完毕！");
+    }
+
+    public Dictionary<int, ConfigItemData> GetItemDataDic => itemDataDic;
 
     private void ParsingJson()
     {
@@ -70,8 +71,23 @@ public class Manage_JsonRead : SingletonMono_Continue<Manage_JsonRead>, Manage_I
                 if (value != null) field.SetValue(ConfigJsonDataCenter.Instance, value);
             }
         }
-        configItemData = ConfigJsonDataCenter.Instance.configItemData;
-        Debug.Log(configItemData);
+        itemDataDic = ConfigJsonDataCenter.Instance.configItemData;
+
+        ConfigItemData configItemData = GetitemDataDic(1001);
     }
     //另外一种解析方法 参考：https://zhuanlan.zhihu.com/p/366711494
+
+
+    /// <summary>
+    /// 根据编号返回一个物体
+    /// </summary>
+    public ConfigItemData GetitemDataDic(int id)
+    {
+        foreach (var item in itemDataDic)
+        {
+            if (item.Value.id ==id)
+                return item.Value;
+        }
+        return null;
+    }
 }

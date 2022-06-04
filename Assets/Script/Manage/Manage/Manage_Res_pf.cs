@@ -12,7 +12,11 @@ public class Manage_Res_pf :BaseManager<Manage_Res_pf>, Manage_Init
 {
     private Dictionary<string, GameObject> res_pf_Dic = new Dictionary<string, GameObject>();
 
-    public void Init() => MonoMgr.Instance.StartCoroutine(Load());
+    public void Init()
+    {
+        MonoMgr.Instance.StartCoroutine(Load());
+        Debug.Log("物体资源加载完毕！");
+    }
 
     IEnumerator Load()
     {
