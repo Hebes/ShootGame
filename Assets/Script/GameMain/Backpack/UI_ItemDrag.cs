@@ -12,25 +12,28 @@ enum EUI_ItemDrag_Component
     Item_amount,
 }
 
+/// <summary>
+/// 被拖拽物体的临时存储
+/// </summary>
 public class UI_ItemDrag : SingletonMono_Temp<UI_ItemDrag>
 {
     private RectTransform parentRectTransform;
     private Image itemDragImage;
     private TextMeshProUGUI itemDragAmountText;
+    [SerializeField]
+    private Item item;
 
-    private ConfigItemData configItemData;
-
-    public ConfigItemData GetConfigItemData() => configItemData;
-    public void SetConfigItemData(ConfigItemData configItemData) => this.configItemData = configItemData;
-    public void SetItemSprite(Sprite sprite) => itemDragImage.sprite = sprite;
-    public void SetitemAmountText(int amount) => itemDragAmountText.text = amount <= 1 ? string.Empty : amount.ToString();
-    public void Hide() => gameObject.SetActive(false);
-    public void Show(ConfigItemData configItemData)
+    public Item GetItem() => item;//获取数据
+    public void SetItem(Item item) => this.item = item;//设置数据
+    public void SetItemSprite(Sprite sprite) => itemDragImage.sprite = sprite;//设置图片
+    public void SetitemAmountText(int amount) => itemDragAmountText.text = amount <= 1 ? string.Empty : amount.ToString();//设置文本数量
+    public void IsHide(bool isHide) => gameObject.SetActive(isHide);//关闭显示
+    public void Show(Item item)//显示物体并设置数据
     {
-        gameObject.SetActive(true);
-        SetConfigItemData(configItemData);
-        SetItemSprite(Manage_Res_Sprite.Instance.Get_sprite(configItemData.iconName));
-        SetitemAmountText(configItemData.amount);
+        IsHide(true);
+        SetItem(item);
+        SetItemSprite(Manage_Res_Sprite.Instance.Get_sprite(item.GetConfigItemData.iconName));
+        SetitemAmountText(item.GetConfigItemData.amount);
         UpdatePosition();
     }
 
@@ -38,7 +41,7 @@ public class UI_ItemDrag : SingletonMono_Temp<UI_ItemDrag>
     {
         base.Awake();
         FindComponent();
-        Hide();
+        IsHide(false);
     }
     private void Update() => UpdatePosition();
 
@@ -60,6 +63,4 @@ public class UI_ItemDrag : SingletonMono_Temp<UI_ItemDrag>
         RectTransformUtility.ScreenPointToLocalPointInRectangle(parentRectTransform, Input.mousePosition, null, out Vector2 localPoint);
         transform.localPosition = localPoint;
     }
-
-
 }

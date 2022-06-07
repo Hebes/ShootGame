@@ -53,9 +53,6 @@ public class ExcelChangeJson : Editor
     [MenuItem("我自己的工具/转化/Excel转json")]
     public static void Excel_Change_Json() => ReadExcel(Application.dataPath + xlsxFilrPath);
 
-
-
-
     private static void ReadExcel(string path)
     {
         using (FileStream stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.Read))//文件类型打开

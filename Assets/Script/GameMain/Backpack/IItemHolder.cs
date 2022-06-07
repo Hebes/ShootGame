@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public interface IItemHolder
 {
-    void RemoveItem(ConfigItemData item);
-    void AddItem(ConfigItemData item);
+    void RemoveItem(Item item);
+    void AddItem(Item item);
     bool CanAddItem();
 }

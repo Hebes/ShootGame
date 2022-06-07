@@ -17,12 +17,10 @@ public class GameManager : SingletonMono_Temp<GameManager>
 
     public Transform[] Npc;
     public Transform tfgo;
-    public ItemWorld1 itemWorld1;
+    public ItemWorld itemWorld1;
 
     [SerializeField]
-    private UI_HotkeyBar uI_HotkeyBar;
-    [SerializeField]
-    private UI_Inventory1 uI_Inventory1;
+    private UI_Inventory uI_Inventory1;
 
     protected override void Awake()
     {
@@ -38,7 +36,6 @@ public class GameManager : SingletonMono_Temp<GameManager>
 
     private void BackpackInit()
     {
-        uI_HotkeyBar.RefreshHotkeyBar();
         uI_Inventory1.RefreshInventoryItems();
     }
 

@@ -19,11 +19,9 @@ public class SingletonMono_Temp<T> : MonoBehaviour where T : SingletonMono_Temp<
         {
             if (instance == null)
             {
-                //在场景中查找引用
                 instance = FindObjectOfType<T>();
-                if (instance == null)//如果是空的话
-                    //立即执行Awake
-                    instance = new GameObject("Singleton of " + typeof(T)).AddComponent<T>();//创建并添加这个本脚本
+                if (instance == null)
+                    instance = new GameObject("Singleton of " + typeof(T)).AddComponent<T>();
             }
             return instance;
         }
@@ -32,8 +30,6 @@ public class SingletonMono_Temp<T> : MonoBehaviour where T : SingletonMono_Temp<
     protected virtual void Awake()
     {
         if (instance == null)
-        {
             instance = this as T;
-        }
     }
 }

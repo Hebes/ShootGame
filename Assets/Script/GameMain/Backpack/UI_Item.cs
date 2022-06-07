@@ -17,21 +17,24 @@ enum EUI_Item_Component
  * IEndDragHandler      鼠标是否结束拖拽
  * IDragHandler         鼠标是否拖拽
  */
+/// <summary>
+/// 物体存储类
+/// </summary>
 public class UI_Item : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    public ConfigItemData configItemData;
-
+    [SerializeField]
+    public Item item;
     private Image ItemImage;
     private TextMeshProUGUI ItemAmountText;
     private CanvasGroup canvasGroup;
 
     public void SetItemSprite(Sprite sprite) => ItemImage.sprite = sprite;
     public void SetitemAmountText(int amount) => ItemAmountText.text = amount <= 1 ? string.Empty : amount.ToString();
-    public void SetConfigItemData(ConfigItemData configItemData)
+    public void SetConfigItemData(Item item)
     {
-        this.configItemData = configItemData;
-        SetItemSprite(Manage_Res_Sprite.Instance.Get_sprite(configItemData.iconName));
-        SetitemAmountText(configItemData.amount);
+        this.item = item;
+        SetItemSprite(Manage_Res_Sprite.Instance.Get_sprite(item.GetConfigItemData.iconName));
+        SetitemAmountText(item.GetConfigItemData.amount);
     }
     private void Awake() => FindComponent();
 
@@ -49,30 +52,30 @@ public class UI_Item : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     public void OnPointerDown(PointerEventData eventData)
     {
         //待定 拆分功能
-        if (eventData.button == PointerEventData.InputButton.Right)//鼠标的点击事件是右键点击的话
-        {
-            //有configItemData ， 可堆叠 ， 数量大于1
-            if (configItemData != null && configItemData.isStackable && configItemData.amount > 1)
-            {
-                if (configItemData.itemHolder.CanAddItem())
-                {
-                    // Can split 可以拆分
-                    int splitAmount = Mathf.FloorToInt(configItemData.amount / 2f);
-                    configItemData.amount -= splitAmount;
-                    ConfigItemData duplicateItem 
-                        = new ConfigItemData 
-                        { 
-                            id = configItemData.id,
-                            name= configItemData.name,
-                            iconName = configItemData.iconName,
-                            explain = configItemData.explain,
-                            isStackable = configItemData.isStackable,
-                            amount = splitAmount 
-                        };
-                    configItemData.itemHolder.AddItem(duplicateItem);
-                }
-            }
-        }
+        //if (eventData.button == PointerEventData.InputButton.Right)//鼠标的点击事件是右键点击的话
+        //{
+        //    //有configItemData ， 可堆叠 ， 数量大于1
+        //    if (configItemData != null && configItemData.isStackable && configItemData.amount > 1)
+        //    {
+        //        if (configItemData.itemHolder.CanAddItem())
+        //        {
+        //            // Can split 可以拆分
+        //            int splitAmount = Mathf.FloorToInt(configItemData.amount / 2f);
+        //            configItemData.amount -= splitAmount;
+        //            ConfigItemData duplicateItem 
+        //                = new ConfigItemData 
+        //                { 
+        //                    id = configItemData.id,
+        //                    name= configItemData.name,
+        //                    iconName = configItemData.iconName,
+        //                    explain = configItemData.explain,
+        //                    isStackable = configItemData.isStackable,
+        //                    amount = splitAmount 
+        //                };
+        //            configItemData.itemHolder.AddItem(duplicateItem);
+        //        }
+        //    }
+        //}
     }
     /// <summary>
     /// 鼠标是否开始拖拽
@@ -82,7 +85,7 @@ public class UI_Item : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     {
         canvasGroup.alpha = .5f;
         canvasGroup.blocksRaycasts = false;
-        UI_ItemDrag.Instance.Show(configItemData);
+        UI_ItemDrag.Instance.Show(item);
     }
     /// <summary>
     /// 鼠标是否拖拽
@@ -100,6 +103,6 @@ public class UI_Item : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     {
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
-        UI_ItemDrag.Instance.Hide();
+        UI_ItemDrag.Instance.IsHide(false);
     }
 }

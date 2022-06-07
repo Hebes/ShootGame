@@ -32,35 +32,13 @@ public enum EScenes
 #endregion
 public class GameRoot : MonoBehaviour
 {
-    //测试 切换场景
-    public void ChangeScene()
-    {
-        SceneManager.LoadScene(EScenes.MainGame.ToString());
-    }
-
+    public void ChangeScene() => SceneManager.LoadScene(EScenes.MainGame.ToString());
+    private async void Awake() => Debug.Log(await InitRsv());
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
             SceneManager.LoadScene(EScenes.Test.ToString());
     }
-
-    #region 第一种加载比Awake快的方法
-    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    //static void InitRsv()
-    //{
-    //    //初始化资源加载
-    //    List<MainGame_Init> mainGame_Inits = new List<MainGame_Init>()
-    //    {
-    //        MainGame_Res_pf_Manage.Instance,
-    //        MainGame_Res_Sprite_Manage.Instance,
-    //    };
-
-    //    foreach (var item in mainGame_Inits)
-    //    {
-    //        item.Init();
-    //    }
-    //}
-    #endregion
 
     /// <summary>
     /// 确保第一个场景为MenuScene
@@ -71,16 +49,12 @@ public class GameRoot : MonoBehaviour
         if (SceneManager.GetActiveScene().name == EScenes.MenuScene.ToString()) return;
         SceneManager.LoadScene(EScenes.MenuScene.ToString());
     }
-    private async void Awake()
-    {
-        string str = await InitRsv();
-        Debug.Log(str);
-    }
 
     /// <summary>
     /// 初始化资源加载
     /// </summary>
     /// <returns></returns>
+    /// //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private async Task<string> InitRsv()
     {
         #region 更改Edit->Project Setting->Script Execution Order的脚本顺序
@@ -99,6 +73,6 @@ public class GameRoot : MonoBehaviour
         }
         #endregion
 
-        return "初始化加载完成";//InitRsvOver
+        return "InitRsvOver 初始化加载完成";
     }
 }

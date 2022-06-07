@@ -32,6 +32,4 @@ public class ConfigItemData
     /// 数量
     /// </summary>
     public int amount;
-
-    public IItemHolder itemHolder;
 }
